@@ -1,5 +1,5 @@
-import React from 'react';
-import { HiX } from 'react-icons/hi';
+import React from "react";
+import { HiX } from "react-icons/hi";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -8,35 +8,20 @@ interface DrawerProps {
 }
 
 const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, children }) => {
-  const drawerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: 0,
-    left: isOpen ? '0' : '-100%',
-    height: '100%',
-    width: '250px',
-    backgroundColor: 'white',
-    boxShadow: '2px 0 5px rgba(0,0,0,0.5)',
-    transition: 'left 0.3s ease-in-out',
-    zIndex: 100,
-    overflowY: 'auto',
-  };
-
-  const overlayStyles: React.CSSProperties = {
-    display: isOpen ? 'block' : 'none',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    height: '100%',
-    width: '100%',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    zIndex: 99,
-  };
-
   return (
     <>
-      <div style={overlayStyles} onClick={onClose}></div>
-      <div style={drawerStyles}>
-        <button onClick={onClose} style={{ float: 'right', margin: '10px' }}>
+      <div
+        className={`fixed inset-0 bg-black/51 z-40 ${
+          isOpen ? "block" : "hidden"
+        }`}
+        onClick={onClose}
+      ></div>
+      <div
+        className={`fixed top-0 h-full bg-white shadow-lg transition-all duration-300 ease-in-out z-50 overflow-y-auto w-64 ${
+          isOpen ? "left-0" : "-left-full"
+        }`}
+      >
+        <button onClick={onClose} className="float-right m-4">
           <HiX className="h-5 w-5" />
         </button>
         {children}
