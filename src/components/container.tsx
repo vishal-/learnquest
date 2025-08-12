@@ -12,6 +12,8 @@ const Container: React.FC = () => {
       <div className="container mx-auto bg-background p-4 text-text min-h-screen">
         <HashRouter>
           <Routes>
+            <Route path="/hindi" element={<div>Hindi Courses</div>} />
+
             <Route path="/home" element={<Home />} />
             <Route path="/poc" element={<POC />} />
             <Route path="/" element={<Navigate to="/home" />} />
