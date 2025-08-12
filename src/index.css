@@ -15,13 +15,16 @@ body {
 
 @keyframes marquee {
   0% {
-    transform: translateX(100%);
+    transform: translate3d(calc(100vw + 100%), 0, 0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translate3d(calc(-100vw - 100%), 0, 0);
   }
 }
 
 .marquee {
   animation: marquee 21s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }

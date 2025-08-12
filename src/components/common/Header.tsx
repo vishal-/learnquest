@@ -2,6 +2,7 @@ import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import Drawer from "../ui/Drawer";
 import { appSubjects } from "../../lib/subjects";
+import { randomQuote } from "../../lib/quotes";
 import { Link } from "react-router-dom";
 
 const DrawerItem: React.FC<{
@@ -44,8 +45,7 @@ const Header: React.FC = () => {
 
       <div className="flex-1 overflow-hidden mx-4">
         <h1 className="text-xl text-slate-600 font-semibold whitespace-nowrap marquee">
-          Live as if you were to die tomorrow. Learn as if you were to live
-          forever.
+          {randomQuote}
         </h1>
       </div>
     </header>
