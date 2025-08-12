@@ -1,7 +1,8 @@
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Header from "./common/Header";
 import Home from "./pages/home";
 import POC from "./pages/poc";
+import { appSubjects } from "../lib/subjects";
 
 // Container component that serves as a wrapper with default styling
 const Container: React.FC = () => {
@@ -12,11 +13,28 @@ const Container: React.FC = () => {
       <div className="container mx-auto bg-background p-4 text-text min-h-screen">
         <HashRouter>
           <Routes>
-            <Route path="/hindi" element={<div>Hindi Courses</div>} />
+            {appSubjects.map((subject) => (
+              <>
+                <Route
+                  key={`subject_${subject.label}`}
+                  path={subject.route}
+                  element={<subject.component subject={subject} />}
+                />
+                {subject.courses.map((course) => (
+                  <Route
+                    key={`subject_${subject.label}_course_${course.label}`}
+                    path={course.route}
+                    element={<course.component />}
+                  />
+                ))}
+              </>
+            ))}
 
-            <Route path="/home" element={<Home />} />
+            {/* <Route path="/hindi" element={<div>Hindi Courses</div>} /> */}
+
             <Route path="/poc" element={<POC />} />
-            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Navigate to="/home" />} /> */}
           </Routes>
         </HashRouter>
       </div>

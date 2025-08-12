@@ -1,19 +1,20 @@
 import React from "react";
 import Tile from "../ui/Tile";
+import { appSubjects } from "../../lib/subjects";
 
 const HomePage: React.FC = () => {
   return (
-    <div className="p-4 bg-background text-text">
-      <h1 className="text-2xl font-bold text-accent">Welcome to LearnQuest!</h1>
-      <p className="mt-2">
-        This is a fun and interactive learning platform for kids.
-      </p>
-
-      <Tile
-        imageSrc="https://pics.s4v.my/uploads/img_1754910824338_5uk5a2dgkxe.jpg"
-        label="Learn"
-        route="/poc"
-      />
+    <div className="min-h-screen p-6 bg-background text-text flex flex-col items-center">
+      <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        {appSubjects.map((subject) => (
+          <Tile
+            key={subject.label}
+            imageSrc={subject.image}
+            label={subject.label}
+            route={subject.route}
+          />
+        ))}
+      </div>
     </div>
   );
 };

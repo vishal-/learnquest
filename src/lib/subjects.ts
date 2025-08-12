@@ -1,23 +1,31 @@
 import { lazy } from "react";
+import type { Course, Subject } from "../types/subject.types";
 
-const HindiCourses = [
+const HindiCourses: Course[] = [
   {
-    title: "हिंदी की गिनती",
+    label: "हिंदी की गिनती",
     description: "An introductory course to learn basic Hindi.",
     image: "https://iili.io/FZKGbDb.jpg",
-    route: "counting",
-    element: lazy(() => import("../components/pages/hindi/hindiCounting"))
+    route: "/hindi/counting",
+    component: lazy(() => import("../components/pages/hindi/hindiCounting"))
   }
 ];
 
-export const Subjects = [
+export const appSubjects: Subject[] = [
   {
     label: "Hindi",
     description: "Learn Hindi language basics, vocabulary, and grammar.",
     image: "https://iili.io/FZKGbDb.jpg",
     route: "/hindi",
+    component: lazy(() => import("../components/pages/layouts/subjectLayout")),
+    courses: HindiCourses
+  },
+  {
+    label: "English",
+    description: "Learn English language basics, vocabulary, and grammar.",
+    image: "https://iili.io/FZKGbDb.jpg",
+    route: "/english",
+    component: lazy(() => import("../components/pages/layouts/subjectLayout")),
     courses: HindiCourses
   }
-] as const;
-
-export type Subject = (typeof Subjects)[number];
+];

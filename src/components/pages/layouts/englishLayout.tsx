@@ -3,17 +3,16 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import type { Course } from "../../../types/subject.types";
 
-interface HindiLayoutProps {
+interface EnglishLayoutProps {
   courses: Course[];
 }
 
-const HindiLayout: React.FC<HindiLayoutProps> = () => {
+const EnglishLayout: React.FC<EnglishLayoutProps> = ({ courses }) => {
   return (
-    <div dir="ltr" lang="hi" className="hindi-layout">
-      <span>This is the hindi layout</span>
+    <div dir="ltr" lang="en" className="english-layout">
       <Outlet />
     </div>
   );
 };
 
-export default HindiLayout;
+export default EnglishLayout;
