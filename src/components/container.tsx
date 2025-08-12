@@ -7,38 +7,35 @@ import { appSubjects } from "../lib/subjects";
 // Container component that serves as a wrapper with default styling
 const Container: React.FC = () => {
   return (
-    <>
+    <HashRouter>
       <Header />
-
       <div className="container mx-auto bg-background p-4 text-text min-h-screen">
-        <HashRouter>
-          <Routes>
-            {appSubjects.map((subject) => (
-              <>
+        <Routes>
+          {appSubjects.map((subject) => (
+            <>
+              <Route
+                key={`subject_${subject.label}`}
+                path={subject.route}
+                element={<subject.component subject={subject} />}
+              />
+              {subject.courses.map((course) => (
                 <Route
-                  key={`subject_${subject.label}`}
-                  path={subject.route}
-                  element={<subject.component subject={subject} />}
+                  key={`subject_${subject.label}_course_${course.label}`}
+                  path={course.route}
+                  element={<course.component />}
                 />
-                {subject.courses.map((course) => (
-                  <Route
-                    key={`subject_${subject.label}_course_${course.label}`}
-                    path={course.route}
-                    element={<course.component />}
-                  />
-                ))}
-              </>
-            ))}
+              ))}
+            </>
+          ))}
 
-            {/* <Route path="/hindi" element={<div>Hindi Courses</div>} /> */}
+          {/* <Route path="/hindi" element={<div>Hindi Courses</div>} /> */}
 
-            <Route path="/poc" element={<POC />} />
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/" element={<Navigate to="/home" />} /> */}
-          </Routes>
-        </HashRouter>
+          <Route path="/poc" element={<POC />} />
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Navigate to="/home" />} /> */}
+        </Routes>
       </div>
-    </>
+    </HashRouter>
   );
 };
 
