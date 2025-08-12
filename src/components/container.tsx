@@ -14,7 +14,7 @@ const Container: React.FC = () => {
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/poc" element={<POC />} />
-            <Route path="/" element={<Navigate to="/poc" />} />
+            <Route path="/" element={<Navigate to="/home" />} />
           </Routes>
         </HashRouter>
       </div>
