@@ -4,7 +4,6 @@ import Home from "./pages/home";
 import POC from "./pages/poc";
 import { appSubjects } from "../lib/subjects";
 
-// Container component that serves as a wrapper with default styling
 const Container: React.FC = () => {
   return (
     <HashRouter>
