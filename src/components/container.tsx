@@ -21,7 +21,7 @@ const Container: React.FC = () => {
                 <Route
                   key={`subject_${subject.label}_course_${course.label}`}
                   path={course.route}
-                  element={<course.component />}
+                  element={<course.component course={course} />}
                 />
               ))}
             </>
