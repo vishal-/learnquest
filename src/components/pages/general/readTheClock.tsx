@@ -117,9 +117,13 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
         <div className="flex flex-col">
           <label className="text-sm text-gray-600 mb-1">Hours</label>
           <input
-            type="number"
             value={guessedHour}
-            onChange={(e) => setGuessedHour(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "" || /^[1-9]$|^1[0-2]$/.test(value)) {
+                setGuessedHour(value);
+              }
+            }}
             min={1}
             max={12}
             className="w-20 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -129,9 +133,16 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
         <div className="flex flex-col">
           <label className="text-sm text-gray-600 mb-1">Minutes</label>
           <input
-            type="number"
             value={guessedMinute}
-            onChange={(e) => setGuessedMinute(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (
+                value === "" ||
+                (/^[0-5]?[0-9]$/.test(value) && parseInt(value) <= 59)
+              ) {
+                setGuessedMinute(value);
+              }
+            }}
             min={0}
             max={59}
             className="w-20 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
