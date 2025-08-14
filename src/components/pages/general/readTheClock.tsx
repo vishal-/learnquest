@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Course } from "../../../types/subject.types";
-import Button from "../../ui/Button";
+import Button from "../../ui/button";
 
 const ReadTheClock: React.FC<{ course: Course }> = ({
   course: { description }
@@ -152,8 +152,15 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
       </div>
 
       {/* Buttons */}
-      <div className="mt-6">
-        <Button label="Check Answer" onClick={checkAnswer} />
+      <div className="mt-9">
+        <Button
+          label="Check Answer"
+          variant="secondary"
+          onClick={checkAnswer}
+        />
+
+        <p>&#160;</p>
+
         <Button label="New Time" onClick={generateNewTime} />
       </div>
 

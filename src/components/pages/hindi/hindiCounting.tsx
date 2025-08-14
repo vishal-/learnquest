@@ -1,6 +1,6 @@
 import { hindiNumbers } from "../../../lib/hindi.constants";
 import { FaVolumeUp } from "react-icons/fa";
-import Toast from "../../ui/Toast";
+import Toast from "../../ui/toast";
 import { useSpeech } from "../../../hooks/useSpeech";
 import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/CourseContent";

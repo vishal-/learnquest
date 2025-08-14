@@ -1,18 +1,34 @@
 import { FaVolumeUp } from "react-icons/fa";
 
+type ButtonVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'outline' | 'ghost';
+
 interface ButtonProps {
   onClick: () => void;
   label?: string;
+  variant?: ButtonVariant;
 }
+
+const getVariantClasses = (variant: ButtonVariant = 'primary') => {
+  const variants = {
+    primary: 'bg-blue-600 text-white hover:bg-blue-700',
+    secondary: 'bg-gray-600 text-white hover:bg-gray-700',
+    success: 'bg-green-600 text-white hover:bg-green-700',
+    danger: 'bg-red-600 text-white hover:bg-red-700',
+    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',
+    ghost: 'text-blue-600 hover:bg-blue-100'
+  };
+  return variants[variant];
+};
 
 const Button: React.FC<ButtonProps> & { Audio: React.FC<ButtonProps> } = ({
   onClick,
-  label
+  label,
+  variant = 'primary'
 }) => {
   return (
     <button
       onClick={onClick}
-      className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+      className={`px-6 py-2 rounded transition-colors ${getVariantClasses(variant)}`}
     >
       {label}
     </button>
