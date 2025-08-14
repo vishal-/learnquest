@@ -34,7 +34,7 @@ const StemCourses: Course[] = [
     description: "What category does this unit belong to?",
     image: "https://iili.io/FZlHtNs.jpg",
     route: "/stem/units",
-    component: lazy(() => import("../components/pages/stem/Units"))
+    component: lazy(() => import("../components/pages/stem/units"))
   }
 ];
 

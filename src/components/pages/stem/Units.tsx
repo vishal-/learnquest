@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { units } from "../../../lib/units";
 import type { Course } from "../../../types/subject.types";
-import CourseContent from "../../ui/CourseContent";
+import CourseContent from "../../ui/courseContent";
 
 const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   const allCategories = Object.keys(units);

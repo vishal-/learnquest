@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { hindiNumbers } from "../../../lib/hindi.constants";
 import type { Course } from "../../../types/subject.types";
-import CourseContent from "../../ui/CourseContent";
+import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
 import Toast from "../../ui/toast";
 import { useSpeech } from "../../../hooks/useSpeech";

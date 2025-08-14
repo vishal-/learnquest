@@ -3,7 +3,7 @@ import { FaVolumeUp } from "react-icons/fa";
 import Toast from "../../ui/toast";
 import { useSpeech } from "../../../hooks/useSpeech";
 import type { Course } from "../../../types/subject.types";
-import CourseContent from "../../ui/CourseContent";
+import CourseContent from "../../ui/courseContent";
 
 const HindiCounting: React.FC<{ course: Course }> = ({
   course: { description }

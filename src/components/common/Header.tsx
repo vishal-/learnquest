@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
-import Drawer from "../ui/Drawer";
+import Drawer from "../ui/drawer";
 import { appSubjects } from "../../config/subjects";
 import { randomQuote } from "../../lib/quotes";
 import { Link } from "react-router-dom";
