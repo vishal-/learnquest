@@ -12,3 +12,19 @@ body {
   background-color: #0f172a;
   color: #f1f5f9;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(calc(100vw + 100%), 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(-100vw - 100%), 0, 0);
+  }
+}
+
+.marquee {
+  animation: marquee 21s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

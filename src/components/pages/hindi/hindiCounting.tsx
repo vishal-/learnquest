@@ -133,7 +133,7 @@ const convertToHindi = (num: number): string => {
   return num.toString(); // fallback
 };
 
-const NumbersInHindi = () => {
+const HindiCounting = () => {
   const [number, setNumber] = useState(generateRandomNumber());
   //   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
@@ -199,4 +199,4 @@ const NumbersInHindi = () => {
   );
 };
 
-export default NumbersInHindi;
+export default HindiCounting;
