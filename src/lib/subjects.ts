@@ -24,7 +24,7 @@ const HindiCourses: Course[] = [
 const StemCourses: Course[] = [
   {
     label: "Units of Measurement",
-    description: "Do you know the different units of measurement?",
+    description: "What category does this unit belong to?",
     image: "https://iili.io/FZlHtNs.jpg",
     route: "/stem/units",
     component: lazy(() => import("../components/pages/stem/Units"))

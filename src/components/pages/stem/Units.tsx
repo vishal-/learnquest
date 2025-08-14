@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { units } from "../../../lib/units";
+import type { Course } from "../../../types/subject.types";
 
-const Units: React.FC = () => {
+const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   const allCategories = Object.keys(units);
   const [currentUnit, setCurrentUnit] = useState<string>("");
   const [correctCategory, setCorrectCategory] = useState<string>("");
@@ -36,16 +37,18 @@ const Units: React.FC = () => {
   };
 
   return (
-    <div className="p-8 min-h-screen flex flex-col items-center bg-[var(--color-background)]">
-      <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 text-center w-full max-w-lg border-2 border-[var(--color-accent)]">
+    <div className="min-h-screen flex flex-col items-center bg-[var(--color-background)]">
+      <div className="mb-3 text-center w-full max-w-lg">
         <h2
-          className="text-2xl font-bold mb-4 text-[var(--color-secondary)]"
+          className="text-xl mb-3 text-white"
           style={{ fontFamily: "var(--font-kids)" }}
         >
-          What category does this unit belong to?
+          {description}
         </h2>
+      </div>
+      <div className="bg-white-300 rounded-2xl shadow-xl px-3 py-4 mb-8  border-2 border-[var(--color-accent)]">
         <h1
-          className="text-4xl font-extrabold mb-2 text-[var(--color-accent)]"
+          className="text-2xl font-extrabold text-gray-400"
           style={{ fontFamily: "var(--font-kids)" }}
         >
           {currentUnit}
