@@ -1,0 +1,17 @@
+{
+  "name": "Wiz Whiz - Interactive Learning App",
+  "short_name": "Wiz Whiz",
+  "description": "Educational web application for children to learn various subjects interactively",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

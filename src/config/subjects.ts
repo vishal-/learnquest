@@ -14,10 +14,17 @@ const GeneralCourses: Course[] = [
 const HindiCourses: Course[] = [
   {
     label: "हिंदी की गिनती",
-    description: "Can you count in Hindi?",
+    description: "क्या आपको हिंदी में गिनती आती है?",
     image: "https://iili.io/FZcEYNt.jpg",
     route: "/hindi/counting",
     component: lazy(() => import("../components/pages/hindi/hindiCounting"))
+  },
+  {
+    label: "हिंदी संख्या पहचानें (Numbers)",
+    description: "0 से 1000 के बीच की हिन्दी संख्या पहचानें।",
+    image: "https://iili.io/FZcEYNt.jpg",
+    route: "/hindi/numbers",
+    component: lazy(() => import("../components/pages/hindi/hindiNumbers"))
   }
 ];
 
@@ -27,7 +34,7 @@ const StemCourses: Course[] = [
     description: "What category does this unit belong to?",
     image: "https://iili.io/FZlHtNs.jpg",
     route: "/stem/units",
-    component: lazy(() => import("../components/pages/stem/Units"))
+    component: lazy(() => import("../components/pages/stem/units"))
   }
 ];
 

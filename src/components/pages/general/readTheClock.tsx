@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import type { Course } from "../../../types/subject.types";
+import Button from "../../ui/button";
+import Feedback from "../../ui/feedback";
+import CourseContent from "../../ui/courseContent";
 
 const ReadTheClock: React.FC<{ course: Course }> = ({
   course: { description }
@@ -51,8 +54,8 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
   const minuteDegrees = randomMinute * 6;
 
   return (
-    <div className="text-center p-6">
-      <h2 className="text-2xl">{description}</h2>
+    <CourseContent>
+      <CourseContent.Title description={description} />
       {/* Analog Clock */}
       <div className="w-64 h-64 relative mx-auto my-6 rounded-full border-4 border-gray-800 bg-white shadow-lg">
         {/* Clock numbers */}
@@ -115,7 +118,7 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
       {/* Input section */}
       <div className="mt-6 flex gap-4 justify-center items-center">
         <div className="flex flex-col">
-          <label className="text-sm text-gray-600 mb-1">Hours</label>
+          <label className="text-sm text-gray-500 mb-1">Hours</label>
           <input
             value={guessedHour}
             onChange={(e) => {
@@ -131,7 +134,7 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
         </div>
         <div className="text-2xl font-bold mt-6">:</div>
         <div className="flex flex-col">
-          <label className="text-sm text-gray-600 mb-1">Minutes</label>
+          <label className="text-sm text-gray-500 mb-1">Minutes</label>
           <input
             value={guessedMinute}
             onChange={(e) => {
@@ -151,34 +154,27 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
       </div>
 
       {/* Buttons */}
-      <div className="mt-6 flex gap-4 justify-center">
-        <button
+      <div className="mt-9 text-center">
+        <Button
+          label="Check Answer"
+          variant="secondary"
           onClick={checkAnswer}
-          className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          Check Answer
-        </button>
-        <button
-          onClick={generateNewTime}
-          className="px-6 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition-colors"
-        >
-          New Time
-        </button>
+        />
+
+        <p>&#160;</p>
+
+        <Button label="New Time" onClick={generateNewTime} />
       </div>
 
-      {/* Feedback */}
+      <p>&#160;</p>
+
       {feedback && (
-        <div
-          className={`mt-6 max-w-md mx-auto p-4 rounded ${
-            isCorrect
-              ? "bg-green-100 text-green-800 border border-green-300"
-              : "bg-red-100 text-red-800 border border-red-300"
-          }`}
-        >
-          {feedback}
-        </div>
+        <Feedback
+          variant={isCorrect ? "success" : "danger"}
+          message={feedback}
+        />
       )}
-    </div>
+    </CourseContent>
   );
 };
 

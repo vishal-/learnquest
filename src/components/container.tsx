@@ -1,8 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import Header from "./common/Header";
+import Header from "./common/header";
 import Home from "./pages/home";
 import POC from "./pages/poc";
-import { appSubjects } from "../lib/subjects";
+import { appSubjects } from "../config/subjects";
 
 const Container: React.FC = () => {
   return (
