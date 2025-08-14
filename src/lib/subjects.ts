@@ -14,22 +14,32 @@ const GeneralCourses: Course[] = [
 const HindiCourses: Course[] = [
   {
     label: "हिंदी की गिनती",
-    description: "An introductory course to learn basic Hindi.",
+    description: "Can you count in Hindi?",
     image: "https://iili.io/FZcEYNt.jpg",
     route: "/hindi/counting",
     component: lazy(() => import("../components/pages/hindi/hindiCounting"))
   }
 ];
 
+const StemCourses: Course[] = [
+  {
+    label: "Units of Measurement",
+    description: "Do you know the different units of measurement?",
+    image: "https://iili.io/FZlHtNs.jpg",
+    route: "/stem/units",
+    component: lazy(() => import("../components/pages/stem/Units"))
+  }
+];
+
 export const appSubjects: Subject[] = [
-  // {
-  //   label: "STEM",
-  //   description: "Explore basic science concepts and experiments.",
-  //   image: "https://iili.io/FZlHtNs.jpg",
-  //   route: "/science",
-  //   component: lazy(() => import("../components/pages/layouts/subjectLayout")),
-  //   courses: HindiCourses
-  // },
+  {
+    label: "STEM",
+    description: "Explore basic science concepts and experiments.",
+    image: "https://iili.io/FZlHtNs.jpg",
+    route: "/stem",
+    component: lazy(() => import("../components/pages/layouts/subjectLayout")),
+    courses: StemCourses
+  },
   // {
   //   label: "World",
   //   description: "Learn about different cultures, geography, and history.",

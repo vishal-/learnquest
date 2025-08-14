@@ -8,6 +8,7 @@ const Container: React.FC = () => {
   return (
     <HashRouter>
       <Header />
+
       <div className="container mx-auto bg-background p-4 text-text min-h-screen">
         <Routes>
           {appSubjects.map((subject) => (

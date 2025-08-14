@@ -39,7 +39,7 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
       setIsCorrect(true);
     } else {
       setFeedback(
-        `Not quite right. The correct time is ${randomHour}:${randomMinute
+        `Not quite right. The correct time is ${randomHour} : ${randomMinute
           .toString()
           .padStart(2, "0")}`
       );
