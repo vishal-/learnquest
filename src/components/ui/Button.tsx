@@ -1,6 +1,12 @@
 import { FaVolumeUp } from "react-icons/fa";
 
-type ButtonVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'outline' | 'ghost';
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger"
+  | "outline"
+  | "ghost";
 
 interface ButtonProps {
   onClick: () => void;
@@ -8,14 +14,15 @@ interface ButtonProps {
   variant?: ButtonVariant;
 }
 
-const getVariantClasses = (variant: ButtonVariant = 'primary') => {
+const getVariantClasses = (variant: ButtonVariant = "primary") => {
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-600 text-white hover:bg-gray-700',
-    success: 'bg-green-600 text-white hover:bg-green-700',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',
-    ghost: 'text-blue-600 hover:bg-blue-100'
+    primary: "bg-blue-600 text-white hover:bg-blue-700",
+    secondary: "bg-gray-800 text-white hover:bg-gray-700",
+    success: "bg-green-600 text-white hover:bg-green-700",
+    danger: "bg-red-600 text-white hover:bg-red-700",
+    outline:
+      "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white",
+    ghost: "text-blue-600 hover:bg-blue-100"
   };
   return variants[variant];
 };
@@ -23,12 +30,14 @@ const getVariantClasses = (variant: ButtonVariant = 'primary') => {
 const Button: React.FC<ButtonProps> & { Audio: React.FC<ButtonProps> } = ({
   onClick,
   label,
-  variant = 'primary'
+  variant = "primary"
 }) => {
   return (
     <button
       onClick={onClick}
-      className={`px-6 py-2 rounded transition-colors ${getVariantClasses(variant)}`}
+      className={`px-6 py-2 rounded transition-colors ${getVariantClasses(
+        variant
+      )}`}
     >
       {label}
     </button>

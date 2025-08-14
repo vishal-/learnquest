@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { units } from "../../../lib/units";
 import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
+import Button from "../../ui/button";
+import Feedback from "../../ui/feedback";
 
 const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   const allCategories = Object.keys(units);
@@ -38,58 +40,37 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-[var(--color-background)]">
+    <CourseContent>
       <CourseContent.Title description={description} />
 
       <CourseContent.Framed>{currentUnit}</CourseContent.Framed>
 
       <div className="mb-10 flex flex-wrap justify-center gap-4 w-full max-w-xl">
         {randomizedCategories.map((category) => (
-          <button
+          <Button
             key={category}
-            className={`px-6 py-3 rounded-full font-bold shadow-md transition-all duration-200
-              ${
-                selectedCategory === category
-                  ? isCorrect
-                    ? "bg-green-400 text-white scale-105"
-                    : "bg-red-400 text-white scale-105"
-                  : "bg-[var(--color-primary)] text-[var(--color-text)] hover:bg-[var(--color-hover)] hover:text-white"
-              }
-              ${
-                selectedCategory !== null ? "cursor-not-allowed opacity-70" : ""
-              }
-            `}
-            style={{ fontFamily: "var(--font-kids)" }}
+            variant="secondary"
             onClick={() => handleCategorySelect(category)}
-            disabled={selectedCategory !== null}
-          >
-            {category}
-          </button>
+            label={category}
+          />
         ))}
       </div>
 
-      {selectedCategory !== null && (
-        <div className="text-center mb-8">
-          <p
-            className={`text-xl font-bold transition-all duration-200
-            ${isCorrect ? "text-green-600" : "text-red-600"}`}
-            style={{ fontFamily: "var(--font-kids)" }}
-          >
-            {isCorrect
-              ? "🎉 Correct!"
-              : `❌ Incorrect! The correct category is ${correctCategory}`}
-          </p>
-        </div>
-      )}
+      <div className="text-center mb-6">
+        <Button onClick={loadNewUnit} label="New Unit" />
+      </div>
 
-      <button
-        className="bg-[var(--color-secondary)] text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-[var(--color-accent)] transition-all"
-        style={{ fontFamily: "var(--font-kids)" }}
-        onClick={loadNewUnit}
-      >
-        New Unit
-      </button>
-    </div>
+      {selectedCategory !== null && (
+        <Feedback
+          message={
+            isCorrect
+              ? "🎉 Correct!"
+              : `❌ Incorrect! The correct category is ${correctCategory}`
+          }
+          variant={isCorrect ? "success" : "danger"}
+        />
+      )}
+    </CourseContent>
   );
 };
 
