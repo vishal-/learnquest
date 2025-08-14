@@ -3,6 +3,8 @@ import { hindiNumbers } from "../../../lib/hindi.constants";
 import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/CourseContent";
 import Button from "../../ui/Button";
+import Toast from "../../ui/Toast";
+import { useSpeech } from "../../../hooks/useSpeech";
 
 const convertToHindi = (num: number): string => {
   if (hindiNumbers[num as keyof typeof hindiNumbers])
@@ -26,37 +28,15 @@ const HindiNumbers: React.FC<{ course: Course }> = ({
   course: { description }
 }) => {
   const [number, setNumber] = useState(generateRandomNumber());
-  //   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const { playAudio, toast, setToast } = useSpeech();
 
   function generateRandomNumber() {
     return Math.floor(Math.random() * 1000); // 0–999
   }
 
   const handleRead = () => {
-    if ("speechSynthesis" in window) {
-      console.log("yo");
-      const hindiText = convertToHindi(number);
-      console.log("Hindi Text:", hindiText);
-      const utterance = new SpeechSynthesisUtterance(hindiText);
-      utterance.lang = "hi-IN";
-
-      const voices = window.speechSynthesis.getVoices();
-
-      console.log("Available Voices:", voices);
-
-      const hindiVoice = voices.find((v) => v.lang === "hi-IN");
-
-      console.log(hindiVoice);
-
-      if (hindiVoice) {
-        console.log("Using Hindi voice:", hindiVoice.name);
-        utterance.voice = hindiVoice;
-      }
-
-      window.speechSynthesis.speak(utterance);
-    } else {
-      alert("Your browser does not support speech synthesis.");
-    }
+    const hindiText = convertToHindi(number);
+    playAudio(hindiText);
   };
 
   return (
@@ -66,26 +46,16 @@ const HindiNumbers: React.FC<{ course: Course }> = ({
       <div className="text-center">
         <CourseContent.Framed>{number}</CourseContent.Framed>
 
-        <button
-          onClick={handleRead}
-          style={{
-            padding: "10px 20px",
-            fontSize: "16px",
-            marginRight: "10px"
-          }}
-        >
-          पढ़ें
-        </button>
-
         <Button.Audio onClick={handleRead} label="पढ़ें" />
 
-        <button
+        <p>&#160;</p>
+
+        <Button
+          label=" नयी संख्या"
           onClick={() => setNumber(generateRandomNumber())}
-          style={{ padding: "10px 20px", fontSize: "16px" }}
-        >
-          नया नंबर
-        </button>
+        />
       </div>
+      {toast && <Toast message={toast} onClose={() => setToast(null)} />}
     </div>
   );
 };
