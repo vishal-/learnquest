@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { units } from "../../../lib/units";
 import type { Course } from "../../../types/subject.types";
+import CourseContent from "../../ui/CourseContent";
 
 const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   const allCategories = Object.keys(units);
@@ -38,22 +39,9 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-[var(--color-background)]">
-      <div className="mb-3 text-center w-full max-w-lg">
-        <h2
-          className="text-xl mb-3 text-white"
-          style={{ fontFamily: "var(--font-kids)" }}
-        >
-          {description}
-        </h2>
-      </div>
-      <div className="bg-white-300 rounded-2xl shadow-xl px-3 py-4 mb-8  border-2 border-[var(--color-accent)]">
-        <h1
-          className="text-2xl font-extrabold text-gray-400"
-          style={{ fontFamily: "var(--font-kids)" }}
-        >
-          {currentUnit}
-        </h1>
-      </div>
+      <CourseContent.Title description={description} />
+
+      <CourseContent.Framed>{currentUnit}</CourseContent.Framed>
 
       <div className="mb-10 flex flex-wrap justify-center gap-4 w-full max-w-xl">
         {randomizedCategories.map((category) => (

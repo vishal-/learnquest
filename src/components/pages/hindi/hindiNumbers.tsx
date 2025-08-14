@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { hindiNumbers } from "../../../lib/hindi.constants";
+import type { Course } from "../../../types/subject.types";
+import CourseContent from "../../ui/CourseContent";
 
 const convertToHindi = (num: number): string => {
   if (hindiNumbers[num as keyof typeof hindiNumbers])
@@ -19,23 +21,15 @@ const convertToHindi = (num: number): string => {
   return num.toString(); // fallback
 };
 
-const HindiNumbers = () => {
+const HindiNumbers: React.FC<{ course: Course }> = ({
+  course: { description }
+}) => {
   const [number, setNumber] = useState(generateRandomNumber());
   //   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   function generateRandomNumber() {
     return Math.floor(Math.random() * 1000); // 0–999
   }
-
-  //   useEffect(() => {
-  //     const loadVoices = () => {
-  //       const availableVoices = window.speechSynthesis.getVoices();
-  //       setVoices(availableVoices);
-  //     };
-
-  //     loadVoices();
-  //     window.speechSynthesis.onvoiceschanged = loadVoices;
-  //   }, []);
 
   const handleRead = () => {
     if ("speechSynthesis" in window) {
@@ -65,22 +59,29 @@ const HindiNumbers = () => {
   };
 
   return (
-    <div
-      style={{ fontFamily: "Arial", textAlign: "center", marginTop: "50px" }}
-    >
-      <h1>रैंडम नंबर: {number}</h1>
-      <button
-        onClick={handleRead}
-        style={{ padding: "10px 20px", fontSize: "16px", marginRight: "10px" }}
-      >
-        पढ़ें
-      </button>
-      <button
-        onClick={() => setNumber(generateRandomNumber())}
-        style={{ padding: "10px 20px", fontSize: "16px" }}
-      >
-        नया नंबर
-      </button>
+    <div className="max-w-lg mx-auto">
+      <CourseContent.Title description={description} />
+
+      <div className="text-center">
+        <CourseContent.Framed>{number}</CourseContent.Framed>
+
+        <button
+          onClick={handleRead}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            marginRight: "10px"
+          }}
+        >
+          पढ़ें
+        </button>
+        <button
+          onClick={() => setNumber(generateRandomNumber())}
+          style={{ padding: "10px 20px", fontSize: "16px" }}
+        >
+          नया नंबर
+        </button>
+      </div>
     </div>
   );
 };

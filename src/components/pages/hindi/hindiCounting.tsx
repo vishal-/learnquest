@@ -1,15 +1,18 @@
 import { hindiNumbers } from "../../../lib/hindi.constants";
-import CourseHeadline from "../../ui/courseHeadline";
 import { FaVolumeUp } from "react-icons/fa";
 import Toast from "../../ui/Toast";
 import { useSpeech } from "../../../hooks/useSpeech";
+import type { Course } from "../../../types/subject.types";
+import CourseContent from "../../ui/CourseContent";
 
-const HindiCounting = () => {
+const HindiCounting: React.FC<{ course: Course }> = ({
+  course: { description }
+}) => {
   const { playAudio, toast, setToast } = useSpeech();
 
   return (
     <div className="max-w-lg mx-auto rounded-2xl shadow-xl">
-      <CourseHeadline description="हिंदी में संख्याओं की पहचान करें।" />
+      <CourseContent.Title description={description} />
       <ul className="flex flex-col gap-3">
         {Object.entries(hindiNumbers).map(([number, word]) => (
           <li
