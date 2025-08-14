@@ -2,6 +2,7 @@ import { useState } from "react";
 import { hindiNumbers } from "../../../lib/hindi.constants";
 import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/CourseContent";
+import Button from "../../ui/Button";
 
 const convertToHindi = (num: number): string => {
   if (hindiNumbers[num as keyof typeof hindiNumbers])
@@ -75,6 +76,9 @@ const HindiNumbers: React.FC<{ course: Course }> = ({
         >
           पढ़ें
         </button>
+
+        <Button.Audio onClick={handleRead} label="पढ़ें" />
+
         <button
           onClick={() => setNumber(generateRandomNumber())}
           style={{ padding: "10px 20px", fontSize: "16px" }}
