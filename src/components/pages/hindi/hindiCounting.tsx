@@ -11,7 +11,7 @@ const HindiCounting: React.FC<{ course: Course }> = ({
   const { playAudio, toast, setToast } = useSpeech();
 
   return (
-    <div className="max-w-lg mx-auto rounded-2xl shadow-xl">
+    <CourseContent>
       <CourseContent.Title description={description} />
       <ul className="flex flex-col gap-3">
         {Object.entries(hindiNumbers).map(([number, word]) => (
@@ -31,7 +31,7 @@ const HindiCounting: React.FC<{ course: Course }> = ({
         ))}
       </ul>
       {toast && <Toast message={toast} onClose={() => setToast(null)} />}
-    </div>
+    </CourseContent>
   );
 };
 

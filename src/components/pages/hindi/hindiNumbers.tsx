@@ -40,7 +40,7 @@ const HindiNumbers: React.FC<{ course: Course }> = ({
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <CourseContent>
       <CourseContent.Title description={description} />
 
       <div className="text-center">
@@ -56,7 +56,7 @@ const HindiNumbers: React.FC<{ course: Course }> = ({
         />
       </div>
       {toast && <Toast message={toast} onClose={() => setToast(null)} />}
-    </div>
+    </CourseContent>
   );
 };
 
