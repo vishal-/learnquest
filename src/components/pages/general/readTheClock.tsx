@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { Course } from "../../../types/subject.types";
+import Button from "../../ui/Button";
 
 const ReadTheClock: React.FC<{ course: Course }> = ({
   course: { description }
@@ -151,19 +152,9 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
       </div>
 
       {/* Buttons */}
-      <div className="mt-6 flex gap-4 justify-center">
-        <button
-          onClick={checkAnswer}
-          className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          Check Answer
-        </button>
-        <button
-          onClick={generateNewTime}
-          className="px-6 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition-colors"
-        >
-          New Time
-        </button>
+      <div className="mt-6">
+        <Button label="Check Answer" onClick={checkAnswer} />
+        <Button label="New Time" onClick={generateNewTime} />
       </div>
 
       {/* Feedback */}
