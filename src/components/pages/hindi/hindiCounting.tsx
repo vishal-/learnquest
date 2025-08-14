@@ -13,12 +13,23 @@ const HindiCounting = () => {
       return;
     }
 
+    const voices = speechSynthesis.getVoices();
+    const hindiVoice = voices.find(voice => voice.lang.startsWith('hi'));
+    
     const utterance = new SpeechSynthesisUtterance(text);
-    console.log("Utterance created:", utterance);
-    utterance.lang = "hi-IN";
+    
+    if (hindiVoice) {
+      utterance.voice = hindiVoice;
+      utterance.lang = "hi-IN";
+    } else {
+      utterance.lang = "en-US";
+      setToast("Hindi voice not available, using English pronunciation");
+    }
+    
     utterance.onerror = () => {
-      setToast("Hindi speech not supported in this browser");
+      setToast("Speech synthesis failed");
     };
+    
     speechSynthesis.speak(utterance);
   };
 
