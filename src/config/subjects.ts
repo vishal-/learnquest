@@ -18,6 +18,13 @@ const HindiCourses: Course[] = [
     image: "https://iili.io/FZcEYNt.jpg",
     route: "/hindi/counting",
     component: lazy(() => import("../components/pages/hindi/hindiCounting"))
+  },
+  {
+    label: "हिंदी संख्या पहचानें (Numbers)",
+    description: "Identify Hindi number between 0 to 1000.",
+    image: "https://iili.io/FZcEYNt.jpg",
+    route: "/hindi/numbers",
+    component: lazy(() => import("../components/pages/hindi/hindiNumbers"))
   }
 ];
 

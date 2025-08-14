@@ -1,6 +1,6 @@
 import React from "react";
 import Tile from "../ui/Tile";
-import { appSubjects } from "../../lib/subjects";
+import { appSubjects } from "../../config/subjects";
 
 const HomePage: React.FC = () => {
   return (
