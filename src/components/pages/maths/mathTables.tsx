@@ -88,20 +88,9 @@ const MathTables: React.FC<{ course: Course }> = ({
     <CourseContent>
       <CourseContent.Title description={description} />
 
-      <div className="text-center mt-3">
-        <label className="text-white font-medium me-6">Choose a number:</label>
-        <select
-          value={selectedNumber}
-          onChange={(e) => setSelectedNumber(Number(e.target.value))}
-          className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
-        >
-          {Array.from({ length: 19 }, (_, i) => i + 2).map((num) => (
-            <option key={num} value={num}>
-              {num}
-            </option>
-          ))}
-        </select>
+      <div className="text-center">
         <Select
+          label="Choose a number: "
           options={Array.from({ length: 19 }, (_, i) => ({
             displayLabel: (i + 2).toString(),
             optionValue: i + 2,
@@ -111,7 +100,7 @@ const MathTables: React.FC<{ course: Course }> = ({
         ></Select>
       </div>
 
-      <div className="text-center mt-3 space-x-6">
+      <div className="text-center mt-6 space-x-6">
         <Button
           variant={mode === "view" ? "outline" : "primary"}
           label="View Table"
@@ -128,7 +117,7 @@ const MathTables: React.FC<{ course: Course }> = ({
       {mode === "view" && (
         <div className="mt-6">
           <CourseContent.SubTitle>
-            Multiplication Table of {selectedNumber}
+            Table of {selectedNumber}
           </CourseContent.SubTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
@@ -145,19 +134,17 @@ const MathTables: React.FC<{ course: Course }> = ({
 
       {/* Test Mode */}
       {mode === "test" && challenge && (
-        <div className="text-left">
-          <h3 className="text-xl font-bold text-gray-700 mb-4 text-center">
-            What is the answer?
-          </h3>
+        <div className="text-left mt-9">
+          <CourseContent.SubTitle>What is the answer?</CourseContent.SubTitle>
           <CourseContent.Framed>{challenge.question}</CourseContent.Framed>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="grid grid-cols-2 gap-3">
             {challenge.options.map((opt) => (
               <Button
                 key={opt}
                 onClick={() => handleOptionClick(opt)}
                 disabled={!!feedback}
-                variant="option"
+                variant={"option"}
                 label={opt.toString()}
               />
             ))}

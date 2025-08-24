@@ -3,7 +3,9 @@ const CourseContent = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Title: React.FC<{ description: string }> = ({ description }) => {
-  return <h2 className="text-xl my-6 text-white text-center">{description}</h2>;
+  return (
+    <h2 className="text-xl mt-2 mb-6 text-white text-center">{description}</h2>
+  );
 };
 
 const SubTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => {
