@@ -3,6 +3,7 @@ import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
+import Select from "../../ui/select";
 
 type Challenge = {
   question: string;
@@ -87,7 +88,7 @@ const MathTables: React.FC<{ course: Course }> = ({
     <CourseContent>
       <CourseContent.Title description={description} />
 
-      <div className="text-center mb-3">
+      <div className="text-center mt-3">
         <label className="text-white font-medium me-6">Choose a number:</label>
         <select
           value={selectedNumber}
@@ -100,9 +101,17 @@ const MathTables: React.FC<{ course: Course }> = ({
             </option>
           ))}
         </select>
+        <Select
+          options={Array.from({ length: 19 }, (_, i) => ({
+            displayLabel: (i + 2).toString(),
+            optionValue: i + 2,
+          }))}
+          value={selectedNumber}
+          onChange={(n) => setSelectedNumber(Number(n))}
+        ></Select>
       </div>
 
-      <div className="text-center mb-3 space-x-6">
+      <div className="text-center mt-3 space-x-6">
         <Button
           variant={mode === "view" ? "outline" : "primary"}
           label="View Table"
@@ -117,10 +126,10 @@ const MathTables: React.FC<{ course: Course }> = ({
 
       {/* View Mode */}
       {mode === "view" && (
-        <div className="text-left">
-          <h3 className="text-xl font-bold text-gray-700 mb-4 text-center">
-            Table of {selectedNumber}
-          </h3>
+        <div className="mt-6">
+          <CourseContent.SubTitle>
+            Multiplication Table of {selectedNumber}
+          </CourseContent.SubTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
               <div
