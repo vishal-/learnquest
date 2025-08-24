@@ -33,7 +33,11 @@ const Header: React.FC = () => {
 
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <nav className="space-y-2 py-9 px-4">
-          <DrawerItem label="Home" path="/" />
+          <DrawerItem
+            label="Home"
+            path="/"
+            onClick={() => setIsDrawerOpen(false)}
+          />
 
           {appSubjects.map((subject) => (
             <DrawerItem
