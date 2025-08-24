@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from "react";
+import type { Course } from "../../../types/subject.types";
+import CourseContent from "../../ui/courseContent";
+import Button from "../../ui/button";
 
 type Challenge = {
   question: string;
@@ -13,7 +16,7 @@ const generateChallenge = (tableNumber: number): Challenge => {
   const factor = getRandomInt(1, 12);
   const useMissingMultiplier = Math.random() < 0.5;
 
-  let question = '';
+  let question = "";
   let correctAnswer = 0;
 
   if (useMissingMultiplier) {
@@ -39,48 +42,52 @@ const generateChallenge = (tableNumber: number): Challenge => {
   };
 };
 
-const MathTables: React.FC = () => {
+const MathTables: React.FC<{ course: Course }> = ({
+  course: { description },
+}) => {
   const [selectedNumber, setSelectedNumber] = useState<number>(2);
-  const [mode, setMode] = useState<'none' | 'view' | 'test'>('none');
+  const [mode, setMode] = useState<"none" | "view" | "test">("none");
   const [challenge, setChallenge] = useState<Challenge | null>(null);
-  const [feedback, setFeedback] = useState<string>('');
+  const [feedback, setFeedback] = useState<string>("");
 
   const handleViewTable = () => {
-    setMode('view');
+    setMode("view");
     setChallenge(null);
-    setFeedback('');
+    setFeedback("");
   };
 
   const handleTestTable = () => {
-    setMode('test');
-    setFeedback('');
+    setMode("test");
+    setFeedback("");
     setChallenge(generateChallenge(selectedNumber));
   };
 
   const handleOptionClick = (value: number) => {
     if (!challenge) return;
     if (value === challenge.correctAnswer) {
-      setFeedback('✅ Correct!');
+      setFeedback("✅ Correct!");
     } else {
-      setFeedback(`❌ Incorrect. The correct answer was ${challenge.correctAnswer}.`);
+      setFeedback(
+        `❌ Incorrect. The correct answer was ${challenge.correctAnswer}.`
+      );
     }
   };
 
   const handleNext = () => {
-    setFeedback('');
+    setFeedback("");
     setChallenge(generateChallenge(selectedNumber));
   };
 
   return (
-    <div style={{ padding: '1rem', fontFamily: 'Arial' }}>
-      <h2>🧠 Multiplication Table Practice</h2>
+    <CourseContent>
+      <CourseContent.Title description={description} />
 
       <label>
         Choose a number:
         <select
           value={selectedNumber}
           onChange={(e) => setSelectedNumber(Number(e.target.value))}
-          style={{ marginLeft: '0.5rem' }}
+          style={{ marginLeft: "0.5rem" }}
         >
           {Array.from({ length: 19 }, (_, i) => i + 2).map((num) => (
             <option key={num} value={num}>
@@ -90,16 +97,23 @@ const MathTables: React.FC = () => {
         </select>
       </label>
 
-      <div style={{ marginTop: '1rem' }}>
-        <button onClick={handleViewTable}>View Table</button>
-        <button onClick={handleTestTable} style={{ marginLeft: '1rem' }}>
-          Test Table
-        </button>
+      <div style={{ marginTop: "1rem" }}>
+        <Button
+          variant="outline"
+          label="View Table"
+          onClick={handleViewTable}
+        />
+        <span className="mx-3">&#160;</span>
+        <Button
+          variant="outline"
+          label="Test Yourself"
+          onClick={handleTestTable}
+        />
       </div>
 
       {/* View Mode */}
-      {mode === 'view' && (
-        <div style={{ marginTop: '1rem' }}>
+      {mode === "view" && (
+        <div style={{ marginTop: "1rem" }}>
           <h3>Table of {selectedNumber}</h3>
           <ul>
             {Array.from({ length: 12 }, (_, i) => i + 1).map((i) => (
@@ -112,29 +126,29 @@ const MathTables: React.FC = () => {
       )}
 
       {/* Test Mode */}
-      {mode === 'test' && challenge && (
-        <div style={{ marginTop: '1rem' }}>
+      {mode === "test" && challenge && (
+        <div style={{ marginTop: "1rem" }}>
           <h3>Test Yourself</h3>
           <p>{challenge.question}</p>
           {challenge.options.map((opt) => (
             <button
               key={opt}
               onClick={() => handleOptionClick(opt)}
-              style={{ display: 'block', margin: '0.25rem 0' }}
+              style={{ display: "block", margin: "0.25rem 0" }}
               disabled={!!feedback}
             >
               {opt}
             </button>
           ))}
           {feedback && (
-            <div style={{ marginTop: '0.5rem' }}>
+            <div style={{ marginTop: "0.5rem" }}>
               <p>{feedback}</p>
               <button onClick={handleNext}>Next</button>
             </div>
           )}
         </div>
       )}
-    </div>
+    </CourseContent>
   );
 };
 
