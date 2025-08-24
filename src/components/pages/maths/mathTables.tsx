@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
+import Feedback from "../../ui/feedback";
 
 type Challenge = {
   question: string;
@@ -48,33 +49,37 @@ const MathTables: React.FC<{ course: Course }> = ({
   const [selectedNumber, setSelectedNumber] = useState<number>(2);
   const [mode, setMode] = useState<"none" | "view" | "test">("none");
   const [challenge, setChallenge] = useState<Challenge | null>(null);
-  const [feedback, setFeedback] = useState<string>("");
+  const [feedback, setFeedback] = useState<{
+    message: string;
+    variant: "success" | "danger";
+  } | null>(null);
 
   const handleViewTable = () => {
     setMode("view");
     setChallenge(null);
-    setFeedback("");
+    setFeedback(null);
   };
 
   const handleTestTable = () => {
     setMode("test");
-    setFeedback("");
+    setFeedback(null);
     setChallenge(generateChallenge(selectedNumber));
   };
 
   const handleOptionClick = (value: number) => {
     if (!challenge) return;
     if (value === challenge.correctAnswer) {
-      setFeedback("✅ Correct!");
+      setFeedback({ message: "Correct! Well done!", variant: "success" });
     } else {
-      setFeedback(
-        `❌ Incorrect. The correct answer was ${challenge.correctAnswer}.`
-      );
+      setFeedback({
+        message: `Incorrect. The correct answer was ${challenge.correctAnswer}.`,
+        variant: "danger",
+      });
     }
   };
 
   const handleNext = () => {
-    setFeedback("");
+    setFeedback(null);
     setChallenge(generateChallenge(selectedNumber));
   };
 
@@ -82,12 +87,14 @@ const MathTables: React.FC<{ course: Course }> = ({
     <CourseContent>
       <CourseContent.Title description={description} />
 
-      <label>
-        Choose a number:
+      <div className="text-center mb-3">
+        <label className="text-white text-sm font-medium me-6">
+          Choose a number:
+        </label>
         <select
           value={selectedNumber}
           onChange={(e) => setSelectedNumber(Number(e.target.value))}
-          style={{ marginLeft: "0.5rem" }}
+          className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
         >
           {Array.from({ length: 19 }, (_, i) => i + 2).map((num) => (
             <option key={num} value={num}>
@@ -95,17 +102,16 @@ const MathTables: React.FC<{ course: Course }> = ({
             </option>
           ))}
         </select>
-      </label>
+      </div>
 
-      <div style={{ marginTop: "1rem" }}>
+      <div className="text-center mb-3 space-x-6">
         <Button
-          variant="outline"
+          variant={mode === "view" ? "outline" : "primary"}
           label="View Table"
           onClick={handleViewTable}
         />
-        <span className="mx-3">&#160;</span>
         <Button
-          variant="outline"
+          variant={mode === "test" ? "outline" : "primary"}
           label="Test Yourself"
           onClick={handleTestTable}
         />
@@ -113,37 +119,54 @@ const MathTables: React.FC<{ course: Course }> = ({
 
       {/* View Mode */}
       {mode === "view" && (
-        <div style={{ marginTop: "1rem" }}>
-          <h3>Table of {selectedNumber}</h3>
-          <ul>
-            {Array.from({ length: 12 }, (_, i) => i + 1).map((i) => (
-              <li key={i}>
-                {selectedNumber} × {i} = {selectedNumber * i}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <CourseContent.Framed>
+          <div className="text-left">
+            <h3 className="text-xl font-bold text-gray-700 mb-4 text-center">
+              Table of {selectedNumber}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {Array.from({ length: 12 }, (_, i) => i + 1).map((i) => (
+                <div
+                  key={i}
+                  className="bg-gray-50 p-3 rounded-lg text-center font-medium text-gray-800"
+                >
+                  {selectedNumber} × {i} = {selectedNumber * i}
+                </div>
+              ))}
+            </div>
+          </div>
+        </CourseContent.Framed>
       )}
 
       {/* Test Mode */}
       {mode === "test" && challenge && (
-        <div style={{ marginTop: "1rem" }}>
-          <h3>Test Yourself</h3>
-          <p>{challenge.question}</p>
-          {challenge.options.map((opt) => (
-            <button
-              key={opt}
-              onClick={() => handleOptionClick(opt)}
-              style={{ display: "block", margin: "0.25rem 0" }}
-              disabled={!!feedback}
-            >
-              {opt}
-            </button>
-          ))}
+        <div className="text-left">
+          <h3 className="text-xl font-bold text-gray-700 mb-4 text-center">
+            What is the answer?
+          </h3>
+          <CourseContent.Framed>{challenge.question}</CourseContent.Framed>
+
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            {challenge.options.map((opt) => (
+              <Button
+                key={opt}
+                onClick={() => handleOptionClick(opt)}
+                disabled={!!feedback}
+                variant="option"
+                label={opt.toString()}
+              />
+            ))}
+          </div>
           {feedback && (
-            <div style={{ marginTop: "0.5rem" }}>
-              <p>{feedback}</p>
-              <button onClick={handleNext}>Next</button>
+            <div className="mt-4">
+              <Feedback message={feedback.message} variant={feedback.variant} />
+              <div className="text-center">
+                <Button
+                  variant="primary"
+                  label="Next Question"
+                  onClick={handleNext}
+                />
+              </div>
             </div>
           )}
         </div>
