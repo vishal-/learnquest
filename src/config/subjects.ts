@@ -31,7 +31,7 @@ const HindiCourses: Course[] = [
 const MathCourses: Course[] = [
   {
     label: "Multiplication Tables",
-    description: "Learn and practice multiplication tables from 2 to 20.",
+    description: "Learn and practice tables from 2 to 20.",
     image: "https://iili.io/FZl9DGV.jpg",
     route: "/maths/tables",
     component: lazy(() => import("../components/pages/maths/mathTables")),

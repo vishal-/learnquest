@@ -26,7 +26,7 @@ const getVariantClasses = (variant: ButtonVariant = "primary") => {
       "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white",
     ghost: "text-blue-600 hover:bg-blue-100",
     option:
-      "px-4 py-3 bg-blue-50 hover:bg-blue-100 disabled:bg-gray-100 border border-blue-200 rounded-lg font-medium text-gray-800 transition-colors disabled:cursor-not-allowed",
+      "bg-gray-700 text-white text-2xl text-bold hover:bg-gray-600 disabled:bg-gray-500 rounded-lg disabled:cursor-not-allowed",
   };
   return variants[variant];
 };

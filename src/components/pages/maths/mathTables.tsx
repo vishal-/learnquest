@@ -47,7 +47,7 @@ const MathTables: React.FC<{ course: Course }> = ({
   course: { description },
 }) => {
   const [selectedNumber, setSelectedNumber] = useState<number>(2);
-  const [mode, setMode] = useState<"none" | "view" | "test">("none");
+  const [mode, setMode] = useState<"view" | "test">("view");
   const [challenge, setChallenge] = useState<Challenge | null>(null);
   const [feedback, setFeedback] = useState<{
     message: string;
@@ -88,9 +88,7 @@ const MathTables: React.FC<{ course: Course }> = ({
       <CourseContent.Title description={description} />
 
       <div className="text-center mb-3">
-        <label className="text-white text-sm font-medium me-6">
-          Choose a number:
-        </label>
+        <label className="text-white font-medium me-6">Choose a number:</label>
         <select
           value={selectedNumber}
           onChange={(e) => setSelectedNumber(Number(e.target.value))}
@@ -119,23 +117,21 @@ const MathTables: React.FC<{ course: Course }> = ({
 
       {/* View Mode */}
       {mode === "view" && (
-        <CourseContent.Framed>
-          <div className="text-left">
-            <h3 className="text-xl font-bold text-gray-700 mb-4 text-center">
-              Table of {selectedNumber}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {Array.from({ length: 12 }, (_, i) => i + 1).map((i) => (
-                <div
-                  key={i}
-                  className="bg-gray-50 p-3 rounded-lg text-center font-medium text-gray-800"
-                >
-                  {selectedNumber} × {i} = {selectedNumber * i}
-                </div>
-              ))}
-            </div>
+        <div className="text-left">
+          <h3 className="text-xl font-bold text-gray-700 mb-4 text-center">
+            Table of {selectedNumber}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+              <div
+                key={i}
+                className="bg-gray-800 p-1 rounded-lg text-center text-2xl text-white-100"
+              >
+                {selectedNumber} × {i} = {selectedNumber * i}
+              </div>
+            ))}
           </div>
-        </CourseContent.Framed>
+        </div>
       )}
 
       {/* Test Mode */}
