@@ -148,9 +148,9 @@ const MathTables: React.FC<{ course: Course }> = ({
                 if (selectedOption === opt) {
                   return opt === challenge.correctAnswer ? "success" : "danger";
                 }
-                return "outline";
+                return "option";
               };
-              
+
               return (
                 <Button
                   key={opt}
