@@ -54,6 +54,7 @@ const MathTables: React.FC<{ course: Course }> = ({
     message: string;
     variant: "success" | "danger";
   } | null>(null);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const handleViewTable = () => {
     setMode("view");
@@ -64,11 +65,13 @@ const MathTables: React.FC<{ course: Course }> = ({
   const handleTestTable = () => {
     setMode("test");
     setFeedback(null);
+    setSelectedOption(null);
     setChallenge(generateChallenge(selectedNumber));
   };
 
   const handleOptionClick = (value: number) => {
     if (!challenge) return;
+    setSelectedOption(value);
     if (value === challenge.correctAnswer) {
       setFeedback({ message: "Correct! Well done!", variant: "success" });
     } else {
@@ -81,6 +84,7 @@ const MathTables: React.FC<{ course: Course }> = ({
 
   const handleNext = () => {
     setFeedback(null);
+    setSelectedOption(null);
     setChallenge(generateChallenge(selectedNumber));
   };
 
@@ -139,15 +143,24 @@ const MathTables: React.FC<{ course: Course }> = ({
           <CourseContent.Framed>{challenge.question}</CourseContent.Framed>
 
           <div className="grid grid-cols-2 gap-3">
-            {challenge.options.map((opt) => (
-              <Button
-                key={opt}
-                onClick={() => handleOptionClick(opt)}
-                disabled={!!feedback}
-                variant={"option"}
-                label={opt.toString()}
-              />
-            ))}
+            {challenge.options.map((opt) => {
+              const getVariant = () => {
+                if (selectedOption === opt) {
+                  return opt === challenge.correctAnswer ? "success" : "danger";
+                }
+                return "outline";
+              };
+              
+              return (
+                <Button
+                  key={opt}
+                  onClick={() => handleOptionClick(opt)}
+                  disabled={!!feedback}
+                  variant={getVariant()}
+                  label={opt.toString()}
+                />
+              );
+            })}
           </div>
           {feedback && (
             <div className="mt-4">
