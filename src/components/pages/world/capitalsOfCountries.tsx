@@ -12,16 +12,15 @@ const getRandomElements = <T,>(arr: T[], count: number): T[] => {
   return shuffled.slice(0, count);
 };
 
-type StateCapitalMap = Record<string, string>;
+type CountryCapitalMap = Record<string, string>;
 
-const CapitalsOfIndia: React.FC<{ course: Course }> = ({
+const CapitalOfCountries: React.FC<{ course: Course }> = ({
   course: { description }
 }) => {
-  const [statesAndCapitals, setStatesAndCapitals] = useState<StateCapitalMap>(
-    {}
-  );
+  const [countriesAndCapitals, setCountriesAndCapitals] =
+    useState<CountryCapitalMap>({});
   const [loading, setLoading] = useState(true);
-  const [currentState, setCurrentState] = useState<string>("");
+  const [currentCountry, setCurrentCountry] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
   const [correctCapital, setCorrectCapital] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -30,10 +29,10 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
   useEffect(() => {
     const fetchCapitals = async () => {
       setLoading(true);
-      const docRef = doc(db, "datasets", "indian-state-capitals");
+      const docRef = doc(db, "datasets", "capitals-of-countries");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        setStatesAndCapitals(docSnap.data() as StateCapitalMap);
+        setCountriesAndCapitals(docSnap.data() as CountryCapitalMap);
       } else {
         console.log("No such document!");
       }
@@ -44,23 +43,24 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
   }, []);
 
   const generateQuestion = useCallback(() => {
-    if (Object.keys(statesAndCapitals).length === 0) return;
+    if (Object.keys(countriesAndCapitals).length === 0) return;
 
-    const states = Object.keys(statesAndCapitals);
-    const randomState = states[Math.floor(Math.random() * states.length)];
-    const correctAnswer = statesAndCapitals[randomState];
-    const capitalsPool = Object.values(statesAndCapitals).filter(
+    const countries = Object.keys(countriesAndCapitals);
+    const randomCountry =
+      countries[Math.floor(Math.random() * countries.length)];
+    const correctAnswer = countriesAndCapitals[randomCountry];
+    const capitalsPool = Object.values(countriesAndCapitals).filter(
       (c) => c !== correctAnswer
     );
     const wrongOptions = getRandomElements(capitalsPool, 5);
     const allOptions = getRandomElements([...wrongOptions, correctAnswer], 6);
 
-    setCurrentState(randomState);
+    setCurrentCountry(randomCountry);
     setCorrectCapital(correctAnswer);
     setOptions(allOptions);
     setSelectedOption(null);
     setIsCorrect(null);
-  }, [statesAndCapitals]);
+  }, [countriesAndCapitals]);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -84,11 +84,12 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
     <CourseContent>
       <CourseContent.Title description={description} />
 
-      <CourseContent.Framed>{currentState}</CourseContent.Framed>
+      <CourseContent.Framed>{currentCountry}</CourseContent.Framed>
 
       <div className="grid grid-cols-2 gap-4 mb-6">
         {options.map((option) => (
           <Button
+            key={option}
             label={option}
             variant={
               option === selectedOption
@@ -107,7 +108,7 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
         <Button
           onClick={generateQuestion}
           variant="primary"
-          label="Next State"
+          label="Next Country"
         />
       </div>
 
@@ -121,4 +122,4 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
   );
 };
 
-export default CapitalsOfIndia;
+export default CapitalOfCountries;
