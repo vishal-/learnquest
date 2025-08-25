@@ -5,6 +5,7 @@ import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
+import Loader from "../../ui/loader";
 
 const getRandomElements = <T,>(arr: T[], count: number): T[] => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -14,9 +15,12 @@ const getRandomElements = <T,>(arr: T[], count: number): T[] => {
 type StateCapitalMap = Record<string, string>;
 
 const CapitalsOfIndia: React.FC<{ course: Course }> = ({
-  course: { description },
+  course: { description }
 }) => {
-  const [statesAndCapitals, setStatesAndCapitals] = useState<StateCapitalMap>({});
+  const [statesAndCapitals, setStatesAndCapitals] = useState<StateCapitalMap>(
+    {}
+  );
+  const [loading, setLoading] = useState(true);
   const [currentState, setCurrentState] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
   const [correctCapital, setCorrectCapital] = useState<string>("");
@@ -25,6 +29,7 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
 
   useEffect(() => {
     const fetchCapitals = async () => {
+      setLoading(true);
       const docRef = doc(db, "datasets", "indian-state-capitals");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -32,6 +37,7 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
       } else {
         console.log("No such document!");
       }
+      setLoading(false);
     };
 
     fetchCapitals();
@@ -65,6 +71,15 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
     generateQuestion();
   }, [generateQuestion]);
 
+  if (loading) {
+    return (
+      <CourseContent>
+        <CourseContent.Title description={description} />
+        <Loader />
+      </CourseContent>
+    );
+  }
+
   return (
     <CourseContent>
       <CourseContent.Title description={description} />
@@ -73,23 +88,6 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
 
       <div className="grid grid-cols-2 gap-4 mb-6">
         {options.map((option) => (
-          //   <button
-          //     key={option}
-          //     onClick={() => handleOptionClick(option)}
-          //     className={`px-4 py-2 rounded border transition-all ${
-          //       selectedOption
-          //         ? option === correctCapital
-          //           ? "bg-green-500 text-white"
-          //           : option === selectedOption
-          //           ? "bg-red-500 text-white"
-          //           : "bg-gray-200"
-          //         : "bg-blue-100 hover:bg-blue-200"
-          //     }`}
-          //     disabled={!!selectedOption}
-          //   >
-          //     {option}
-          //   </button>
-
           <Button
             label={option}
             variant={

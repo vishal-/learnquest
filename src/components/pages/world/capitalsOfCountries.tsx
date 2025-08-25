@@ -5,6 +5,7 @@ import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
+import Loader from "../../ui/loader";
 
 const getRandomElements = <T,>(arr: T[], count: number): T[] => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -18,6 +19,7 @@ const CapitalOfCountries: React.FC<{ course: Course }> = ({
 }) => {
   const [countriesAndCapitals, setCountriesAndCapitals] =
     useState<CountryCapitalMap>({});
+  const [loading, setLoading] = useState(true);
   const [currentCountry, setCurrentCountry] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
   const [correctCapital, setCorrectCapital] = useState<string>("");
@@ -26,6 +28,7 @@ const CapitalOfCountries: React.FC<{ course: Course }> = ({
 
   useEffect(() => {
     const fetchCapitals = async () => {
+      setLoading(true);
       const docRef = doc(db, "datasets", "capitals-of-countries");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -33,6 +36,7 @@ const CapitalOfCountries: React.FC<{ course: Course }> = ({
       } else {
         console.log("No such document!");
       }
+      setLoading(false);
     };
 
     fetchCapitals();
@@ -66,6 +70,15 @@ const CapitalOfCountries: React.FC<{ course: Course }> = ({
   useEffect(() => {
     generateQuestion();
   }, [generateQuestion]);
+
+  if (loading) {
+    return (
+      <CourseContent>
+        <CourseContent.Title description={description} />
+        <Loader />
+      </CourseContent>
+    );
+  }
 
   return (
     <CourseContent>

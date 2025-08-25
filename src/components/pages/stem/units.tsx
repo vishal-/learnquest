@@ -5,6 +5,7 @@ import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
+import Loader from "../../ui/loader";
 
 const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   const [units, setUnits] = useState<Record<string, string[]>>({});
@@ -74,7 +75,7 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {
