@@ -7,8 +7,8 @@ const GeneralCourses: Course[] = [
     description: "Can you read the clock?",
     image: "https://iili.io/FQh4m2R.jpg",
     route: "/general/clock",
-    component: lazy(() => import("../components/pages/general/readTheClock")),
-  },
+    component: lazy(() => import("../components/pages/general/readTheClock"))
+  }
 ];
 
 const HindiCourses: Course[] = [
@@ -17,15 +17,15 @@ const HindiCourses: Course[] = [
     description: "क्या आपको हिंदी में गिनती आती है?",
     image: "https://iili.io/FZcEYNt.jpg",
     route: "/hindi/counting",
-    component: lazy(() => import("../components/pages/hindi/hindiCounting")),
+    component: lazy(() => import("../components/pages/hindi/hindiCounting"))
   },
   {
     label: "हिंदी संख्या पहचानें (Numbers)",
     description: "0 से 1000 के बीच की हिन्दी संख्या पहचानें।",
     image: "https://iili.io/FZcEYNt.jpg",
     route: "/hindi/numbers",
-    component: lazy(() => import("../components/pages/hindi/hindiNumbers")),
-  },
+    component: lazy(() => import("../components/pages/hindi/hindiNumbers"))
+  }
 ];
 
 const MathCourses: Course[] = [
@@ -34,8 +34,8 @@ const MathCourses: Course[] = [
     description: "Learn and practice tables from 2 to 20.",
     image: "https://iili.io/FZl9DGV.jpg",
     route: "/maths/tables",
-    component: lazy(() => import("../components/pages/maths/mathTables")),
-  },
+    component: lazy(() => import("../components/pages/maths/mathTables"))
+  }
 ];
 
 const StemCourses: Course[] = [
@@ -44,8 +44,8 @@ const StemCourses: Course[] = [
     description: "What category does this unit belong to?",
     image: "https://iili.io/FZlHtNs.jpg",
     route: "/stem/units",
-    component: lazy(() => import("../components/pages/stem/units")),
-  },
+    component: lazy(() => import("../components/pages/stem/units"))
+  }
 ];
 
 const WorldCourses: Course[] = [
@@ -54,8 +54,17 @@ const WorldCourses: Course[] = [
     description: "Do you know the capitals of Indian states?",
     image: "https://iili.io/FZlBdAB.jpg",
     route: "/world/capitals-of-india",
-    component: lazy(() => import("../components/pages/world/capitalsOfIndia")),
+    component: lazy(() => import("../components/pages/world/capitalsOfIndia"))
   },
+  {
+    label: "Capital Cities of Countries",
+    description: "Do you know the capitals of different countries?",
+    image: "https://iili.io/FZlBdAB.jpg",
+    route: "/world/capitals-of-countries",
+    component: lazy(
+      () => import("../components/pages/world/capitalsOfCountries")
+    )
+  }
 ];
 
 export const appSubjects: Subject[] = [
@@ -65,7 +74,7 @@ export const appSubjects: Subject[] = [
     image: "https://iili.io/FZlHtNs.jpg",
     route: "/stem",
     component: lazy(() => import("../components/pages/layouts/subjectLayout")),
-    courses: StemCourses,
+    courses: StemCourses
   },
   {
     label: "World",
@@ -73,7 +82,7 @@ export const appSubjects: Subject[] = [
     image: "https://iili.io/FZlBdAB.jpg",
     route: "/world",
     component: lazy(() => import("../components/pages/layouts/subjectLayout")),
-    courses: WorldCourses,
+    courses: WorldCourses
   },
   {
     label: "Hindi",
@@ -81,7 +90,7 @@ export const appSubjects: Subject[] = [
     image: "https://iili.io/FZKGbDb.jpg",
     route: "/hindi",
     component: lazy(() => import("../components/pages/layouts/subjectLayout")),
-    courses: HindiCourses,
+    courses: HindiCourses
   },
   // {
   //   label: "English",
@@ -97,7 +106,7 @@ export const appSubjects: Subject[] = [
     image: "https://iili.io/FZl9DGV.jpg",
     route: "/maths",
     component: lazy(() => import("../components/pages/layouts/subjectLayout")),
-    courses: MathCourses,
+    courses: MathCourses
   },
   {
     label: "G.K",
@@ -105,6 +114,6 @@ export const appSubjects: Subject[] = [
     image: "https://iili.io/FQh4m2R.jpg",
     route: "/general",
     component: lazy(() => import("../components/pages/layouts/subjectLayout")),
-    courses: GeneralCourses,
-  },
+    courses: GeneralCourses
+  }
 ];

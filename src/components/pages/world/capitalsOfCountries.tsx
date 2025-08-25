@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import countriesAndCapitalsData from "../../../lib/countryCapitals.json";
+import React, { useState, useEffect, useCallback } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../config/firebase.config";
 import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
@@ -11,20 +12,35 @@ const getRandomElements = <T,>(arr: T[], count: number): T[] => {
 };
 
 type CountryCapitalMap = Record<string, string>;
-// If your JSON import is treated as a module, use .default, otherwise use as assertion
-const countriesAndCapitals: CountryCapitalMap =
-  countriesAndCapitalsData as CountryCapitalMap;
 
 const CapitalOfCountries: React.FC<{ course: Course }> = ({
   course: { description }
 }) => {
+  const [countriesAndCapitals, setCountriesAndCapitals] =
+    useState<CountryCapitalMap>({});
   const [currentCountry, setCurrentCountry] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
   const [correctCapital, setCorrectCapital] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  const generateQuestion = () => {
+  useEffect(() => {
+    const fetchCapitals = async () => {
+      const docRef = doc(db, "datasets", "capitals-of-countries");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setCountriesAndCapitals(docSnap.data() as CountryCapitalMap);
+      } else {
+        console.log("No such document!");
+      }
+    };
+
+    fetchCapitals();
+  }, []);
+
+  const generateQuestion = useCallback(() => {
+    if (Object.keys(countriesAndCapitals).length === 0) return;
+
     const countries = Object.keys(countriesAndCapitals);
     const randomCountry =
       countries[Math.floor(Math.random() * countries.length)];
@@ -40,7 +56,7 @@ const CapitalOfCountries: React.FC<{ course: Course }> = ({
     setOptions(allOptions);
     setSelectedOption(null);
     setIsCorrect(null);
-  };
+  }, [countriesAndCapitals]);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -49,7 +65,7 @@ const CapitalOfCountries: React.FC<{ course: Course }> = ({
 
   useEffect(() => {
     generateQuestion();
-  }, []);
+  }, [generateQuestion]);
 
   return (
     <CourseContent>
