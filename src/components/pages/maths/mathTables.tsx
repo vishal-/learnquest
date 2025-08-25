@@ -1,0 +1,185 @@
+import { useState } from "react";
+import type { Course } from "../../../types/subject.types";
+import CourseContent from "../../ui/courseContent";
+import Button from "../../ui/button";
+import Feedback from "../../ui/feedback";
+import Select from "../../ui/select";
+
+type Challenge = {
+  question: string;
+  options: number[];
+  correctAnswer: number;
+};
+
+const getRandomInt = (min: number, max: number): number =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+const generateChallenge = (tableNumber: number): Challenge => {
+  const factor = getRandomInt(1, 12);
+  const useMissingMultiplier = Math.random() < 0.5;
+
+  let question = "";
+  let correctAnswer = 0;
+
+  if (useMissingMultiplier) {
+    const product = tableNumber * factor;
+    question = `${tableNumber} * ? = ${product}`;
+    correctAnswer = factor;
+  } else {
+    question = `${tableNumber} * ${factor} = ?`;
+    correctAnswer = tableNumber * factor;
+  }
+
+  const options = new Set<number>();
+  options.add(correctAnswer);
+  while (options.size < 4) {
+    const randomOption = correctAnswer + getRandomInt(-10, 10);
+    if (randomOption > 0) options.add(randomOption);
+  }
+
+  return {
+    question,
+    options: Array.from(options).sort(() => Math.random() - 0.5),
+    correctAnswer,
+  };
+};
+
+const MathTables: React.FC<{ course: Course }> = ({
+  course: { description },
+}) => {
+  const [selectedNumber, setSelectedNumber] = useState<number>(2);
+  const [mode, setMode] = useState<"view" | "test">("view");
+  const [challenge, setChallenge] = useState<Challenge | null>(null);
+  const [feedback, setFeedback] = useState<{
+    message: string;
+    variant: "success" | "danger";
+  } | null>(null);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+
+  const handleViewTable = () => {
+    setMode("view");
+    setChallenge(null);
+    setFeedback(null);
+  };
+
+  const handleTestTable = () => {
+    setMode("test");
+    setFeedback(null);
+    setSelectedOption(null);
+    setChallenge(generateChallenge(selectedNumber));
+  };
+
+  const handleOptionClick = (value: number) => {
+    if (!challenge) return;
+    setSelectedOption(value);
+    if (value === challenge.correctAnswer) {
+      setFeedback({ message: "Correct! Well done!", variant: "success" });
+    } else {
+      setFeedback({
+        message: `Incorrect. The correct answer was ${challenge.correctAnswer}.`,
+        variant: "danger",
+      });
+    }
+  };
+
+  const handleNext = () => {
+    setFeedback(null);
+    setSelectedOption(null);
+    setChallenge(generateChallenge(selectedNumber));
+  };
+
+  return (
+    <CourseContent>
+      <CourseContent.Title description={description} />
+
+      <div className="text-center">
+        <Select
+          label="Choose a number: "
+          options={Array.from({ length: 19 }, (_, i) => ({
+            displayLabel: (i + 2).toString(),
+            optionValue: i + 2,
+          }))}
+          value={selectedNumber}
+          onChange={(n) => setSelectedNumber(Number(n))}
+        ></Select>
+      </div>
+
+      <div className="text-center mt-6 space-x-6">
+        <Button
+          variant={mode === "view" ? "outline" : "primary"}
+          label="View Table"
+          onClick={handleViewTable}
+        />
+        <Button
+          variant={mode === "test" ? "outline" : "primary"}
+          label="Test Yourself"
+          onClick={handleTestTable}
+        />
+      </div>
+
+      {/* View Mode */}
+      {mode === "view" && (
+        <div className="mt-6">
+          <CourseContent.SubTitle>
+            Table of {selectedNumber}
+          </CourseContent.SubTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+              <div
+                key={i}
+                className="bg-gray-800 p-1 rounded-lg text-center text-2xl text-white-100"
+              >
+                {selectedNumber} × {i} = {selectedNumber * i}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Test Mode */}
+      {mode === "test" && challenge && (
+        <div className="text-left mt-9">
+          <CourseContent.SubTitle>What is the answer?</CourseContent.SubTitle>
+          <CourseContent.Framed>{challenge.question}</CourseContent.Framed>
+
+          <div className="grid grid-cols-2 gap-3">
+            {challenge.options.map((opt) => {
+              const getVariant = () => {
+                if (selectedOption === opt) {
+                  return opt === challenge.correctAnswer ? "success" : "danger";
+                }
+                return "option";
+              };
+
+              return (
+                <Button
+                  key={opt}
+                  onClick={() => handleOptionClick(opt)}
+                  disabled={!!feedback}
+                  variant={getVariant()}
+                  label={opt.toString()}
+                />
+              );
+            })}
+          </div>
+
+          {feedback && (
+            <div className="mt-6">
+              <div className="text-center mb-6">
+                <Button
+                  variant="primary"
+                  label="Next Challenge"
+                  onClick={handleNext}
+                />
+              </div>
+
+              <Feedback message={feedback.message} variant={feedback.variant} />
+            </div>
+          )}
+        </div>
+      )}
+    </CourseContent>
+  );
+};
+
+export default MathTables;

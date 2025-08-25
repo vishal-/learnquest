@@ -6,12 +6,14 @@ type ButtonVariant =
   | "success"
   | "danger"
   | "outline"
-  | "ghost";
+  | "ghost"
+  | "option";
 
 interface ButtonProps {
   onClick: () => void;
   label?: string;
   variant?: ButtonVariant;
+  disabled?: boolean;
 }
 
 const getVariantClasses = (variant: ButtonVariant = "primary") => {
@@ -22,7 +24,9 @@ const getVariantClasses = (variant: ButtonVariant = "primary") => {
     danger: "bg-red-600 text-white hover:bg-red-700",
     outline:
       "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white",
-    ghost: "text-blue-600 hover:bg-blue-100"
+    ghost: "text-blue-600 hover:bg-blue-100",
+    option:
+      "bg-gray-700 text-white text-xl text-bold hover:bg-gray-600 disabled:bg-gray-500 rounded-lg disabled:cursor-not-allowed",
   };
   return variants[variant];
 };
@@ -30,14 +34,16 @@ const getVariantClasses = (variant: ButtonVariant = "primary") => {
 const Button: React.FC<ButtonProps> & { Audio: React.FC<ButtonProps> } = ({
   onClick,
   label,
-  variant = "primary"
+  variant = "primary",
+  disabled = false,
 }) => {
   return (
     <button
       onClick={onClick}
-      className={`px-6 py-2 rounded transition-colors ${getVariantClasses(
+      className={`p-2 text-center rounded transition-colors ${getVariantClasses(
         variant
       )}`}
+      disabled={disabled}
     >
       {label}
     </button>

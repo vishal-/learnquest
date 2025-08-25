@@ -8,8 +8,10 @@ import { Link } from "react-router-dom";
 const DrawerItem: React.FC<{
   label: string;
   path: string;
-}> = ({ label, path }) => (
+  onClick?: () => void;
+}> = ({ label, path, onClick }) => (
   <Link
+    onClick={onClick}
     to={path}
     className="block w-full p-2 text-left text-slate-300 hover:bg-slate-700 hover:text-cyan-400 rounded transition-colors"
   >
@@ -31,11 +33,16 @@ const Header: React.FC = () => {
 
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <nav className="space-y-2 py-9 px-4">
-          <DrawerItem label="Home" path="/" />
+          <DrawerItem
+            label="Home"
+            path="/"
+            onClick={() => setIsDrawerOpen(false)}
+          />
 
           {appSubjects.map((subject) => (
             <DrawerItem
               key={subject.label}
+              onClick={() => setIsDrawerOpen(false)}
               label={subject.label}
               path={subject.route}
             />

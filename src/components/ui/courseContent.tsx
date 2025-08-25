@@ -3,7 +3,13 @@ const CourseContent = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Title: React.FC<{ description: string }> = ({ description }) => {
-  return <h2 className="text-xl my-6 text-white text-center">{description}</h2>;
+  return (
+    <h2 className="text-xl mt-2 mb-6 text-white text-center">{description}</h2>
+  );
+};
+
+const SubTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return <h3 className="text-lg my-4 text-white text-center">{children}</h3>;
 };
 
 const Framed: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -17,6 +23,7 @@ const Framed: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 };
 
 CourseContent.Title = Title;
+CourseContent.SubTitle = SubTitle;
 CourseContent.Framed = Framed;
 
 CourseContent.displayName = "CourseContent";
