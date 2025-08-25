@@ -1,8 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Header from "./common/header";
 import Home from "./pages/home";
-import POC from "./pages/poc";
 import { appSubjects } from "../config/subjects";
+import ContentUpload from "./pages/contentUpload";
 
 const Container: React.FC = () => {
   return (
@@ -30,7 +30,8 @@ const Container: React.FC = () => {
 
           {/* <Route path="/hindi" element={<div>Hindi Courses</div>} /> */}
 
-          <Route path="/poc" element={<POC />} />
+          {/* <Route path="/poc" element={<POC />} /> */}
+          <Route path="/content-upload" element={<ContentUpload />} />
           <Route path="/" element={<Home />} />
           {/* <Route path="/" element={<Navigate to="/home" />} /> */}
         </Routes>
