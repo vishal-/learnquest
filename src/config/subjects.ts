@@ -48,6 +48,16 @@ const StemCourses: Course[] = [
   },
 ];
 
+const WorldCourses: Course[] = [
+  {
+    label: "Capital Cities of India",
+    description: "Do you know the capitals of Indian states?",
+    image: "https://iili.io/FZlBdAB.jpg",
+    route: "/world/capitals-of-india",
+    component: lazy(() => import("../components/pages/world/capitalsOfIndia")),
+  },
+];
+
 export const appSubjects: Subject[] = [
   {
     label: "STEM",
@@ -57,14 +67,14 @@ export const appSubjects: Subject[] = [
     component: lazy(() => import("../components/pages/layouts/subjectLayout")),
     courses: StemCourses,
   },
-  // {
-  //   label: "World",
-  //   description: "Learn about different cultures, geography, and history.",
-  //   image: "https://iili.io/FZlBdAB.jpg",
-  //   route: "/world",
-  //   component: lazy(() => import("../components/pages/layouts/subjectLayout")),
-  //   courses: HindiCourses
-  // },
+  {
+    label: "World",
+    description: "Learn about different cultures, geography, and history.",
+    image: "https://iili.io/FZlBdAB.jpg",
+    route: "/world",
+    component: lazy(() => import("../components/pages/layouts/subjectLayout")),
+    courses: WorldCourses,
+  },
   {
     label: "Hindi",
     description: "Learn Hindi language basics, vocabulary, and grammar.",

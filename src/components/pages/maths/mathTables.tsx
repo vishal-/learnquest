@@ -162,16 +162,18 @@ const MathTables: React.FC<{ course: Course }> = ({
               );
             })}
           </div>
+
           {feedback && (
-            <div className="mt-4">
-              <Feedback message={feedback.message} variant={feedback.variant} />
-              <div className="text-center">
+            <div className="mt-6">
+              <div className="text-center mb-6">
                 <Button
                   variant="primary"
-                  label="Next Question"
+                  label="Next Challenge"
                   onClick={handleNext}
                 />
               </div>
+
+              <Feedback message={feedback.message} variant={feedback.variant} />
             </div>
           )}
         </div>
