@@ -8,6 +8,8 @@ import Feedback from "../../ui/feedback";
 
 const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
   const [units, setUnits] = useState<Record<string, string[]>>({});
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const allCategories = Object.keys(units);
   const [currentUnit, setCurrentUnit] = useState<string>("");
   const [correctCategory, setCorrectCategory] = useState<string>("");
@@ -19,17 +21,37 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
 
   useEffect(() => {
     const fetchUnits = async () => {
-      const docRef = doc(db, "datasets", "unit-types");
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setUnits(docSnap.data() as Record<string, string[]>);
-      } else {
-        console.log("No such document!");
+      try {
+        setLoading(true);
+        const docRef = doc(db, "datasets", "unit-types");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          // Validate data structure
+          if (data && typeof data === "object") {
+            setUnits(data as Record<string, string[]>);
+          } else {
+            setError("Invalid data format in Firestore");
+          }
+        } else {
+          setError("No such document exists!");
+        }
+      } catch (err) {
+        console.error("Error fetching units:", err);
+        setError("Failed to fetch units. Please try again.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchUnits();
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(units).length > 0) {
+      loadNewUnit();
+    }
+  }, [units]);
 
   const loadNewUnit = useCallback(() => {
     if (allCategories.length === 0) return;
@@ -46,21 +68,23 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
     setRandomizedCategories(shuffled);
   }, [allCategories, units]);
 
-  useEffect(() => {
-    loadNewUnit();
-  }, []);
-
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
     setIsCorrect(category === correctCategory);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <CourseContent>
       <CourseContent.Title description={description} />
-
       <CourseContent.Framed>{currentUnit}</CourseContent.Framed>
-
       <div className="mb-10 flex flex-wrap justify-center gap-4 w-full max-w-xl">
         {randomizedCategories.map((category) => (
           <Button
@@ -71,11 +95,9 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
           />
         ))}
       </div>
-
       <div className="text-center mb-6">
         <Button onClick={loadNewUnit} label="New Unit" />
       </div>
-
       {selectedCategory !== null && (
         <Feedback
           message={
