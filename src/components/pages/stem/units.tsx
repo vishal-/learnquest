@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { units } from "../../../lib/units";
+import React, { useState, useEffect, useCallback } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../config/firebase.config";
 import type { Course } from "../../../types/subject.types";
 import CourseContent from "../../ui/courseContent";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
 
 const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
+  const [units, setUnits] = useState<Record<string, string[]>>({});
   const allCategories = Object.keys(units);
   const [currentUnit, setCurrentUnit] = useState<string>("");
   const [correctCategory, setCorrectCategory] = useState<string>("");
@@ -15,7 +17,22 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
     []
   );
 
-  const loadNewUnit = () => {
+  useEffect(() => {
+    const fetchUnits = async () => {
+      const docRef = doc(db, "datasets", "unit-types");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setUnits(docSnap.data() as Record<string, string[]>);
+      } else {
+        console.log("No such document!");
+      }
+    };
+
+    fetchUnits();
+  }, []);
+
+  const loadNewUnit = useCallback(() => {
+    if (allCategories.length === 0) return;
     setSelectedCategory(null);
     setIsCorrect(null);
     const randomCategory =
@@ -27,11 +44,10 @@ const Units: React.FC<{ course: Course }> = ({ course: { description } }) => {
     setCurrentUnit(randomUnit);
     const shuffled = [...allCategories].sort(() => Math.random() - 0.5);
     setRandomizedCategories(shuffled);
-  };
+  }, [allCategories, units]);
 
   useEffect(() => {
     loadNewUnit();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCategorySelect = (category: string) => {
