@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import Drawer from "../ui/drawer";
-import { appSubjects } from "../../config/subjects";
+import { useSubjects } from "../../hooks/useSubjects";
 import { randomQuote } from "../../lib/quotes";
 import { Link } from "react-router-dom";
 
@@ -21,6 +21,7 @@ const DrawerItem: React.FC<{
 
 const Header: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { subjects } = useSubjects();
 
   return (
     <header className="bg-slate-800 shadow-lg border-b border-slate-700 p-4 flex items-center justify-between text-slate-100">
@@ -39,9 +40,9 @@ const Header: React.FC = () => {
             onClick={() => setIsDrawerOpen(false)}
           />
 
-          {appSubjects.map((subject) => (
+          {subjects.map((subject) => (
             <DrawerItem
-              key={subject.label}
+              key={subject.id}
               onClick={() => setIsDrawerOpen(false)}
               label={subject.label}
               path={subject.route}
