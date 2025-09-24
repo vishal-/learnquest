@@ -25,7 +25,11 @@ const Container: React.FC = () => {
   }
 
   if (error) {
-    return <div className="text-red-500 text-center">Error loading configuration: {error.message}</div>;
+    return (
+      <div className="text-red-500 text-center">
+        Error loading configuration: {error.message}
+      </div>
+    );
   }
 
   return (
