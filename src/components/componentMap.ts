@@ -2,7 +2,7 @@
 import { lazy } from "react";
 
 // This maps the string identifiers from Firestore to the actual lazy-loaded components.
-export const componentMap: { [key: string]: React.LazyExoticComponent<() => JSX.Element> } = {
+export const componentMap: { [key: string]: React.LazyExoticComponent<React.ComponentType<any>> } = {
     // Layouts
     subjectLayout: lazy(() => import("./pages/layouts/subjectLayout")),
 
@@ -22,4 +22,5 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<() => JSX.
     // World
     "capitals-of-india": lazy(() => import("./pages/world/capitalsOfIndia")),
     "capitals-of-countries": lazy(() => import("./pages/world/capitalsOfCountries")),
+    "flags-of-countries": lazy(() => import("./pages/world/flagsOfCountries")),
 };
