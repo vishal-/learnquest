@@ -1,11 +1,18 @@
 export interface Course {
+  id: string;
+  subjectId: string;
   label: string;
   description: string;
   image: string;
   route: string;
-  component: React.LazyExoticComponent<React.ComponentType<any>>;
+  component: string;
 }
 
-export interface Subject extends Course {
+export interface Subject {
+  id: string;
+  label: string;
+  description: string;
+  image: string;
+  route: string;
   courses: Course[];
 }
