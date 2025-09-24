@@ -1,22 +1,18 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import Container from "./components/container.tsx";
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
       .then((registration) => {
-        console.log('SW registered: ', registration);
+        console.log("SW registered: ", registration);
       })
       .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
+        console.log("SW registration failed: ", registrationError);
       });
   });
 }
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Container />
-  </StrictMode>
-);
+createRoot(document.getElementById("root")!).render(<Container />);
