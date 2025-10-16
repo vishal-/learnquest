@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getFlags } from "../../../lib/firestore";
 import { appConfig } from "../../../config/app.config";
 import Button from "../../ui/button";
+import CourseContent from "../../ui/courseContent";
 
 interface FlagData {
   image: string;
@@ -139,7 +140,7 @@ export default function ChallengeFlags() {
   const currentQ = questions[currentQuestion];
 
   return (
-    <div className="p-4">
+    <CourseContent>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">
           Question {currentQuestion + 1}/10
@@ -148,13 +149,13 @@ export default function ChallengeFlags() {
         <div className="text-xl font-bold">Score: {score}</div>
       </div>
 
-      <div className="text-center mb-6">
+      <CourseContent.Framed>
         <img
           src={`${appConfig.baseImagePath}/flags/thumbs/${currentQ.flag.thumbnail}`}
           alt="Flag to identify"
           className="mx-auto w-48 h-32 object-contain border-2 border-gray-300 rounded"
         />
-      </div>
+      </CourseContent.Framed>
 
       <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
         {currentQ.options.map((option, index) => (
@@ -166,6 +167,6 @@ export default function ChallengeFlags() {
           />
         ))}
       </div>
-    </div>
+    </CourseContent>
   );
 }
