@@ -16,11 +16,11 @@ const SubjectLayout: React.FC<{ subject: Subject }> = ({
             className="w-full max-w-md flex items-center gap-3 px-6 py-3 rounded-lg bg-[var(--color-primary)] text-[var(--color-text)] font-semibold shadow-md transition hover:bg-[var(--color-accent)] hover:scale-105 active:scale-95"
             style={{ fontFamily: "var(--font-kids)" }}
           >
-            <img
+            {/* <img
               src={course.image}
               alt={course.label}
               className="w-10 h-10 rounded-full object-cover"
-            />
+            /> */}
             <span>{course.label}</span>
           </Link>
         ))}

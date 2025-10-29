@@ -23,4 +23,5 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
     "capitals-of-india": lazy(() => import("./pages/world/capitalsOfIndia")),
     "capitals-of-countries": lazy(() => import("./pages/world/capitalsOfCountries")),
     "flags-of-countries": lazy(() => import("./pages/world/flagsOfCountries")),
+    "challenge-flags": lazy(() => import("./pages/world/challengeFlags")),
 };
