@@ -8,6 +8,7 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
 
     // General
     clock: lazy(() => import("./pages/general/readTheClock")),
+    "identify-letter": lazy(() => import("./pages/general/identifyLetter")),
 
     // Hindi
     counting: lazy(() => import("./pages/hindi/hindiCounting")),
