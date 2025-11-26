@@ -6,6 +6,7 @@ import CourseContent from "../../ui/courseContent";
 import type { Course } from "../../../types/subject.types";
 
 export default function Counting1To20({ course }: { course: Course }) {
+  const [range, setRange] = useState(20);
   const [currentCount, setCurrentCount] = useState(0);
   const [currentArticle, setCurrentArticle] = useState("");
   const [options, setOptions] = useState<number[]>([]);
@@ -13,7 +14,7 @@ export default function Counting1To20({ course }: { course: Course }) {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
   const generateQuestion = useCallback(() => {
-    const count = Math.floor(Math.random() * 20) + 1; // 1-20
+    const count = Math.floor(Math.random() * range) + 1;
     const articleNames = Object.keys(articles);
     const randomArticle =
       articleNames[Math.floor(Math.random() * articleNames.length)];
@@ -21,7 +22,7 @@ export default function Counting1To20({ course }: { course: Course }) {
     // Generate 4 options including the correct answer
     const wrongOptions: number[] = [];
     while (wrongOptions.length < 3) {
-      const wrong = Math.floor(Math.random() * 20) + 1;
+      const wrong = Math.floor(Math.random() * range) + 1;
       if (wrong !== count && !wrongOptions.includes(wrong)) {
         wrongOptions.push(wrong);
       }
@@ -34,7 +35,7 @@ export default function Counting1To20({ course }: { course: Course }) {
     setOptions(allOptions);
     setSelectedOption(null);
     setIsCorrect(null);
-  }, []);
+  }, [range]);
 
   const handleOptionClick = (option: number) => {
     setSelectedOption(option);
@@ -49,6 +50,31 @@ export default function Counting1To20({ course }: { course: Course }) {
   return (
     <CourseContent>
       <CourseContent.Title description={course.description} />
+      
+      <div className="mb-6 text-center">
+        <div className="flex justify-center gap-4">
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              name="range"
+              value="20"
+              checked={range === 20}
+              onChange={() => setRange(20)}
+            />
+            1-20
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              name="range"
+              value="50"
+              checked={range === 50}
+              onChange={() => setRange(50)}
+            />
+            1-50
+          </label>
+        </div>
+      </div>
 
       <div className="text-center mb-6">
         <p className="text-lg mb-4">

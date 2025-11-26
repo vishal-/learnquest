@@ -43,6 +43,11 @@ const IdentifyNumber: React.FC<{ course: Course }> = ({
     setOptions(Array.from(choices).sort(() => Math.random() - 0.5)); // Shuffle options
     setSelectedOption(null);
     setIsCorrect(null);
+    
+    // Auto-play the number
+    setTimeout(() => {
+      speak(number.toString());
+    }, 500);
   };
 
   const handleOptionClick = (option: number) => {

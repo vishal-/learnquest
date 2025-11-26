@@ -1,5 +1,15 @@
 const CourseContent = ({ children }: { children: React.ReactNode }) => {
-  return <div className="max-w-lg mx-auto">{children}</div>;
+  const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
+    // Prevent the default context menu from appearing
+    event.preventDefault();
+    console.log("Right-click disabled on this component");
+  };
+
+  return (
+    <div className="max-w-lg mx-auto" onContextMenu={handleContextMenu}>
+      {children}
+    </div>
+  );
 };
 
 const Title: React.FC<{ description: string }> = ({ description }) => {
