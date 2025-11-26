@@ -30,6 +30,15 @@ export default function IdentifyLetter({ course }: { course: Course }) {
     setOptions(allOptions);
     setSelectedOption(null);
     setIsCorrect(null);
+    
+    // Auto-play the letter
+    setTimeout(() => {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(letter);
+        utterance.rate = 0.7;
+        speechSynthesis.speak(utterance);
+      }
+    }, 500);
   }, []);
 
   const handleOptionClick = (option: string) => {
