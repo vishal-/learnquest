@@ -3,17 +3,32 @@ import { useEffect } from "react";
 import Header from "./common/header";
 import Home from "./pages/home";
 import ContentUpload from "./pages/contentUpload";
+import SignIn from "./pages/signIn";
 import { useSubjects } from "../hooks/useSubjects";
 import { componentMap } from "./componentMap";
 import Loader from "./ui/loader";
+import { useAuthStore } from "../store/authStore";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../config/firebase.config";
 import type { Subject, Course } from "../types/subject.types";
 
 const Container: React.FC = () => {
   const { subjects, loading, error, fetchSubjects } = useSubjects();
+  const { setUser, setLoading: setAuthLoading } = useAuthStore();
 
   useEffect(() => {
     fetchSubjects();
   }, [fetchSubjects]);
+
+  // Initialize auth state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setAuthLoading(false);
+    });
+
+    return unsubscribe;
+  }, [setUser, setAuthLoading]);
 
   const renderComponent = (componentName: string, props: any) => {
     const Component = componentMap[componentName];
@@ -40,6 +55,7 @@ const Container: React.FC = () => {
         <Routes>
           {/* Static Routes */}
           <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/content-upload" element={<ContentUpload />} />
 
           {/* Dynamic Routes */}
