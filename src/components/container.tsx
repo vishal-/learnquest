@@ -32,7 +32,7 @@ const Container: React.FC = () => {
 
   return (
     <HashRouter>
-      <div className="min-h-screen max-w-[430px] mx-auto bg-[#FFFBF0] flex flex-col">
+      <div className="min-h-screen max-w-[430px] mx-auto flex flex-col bg-[#FFFBF0]">
         <Header />
 
         <div className="flex-1 overflow-y-auto">

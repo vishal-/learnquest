@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
+import { useLocation } from "react-router-dom";
 import Drawer from "../ui/drawer";
 import { useSubjects } from "../../hooks/useSubjects";
 import { Link, useNavigate } from "react-router-dom";
@@ -27,6 +28,21 @@ const Header: React.FC = () => {
   const { subjects } = useSubjects();
   const { user } = useAuthStore();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Find matching subject based on current route (includes course routes)
+  const currentSubject = subjects.find((subject) => {
+    // Direct match for subject pages
+    if (location.pathname === subject.route) return true;
+    // Check if on a course page (starts with subject route + /)
+    if (location.pathname.startsWith(subject.route + "/")) return true;
+    return false;
+  });
+
+  // Determine header background - use subject's pageBackground on colored pages, cream on home
+  const headerBackgroundColor = currentSubject
+    ? currentSubject.pageBackground
+    : "#FFFBF0";
 
   const handleSignOut = async () => {
     try {
@@ -39,7 +55,12 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-[#FFFBF0] shadow-md border-b-[3px] border-[#2D2016] p-4 flex items-center justify-between max-w-[430px] mx-auto gap-3">
+    <header
+      className="w-full shadow-md border-b-[3px] border-[#2D2016] p-4 flex items-center justify-between gap-3"
+      style={{
+        backgroundColor: headerBackgroundColor
+      }}
+    >
       <button
         onClick={() => setIsDrawerOpen(true)}
         className="text-[#2D2016] hover:opacity-70 transition-opacity z-10 flex-shrink-0"

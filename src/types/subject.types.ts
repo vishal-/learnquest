@@ -18,4 +18,5 @@ export interface Subject {
   bg: string;
   shadow: string;
   rotate: string;
+  pageBackground: string;
 }

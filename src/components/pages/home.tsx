@@ -33,7 +33,7 @@ const HomePage = () => {
       <div className="relative z-10">
         {/* Subject Grid */}
         <div
-          className="px-5 pt-4 pb-2 grid gap-4 animate-slide-up"
+          className="px-3 pt-9 grid gap-4 animate-slide-up"
           style={{
             gridTemplateColumns: "repeat(2, 1fr)",
             animationDelay: "0s"
@@ -58,7 +58,7 @@ const HomePage = () => {
                 }}
               >
                 <div
-                  className="border-[3px] border-[#2D2016] rounded-[24px] p-6 flex flex-col items-center gap-3 transition-all duration-150"
+                  className="border-[2px] border-[#2D2016] rounded-[24px] p-3 flex flex-col items-center gap-3 transition-all duration-150"
                   style={{
                     background: subject.bg,
                     boxShadow: `0 6px 0 ${subject.shadow}, 0 6px 0 1px #2D2016`,
@@ -72,7 +72,7 @@ const HomePage = () => {
                   }}
                 >
                   <span className="text-5xl leading-none">
-                    <Icon icon={subject.icon} width="48" height="48" />
+                    <Icon icon={subject.icon} width="60" height="60" />
                   </span>
                   <span className="font-fredoka text-[13px] text-white tracking-[0.3px] text-shadow text-center w-full overflow-hidden text-ellipsis whitespace-nowrap">
                     {subject.label}

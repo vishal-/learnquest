@@ -38,6 +38,7 @@
   cursor: pointer;
   user-select: none;
   transition: transform 0.15s ease;
+  margin: 0.6rem 0;
 }
 
 .subject-card:active {
