@@ -1,3 +1,7 @@
-import { useSubjectsStore } from '../store/subjectsStore';
+import { getCombinedSubjectsData } from "../lib/subjectsData.constants";
 
-export const useSubjects = useSubjectsStore;
+export const useSubjects = () => {
+    return {
+        subjects: getCombinedSubjectsData(),
+    };
+};

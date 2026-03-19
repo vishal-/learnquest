@@ -6,19 +6,14 @@ import ContentUpload from "./pages/contentUpload";
 import SignIn from "./pages/signIn";
 import { useSubjects } from "../hooks/useSubjects";
 import { componentMap } from "./componentMap";
-import Loader from "./ui/loader";
 import { useAuthStore } from "../store/authStore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase.config";
 import type { Subject, Course } from "../types/subject.types";
 
 const Container: React.FC = () => {
-  const { subjects, loading, error, fetchSubjects } = useSubjects();
+  const { subjects } = useSubjects();
   const { setUser, setLoading: setAuthLoading } = useAuthStore();
-
-  useEffect(() => {
-    fetchSubjects();
-  }, [fetchSubjects]);
 
   // Initialize auth state
   useEffect(() => {
@@ -35,47 +30,37 @@ const Container: React.FC = () => {
     return Component ? <Component {...props} /> : null;
   };
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return (
-      <div className="text-red-500 text-center">
-        Error loading configuration: {error.message}
-      </div>
-    );
-  }
-
   return (
     <HashRouter>
-      <Header />
+      <div className="min-h-screen max-w-[430px] mx-auto flex flex-col bg-[#FFFBF0]">
+        <Header />
 
-      <div className="container mx-auto bg-background p-4 text-text min-h-screen">
-        <Routes>
-          {/* Static Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/content-upload" element={<ContentUpload />} />
+        <div className="flex-1 overflow-y-auto">
+          <Routes>
+            {/* Static Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/content-upload" element={<ContentUpload />} />
 
-          {/* Dynamic Routes */}
-          {subjects.map((subject: Subject) => (
-            <>
-              <Route
-                key={`subject_${subject.id}`}
-                path={subject.route}
-                element={renderComponent("subjectLayout", { subject })}
-              />
-              {subject.courses?.map((course: Course) => (
+            {/* Dynamic Routes */}
+            {subjects.map((subject: Subject) => (
+              <>
                 <Route
-                  key={`course_${course.id}`}
-                  path={course.route}
-                  element={renderComponent(course.component, { course })}
+                  key={`subject_${subject.id}`}
+                  path={subject.route}
+                  element={renderComponent("subjectLayout", { subject })}
                 />
-              ))}
-            </>
-          ))}
-        </Routes>
+                {subject.courses?.map((course: Course) => (
+                  <Route
+                    key={`course_${course.id}`}
+                    path={course.route}
+                    element={renderComponent(course.component, { course })}
+                  />
+                ))}
+              </>
+            ))}
+          </Routes>
+        </div>
       </div>
     </HashRouter>
   );

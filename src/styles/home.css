@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap");
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Font utilities */
+.font-fredoka {
+  font-family: "Fredoka One", cursive;
+}
+
+.font-nunito {
+  font-family: "Nunito", sans-serif;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 2.5px;
+  background: #d4c4b0;
+  border-radius: 2px;
+}
+
+.divider-text {
+  font-family: "Fredoka One", cursive;
+  font-size: 15px;
+  color: #9b8b6e;
+  letter-spacing: 0.5px;
+}
+
+.subject-card {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease;
+  margin: 0.6rem 0;
+}
+
+.subject-card:active {
+  transform: scale(0.92);
+}
+
+.recent-card {
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.recent-card:active {
+  transform: scale(0.97);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5) rotate(var(--r));
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1) rotate(var(--r));
+  }
+  100% {
+    transform: scale(1) rotate(var(--r));
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease both;
+}
+
+.animate-pop-in {
+  animation: popIn 0.5s ease both;
+}
+
+.dot-background {
+  background-image: radial-gradient(circle, #d4c4b0 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
