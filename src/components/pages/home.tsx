@@ -34,31 +34,10 @@ const HomePage = () => {
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Header */}
-        <div className="px-5 pt-5 animate-slide-up">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="font-nunito text-[14px] font-bold text-[#9B8B6E] m-0 tracking-[0.5px] uppercase">
-                Good morning! 👋
-              </p>
-              <h1 className="font-fredoka text-[30px] text-[#2D2016] m-0 mt-0.5 tracking-[0.5px] leading-tight">
-                What shall we
-                <br />
-                learn today?
-              </h1>
-            </div>
-
-            {/* Avatar */}
-            <div className="w-14 h-14 rounded-full bg-[#FFD93D] border-[3px] border-[#2D2016] shadow-[3px_3px_0_#2D2016] flex items-center justify-center text-2xl flex-shrink-0">
-              🦊
-            </div>
-          </div>
-        </div>
-
         {/* Divider label */}
         <div
           className="px-5 pt-6 pb-1 animate-slide-up"
-          style={{ animationDelay: "0.1s" }}
+          style={{ animationDelay: "0s" }}
         >
           <div className="section-label">
             <div className="divider-line" />
@@ -72,7 +51,7 @@ const HomePage = () => {
           className="px-5 pt-4 pb-2 grid gap-4 animate-slide-up"
           style={{
             gridTemplateColumns: "repeat(2, 1fr)",
-            animationDelay: "0.15s"
+            animationDelay: "0.05s"
           }}
         >
           {subjects.map((subject, i) => {
@@ -83,7 +62,7 @@ const HomePage = () => {
                 style={
                   {
                     "--r": subject.rotate,
-                    animation: `popIn 0.5s ${0.15 + i * 0.07}s ease both`,
+                    animation: `popIn 0.5s ${0.05 + i * 0.07}s ease both`,
                     opacity: 0,
                     animationFillMode: "forwards"
                   } as React.CSSProperties
@@ -122,7 +101,7 @@ const HomePage = () => {
         {/* Recent Activity - Showing subject descriptions as a teaser */}
         <div
           className="px-5 pb-5 animate-slide-up"
-          style={{ animationDelay: "0.55s" }}
+          style={{ animationDelay: "0.45s" }}
         >
           <div className="section-label mb-3.5">
             <div className="divider-line" />
@@ -138,7 +117,7 @@ const HomePage = () => {
                   className="recent-card border-[3px] border-[#2D2016] rounded-[20px] overflow-hidden bg-white transition-all duration-150"
                   style={{
                     boxShadow: `4px 4px 0 ${subject.shadow}, 4px 4px 0 1px #2D2016`,
-                    animation: `slideUp 0.4s ${0.7 + i * 0.1}s ease both`,
+                    animation: `slideUp 0.4s ${0.6 + i * 0.1}s ease both`,
                     opacity: 0,
                     animationFillMode: "forwards",
                     ...(pressedCard === i
