@@ -23,6 +23,19 @@ const DrawerItem: React.FC<{
   </Link>
 );
 
+// Helper function to get greeting based on time of day
+const getGreeting = (): { text: string; emoji: string } => {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    return { text: "Good morning", emoji: "🌅" };
+  } else if (hour >= 12 && hour < 17) {
+    return { text: "Good afternoon", emoji: "☀️" };
+  } else {
+    return { text: "Good evening", emoji: "🌆" };
+  }
+};
+
 const Header: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { subjects } = useSubjects();
@@ -39,10 +52,29 @@ const Header: React.FC = () => {
     return false;
   });
 
+  // Find matching course based on current route
+  let currentCourse = null;
+  if (currentSubject) {
+    currentCourse = currentSubject.courses.find(
+      (course) => location.pathname === course.route
+    );
+  }
+
   // Determine header background - use subject's pageBackground on colored pages, cream on home
   const headerBackgroundColor = currentSubject
     ? currentSubject.pageBackground
     : "#FFFBF0";
+
+  // Get contextual description for header
+  const getHeaderDescription = (): string => {
+    if (currentCourse) {
+      return currentCourse.description;
+    } else if (currentSubject) {
+      return currentSubject.description;
+    } else {
+      return "What shall we learn today?";
+    }
+  };
 
   const handleSignOut = async () => {
     try {
@@ -117,11 +149,11 @@ const Header: React.FC = () => {
       </Drawer>
 
       <div className="flex-1 flex flex-col justify-center">
-        <p className="font-nunito text-[12px] font-bold text-[#9B8B6E] m-0 tracking-[0.5px] uppercase">
-          Good morning! 👋
+        <p className="font-nunito text-[12px] font-bold text-[#333] m-0 tracking-[0.5px] uppercase">
+          {getGreeting().text}! {getGreeting().emoji}
         </p>
         <h1 className="font-fredoka text-[16px] text-[#2D2016] m-0 leading-tight">
-          What shall we learn today?
+          {getHeaderDescription()}
         </h1>
       </div>
 
