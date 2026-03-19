@@ -114,7 +114,7 @@ export const coursesData: Course[] = [
 export const subjectsData: Subject[] = [
     {
         id: "g.k",
-        label: "G.K",
+        label: "Trivia",
         description: "Explore various topics in general knowledge.",
         image: "https://iili.io/FQh4m2R.jpg",
         route: "/general",
