@@ -6,19 +6,14 @@ import ContentUpload from "./pages/contentUpload";
 import SignIn from "./pages/signIn";
 import { useSubjects } from "../hooks/useSubjects";
 import { componentMap } from "./componentMap";
-import Loader from "./ui/loader";
 import { useAuthStore } from "../store/authStore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase.config";
 import type { Subject, Course } from "../types/subject.types";
 
 const Container: React.FC = () => {
-  const { subjects, loading, error, fetchSubjects } = useSubjects();
+  const { subjects } = useSubjects();
   const { setUser, setLoading: setAuthLoading } = useAuthStore();
-
-  useEffect(() => {
-    fetchSubjects();
-  }, [fetchSubjects]);
 
   // Initialize auth state
   useEffect(() => {
@@ -34,18 +29,6 @@ const Container: React.FC = () => {
     const Component = componentMap[componentName];
     return Component ? <Component {...props} /> : null;
   };
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return (
-      <div className="text-red-500 text-center">
-        Error loading configuration: {error.message}
-      </div>
-    );
-  }
 
   return (
     <HashRouter>
