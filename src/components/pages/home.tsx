@@ -29,29 +29,14 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen max-w-[430px] mx-auto bg-[#FFFBF0] font-nunito overflow-x-hidden relative">
-      {/* Decorative dots background */}
-      <div className="fixed inset-0 max-w-[430px] mx-auto dot-background opacity-50 pointer-events-none z-0" />
-
       {/* Content */}
       <div className="relative z-10">
-        {/* Divider label */}
-        <div
-          className="px-5 pt-6 pb-1 animate-slide-up"
-          style={{ animationDelay: "0s" }}
-        >
-          <div className="section-label">
-            <div className="divider-line" />
-            <span className="divider-text">SUBJECTS</span>
-            <div className="divider-line" />
-          </div>
-        </div>
-
         {/* Subject Grid */}
         <div
           className="px-5 pt-4 pb-2 grid gap-4 animate-slide-up"
           style={{
             gridTemplateColumns: "repeat(2, 1fr)",
-            animationDelay: "0.05s"
+            animationDelay: "0s"
           }}
         >
           {subjects.map((subject, i) => {
@@ -62,7 +47,7 @@ const HomePage = () => {
                 style={
                   {
                     "--r": subject.rotate,
-                    animation: `popIn 0.5s ${0.05 + i * 0.07}s ease both`,
+                    animation: `popIn 0.5s ${i * 0.07}s ease both`,
                     opacity: 0,
                     animationFillMode: "forwards"
                   } as React.CSSProperties
@@ -101,9 +86,9 @@ const HomePage = () => {
         {/* Recent Activity - Showing subject descriptions as a teaser */}
         <div
           className="px-5 pb-5 animate-slide-up"
-          style={{ animationDelay: "0.45s" }}
+          style={{ animationDelay: "0.35s" }}
         >
-          <div className="section-label mb-3.5">
+          <div className="section-label my-5">
             <div className="divider-line" />
             <span className="divider-text">EXPLORE MORE</span>
             <div className="divider-line" />
@@ -117,7 +102,7 @@ const HomePage = () => {
                   className="recent-card border-[3px] border-[#2D2016] rounded-[20px] overflow-hidden bg-white transition-all duration-150"
                   style={{
                     boxShadow: `4px 4px 0 ${subject.shadow}, 4px 4px 0 1px #2D2016`,
-                    animation: `slideUp 0.4s ${0.6 + i * 0.1}s ease both`,
+                    animation: `slideUp 0.4s ${0.5 + i * 0.1}s ease both`,
                     opacity: 0,
                     animationFillMode: "forwards",
                     ...(pressedCard === i
