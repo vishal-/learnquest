@@ -23,7 +23,7 @@
 .divider-line {
   flex: 1;
   height: 2.5px;
-  background: #e8dcc8;
+  background: #d4c4b0;
   border-radius: 2px;
 }
 
@@ -96,6 +96,6 @@
 }
 
 .dot-background {
-  background-image: radial-gradient(circle, #e2d9c8 1.5px, transparent 1.5px);
+  background-image: radial-gradient(circle, #d4c4b0 1.5px, transparent 1.5px);
   background-size: 28px 28px;
 }

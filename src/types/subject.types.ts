@@ -12,7 +12,10 @@ export interface Subject {
   id: string;
   label: string;
   description: string;
-  image: string;
   route: string;
   courses: Course[];
+  icon: string;
+  bg: string;
+  shadow: string;
+  rotate: string;
 }

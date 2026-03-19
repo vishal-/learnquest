@@ -2,18 +2,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #3b82f6;
-  --color-secondary: #1e293b;
-  --color-accent: #06b6d4;
-  --color-background: #0f172a;
-  --color-text: #f1f5f9;
+  --color-primary: #ff6b6b;
+  --color-secondary: #2d2016;
+  --color-accent: #48cfad;
+  --color-background: #fffbf0;
+  --color-text: #2d2016;
   --font-fredoka: "Fredoka One", cursive;
   --font-nunito: "Nunito", sans-serif;
 }
 
 body {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: #fffbf0;
+  color: #2d2016;
 }
 
 @keyframes marquee {

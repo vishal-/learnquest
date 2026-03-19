@@ -4,43 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import "../../styles/home.css";
 
-// Subject color mappings with icon names
-const subjectConfig: Record<
-  string,
-  { icon: string; bg: string; shadow: string; rotate: string }
-> = {
-  "g.k": {
-    icon: "twemoji:brain",
-    bg: "#4b1212",
-    shadow: "#C94B4B",
-    rotate: "-3deg"
-  },
-  maths: {
-    icon: "twemoji:input-numbers",
-    bg: "#1e7962",
-    shadow: "#2A9D7A",
-    rotate: "-2deg"
-  },
-  stem: {
-    icon: "twemoji:microscope",
-    bg: "#223f6d",
-    shadow: "#2D6FD4",
-    rotate: "3deg"
-  },
-  world: {
-    icon: "twemoji:globe-showing-asia-australia",
-    bg: "#523e8f",
-    shadow: "#7C5DC9",
-    rotate: "-1deg"
-  },
-  hindi: {
-    icon: "twemoji:diya-lamp",
-    bg: "#c97c34",
-    shadow: "#C97A20",
-    rotate: "2deg"
-  }
-};
-
 const StarRating = ({ count }: { count: number }) => (
   <div className="flex gap-0.5">
     {[1, 2, 3].map((i) => (
@@ -63,18 +26,6 @@ const HomePage = () => {
   useEffect(() => {
     setActiveSubject(null);
   }, []);
-
-  const getSubjectConfig = (id: string) => {
-    const key = id.toLowerCase();
-    return (
-      subjectConfig[key] || {
-        icon: "openmoji:books",
-        bg: "#A78BFA",
-        shadow: "#7C5DC9",
-        rotate: "0deg"
-      }
-    );
-  };
 
   return (
     <div className="min-h-screen max-w-[430px] mx-auto bg-[#FFFBF0] font-nunito overflow-x-hidden relative">
@@ -125,14 +76,13 @@ const HomePage = () => {
           }}
         >
           {subjects.map((subject, i) => {
-            const config = getSubjectConfig(subject.id);
             return (
               <div
                 key={subject.id}
                 className="subject-card"
                 style={
                   {
-                    "--r": config.rotate,
+                    "--r": subject.rotate,
                     animation: `popIn 0.5s ${0.15 + i * 0.07}s ease both`,
                     opacity: 0,
                     animationFillMode: "forwards"
@@ -146,19 +96,19 @@ const HomePage = () => {
                 <div
                   className="border-[3px] border-[#2D2016] rounded-[24px] p-6 flex flex-col items-center gap-3 transition-all duration-150"
                   style={{
-                    background: config.bg,
-                    boxShadow: `0 6px 0 ${config.shadow}, 0 6px 0 1px #2D2016`,
-                    transform: `rotate(${config.rotate})`,
+                    background: subject.bg,
+                    boxShadow: `0 6px 0 ${subject.shadow}, 0 6px 0 1px #2D2016`,
+                    transform: `rotate(${subject.rotate})`,
                     ...(activeSubject === subject.id
                       ? {
-                          transform: `rotate(${config.rotate}) scale(1.08)`,
-                          boxShadow: `0 8px 0 ${config.shadow}, 0 8px 0 1px #2D2016`
+                          transform: `rotate(${subject.rotate}) scale(1.08)`,
+                          boxShadow: `0 8px 0 ${subject.shadow}, 0 8px 0 1px #2D2016`
                         }
                       : {})
                   }}
                 >
                   <span className="text-5xl leading-none">
-                    <Icon icon={config.icon} width="48" height="48" />
+                    <Icon icon={subject.icon} width="48" height="48" />
                   </span>
                   <span className="font-fredoka text-[13px] text-white tracking-[0.3px] text-shadow text-center w-full overflow-hidden text-ellipsis whitespace-nowrap">
                     {subject.label}
@@ -182,20 +132,19 @@ const HomePage = () => {
 
           <div className="flex flex-col gap-3">
             {subjects.slice(0, 3).map((subject, i) => {
-              const config = getSubjectConfig(subject.id);
               return (
                 <div
                   key={subject.id}
                   className="recent-card border-[3px] border-[#2D2016] rounded-[20px] overflow-hidden bg-white transition-all duration-150"
                   style={{
-                    boxShadow: `4px 4px 0 ${config.shadow}, 4px 4px 0 1px #2D2016`,
+                    boxShadow: `4px 4px 0 ${subject.shadow}, 4px 4px 0 1px #2D2016`,
                     animation: `slideUp 0.4s ${0.7 + i * 0.1}s ease both`,
                     opacity: 0,
                     animationFillMode: "forwards",
                     ...(pressedCard === i
                       ? {
                           transform: "scale(0.97)",
-                          boxShadow: `2px 2px 0 ${config.shadow}`
+                          boxShadow: `2px 2px 0 ${subject.shadow}`
                         }
                       : {})
                   }}
@@ -208,9 +157,9 @@ const HomePage = () => {
                     {/* Color strip */}
                     <div
                       className="w-16 flex items-center justify-center text-[28px] flex-shrink-0 border-r-[3px] border-[#2D2016]"
-                      style={{ background: config.bg }}
+                      style={{ background: subject.bg }}
                     >
-                      <Icon icon={config.icon} width="32" height="32" />
+                      <Icon icon={subject.icon} width="32" height="32" />
                     </div>
 
                     {/* Content */}
