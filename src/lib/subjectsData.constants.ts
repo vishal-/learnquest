@@ -151,7 +151,7 @@ export const subjectsData: Subject[] = [
     {
         id: "hindi",
         label: "Hindi",
-        description: "Learn Hindi language basics, vocabulary, and grammar.",
+        description: "Learn & Practice Hindi language",
         route: "/hindi",
         icon: "twemoji:diya-lamp",
         bg: "#c97c34",
