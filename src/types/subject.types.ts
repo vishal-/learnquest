@@ -3,9 +3,10 @@ export interface Course {
   subjectId: string;
   label: string;
   description: string;
-  image: string;
+  icon: string;
   route: string;
   component: string;
+  category: "learn" | "practice" | "challenge";
 }
 
 export interface Subject {
