@@ -1,42 +1,43 @@
 import { useState, useEffect } from "react";
 import { useSubjects } from "../../hooks/useSubjects";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import "../../styles/home.css";
 
-// Subject color mappings with emojis
+// Subject color mappings with icon names
 const subjectConfig: Record<
   string,
-  { emoji: string; bg: string; shadow: string; rotate: string }
+  { icon: string; bg: string; shadow: string; rotate: string }
 > = {
-  general: {
-    emoji: "🧠",
-    bg: "#FF6B6B",
+  "g.k": {
+    icon: "twemoji:brain",
+    bg: "#4b1212",
     shadow: "#C94B4B",
     rotate: "-3deg"
   },
-  hindi: {
-    emoji: "🪔",
-    bg: "#FF9F43",
-    shadow: "#C97A20",
-    rotate: "2deg"
-  },
   maths: {
-    emoji: "🔢",
-    bg: "#48CFAD",
+    icon: "twemoji:input-numbers",
+    bg: "#1e7962",
     shadow: "#2A9D7A",
     rotate: "-2deg"
   },
   stem: {
-    emoji: "🔬",
-    bg: "#5B9BFF",
+    icon: "twemoji:microscope",
+    bg: "#223f6d",
     shadow: "#2D6FD4",
     rotate: "3deg"
   },
   world: {
-    emoji: "🌍",
-    bg: "#A78BFA",
+    icon: "twemoji:globe-showing-asia-australia",
+    bg: "#523e8f",
     shadow: "#7C5DC9",
     rotate: "-1deg"
+  },
+  hindi: {
+    icon: "twemoji:diya-lamp",
+    bg: "#c97c34",
+    shadow: "#C97A20",
+    rotate: "2deg"
   }
 };
 
@@ -67,7 +68,7 @@ const HomePage = () => {
     const key = id.toLowerCase();
     return (
       subjectConfig[key] || {
-        emoji: "📚",
+        icon: "openmoji:books",
         bg: "#A78BFA",
         shadow: "#7C5DC9",
         rotate: "0deg"
@@ -156,7 +157,9 @@ const HomePage = () => {
                       : {})
                   }}
                 >
-                  <span className="text-5xl leading-none">{config.emoji}</span>
+                  <span className="text-5xl leading-none">
+                    <Icon icon={config.icon} width="48" height="48" />
+                  </span>
                   <span className="font-fredoka text-[13px] text-white tracking-[0.3px] text-shadow text-center w-full overflow-hidden text-ellipsis whitespace-nowrap">
                     {subject.label}
                   </span>
@@ -207,7 +210,7 @@ const HomePage = () => {
                       className="w-16 flex items-center justify-center text-[28px] flex-shrink-0 border-r-[3px] border-[#2D2016]"
                       style={{ background: config.bg }}
                     >
-                      {config.emoji}
+                      <Icon icon={config.icon} width="32" height="32" />
                     </div>
 
                     {/* Content */}
