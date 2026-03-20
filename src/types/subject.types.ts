@@ -1,11 +1,21 @@
+export const CourseCategory = {
+  LEARN: "learn",
+  PRACTICE: "practice",
+  CHALLENGE: "challenge",
+} as const;
+
+export type CourseCategoryType =
+  (typeof CourseCategory)[keyof typeof CourseCategory];
+
 export interface Course {
   id: string;
   subjectId: string;
   label: string;
   description: string;
-  image: string;
+  icon: string;
   route: string;
   component: string;
+  category: CourseCategoryType;
 }
 
 export interface Subject {
