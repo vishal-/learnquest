@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap");
 @import "tailwindcss";
+@import "./styles/animations.css";
 
 @theme {
   --color-primary: #ff6b6b;
@@ -32,20 +33,4 @@ body {
   .font-nunito {
     font-family: "Nunito", sans-serif;
   }
-}
-
-@keyframes marquee {
-  0% {
-    transform: translate3d(calc(100vw + 100%), 0, 0);
-  }
-  100% {
-    transform: translate3d(calc(-100vw - 100%), 0, 0);
-  }
-}
-
-.marquee {
-  animation: marquee 21s linear infinite;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
