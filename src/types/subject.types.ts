@@ -1,8 +1,11 @@
-export enum CourseCategory {
-  LEARN = "learn",
-  PRACTICE = "practice",
-  CHALLENGE = "challenge",
-}
+export const CourseCategory = {
+  LEARN: "learn",
+  PRACTICE: "practice",
+  CHALLENGE: "challenge",
+} as const;
+
+export type CourseCategoryType =
+  (typeof CourseCategory)[keyof typeof CourseCategory];
 
 export interface Course {
   id: string;
@@ -12,7 +15,7 @@ export interface Course {
   icon: string;
   route: string;
   component: string;
-  category: CourseCategory;
+  category: CourseCategoryType;
 }
 
 export interface Subject {

@@ -199,7 +199,7 @@
 }
 
 .subject-layout__courses {
-  padding: 14px 20px 32px;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 12px;

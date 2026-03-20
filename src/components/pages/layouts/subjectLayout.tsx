@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import type { Subject, Course } from "../../../types/subject.types";
+import type {
+  Subject,
+  Course,
+  CourseCategoryType,
+} from "../../../types/subject.types";
 import { CourseCategory } from "../../../types/subject.types";
 import "../../../styles/subjectLayout.css";
 
 interface TabConfig {
-  id: CourseCategory;
+  id: CourseCategoryType;
   label: string;
   emoji: string;
   color: string;
@@ -46,7 +50,7 @@ const SubjectLayout: React.FC<{ subject: Subject }> = ({ subject }) => {
     icon: subjectIcon,
     pageBackground,
   } = subject;
-  const [activeTab, setActiveTab] = useState<CourseCategory>(
+  const [activeTab, setActiveTab] = useState<CourseCategoryType>(
     CourseCategory.LEARN,
   );
 
@@ -58,7 +62,7 @@ const SubjectLayout: React.FC<{ subject: Subject }> = ({ subject }) => {
       acc[category].push(course);
       return acc;
     },
-    {} as Record<CourseCategory, Course[]>,
+    {} as Record<CourseCategoryType, Course[]>,
   );
 
   const tab = TABS.find((t) => t.id === activeTab)!;
