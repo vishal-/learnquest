@@ -152,7 +152,10 @@ export default function IdentifyNumber({ course }: { course: Course }) {
       <ConfettiBurst active={showConfetti} />
 
       <CourseContent>
-        <CourseContent.Title description={course.description} />
+        <CourseContent.Title
+          title={course.label}
+          description={course.description}
+        />
 
         {/* Streak Badge */}
         {showStreakBadge && (

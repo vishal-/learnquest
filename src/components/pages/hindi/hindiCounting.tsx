@@ -14,7 +14,10 @@ export default function HindiCounting({ course }: { course: Course }) {
 
   return (
     <CourseContent>
-      <CourseContent.Title description={course.description} />
+      <CourseContent.Title
+        title={course.label}
+        description={course.description}
+      />
 
       <div className="grid grid-cols-1 gap-3">
         {hindiNumbersArray.map(([number, word], index) => (

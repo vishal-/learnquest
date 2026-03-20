@@ -5,6 +5,7 @@ interface CourseContentProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  title?: string;
   description: string;
   variant?: "primary" | "secondary";
 }
@@ -49,10 +50,13 @@ const CourseContent = React.forwardRef<HTMLDivElement, CourseContentProps>(
 CourseContent.displayName = "CourseContent";
 
 /**
- * Title component - displays course description at the top
+ * Title component - displays course title and description
  */
-const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
-  ({ description, variant = "primary", className = "", ...props }, ref) => {
+const Title = React.forwardRef<HTMLDivElement, TitleProps>(
+  (
+    { title, description, variant = "primary", className = "", ...props },
+    ref
+  ) => {
     const variants = {
       primary:
         "text-[#2D2016] bg-gradient-to-r from-[#FFE5B4] to-[#FFE5EC] rounded-2xl p-4 border-3 border-[#2D2016]",
@@ -60,13 +64,14 @@ const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
     };
 
     return (
-      <h2
+      <div
         ref={ref}
-        className={`font-poppins font-bold text-2xl text-center mb-8 ${variants[variant]} ${className}`}
+        className={`font-poppins font-bold text-center mb-8 ${variants[variant]} ${className}`}
         {...props}
       >
-        {description}
-      </h2>
+        {/* {title && <h2 className="text-2xl mb-2">{title}</h2>} */}
+        <p className={title ? "text-sm" : "text-2xl"}>{description}</p>
+      </div>
     );
   }
 );

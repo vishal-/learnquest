@@ -137,7 +137,10 @@ export default function Counting1To20({ course }: { course: Course }) {
       <ConfettiBurst active={showConfetti} />
 
       <CourseContent>
-        <CourseContent.Title description={course.description} />
+        <CourseContent.Title
+          title={course.label}
+          description={course.description}
+        />
 
         {/* Range Selector */}
         <div className="flex justify-center gap-3 mb-6">

@@ -28,7 +28,10 @@ export default function LearnTables({ course }: { course: Course }) {
 
   return (
     <CourseContent>
-      <CourseContent.Title description={course.description} />
+      <CourseContent.Title
+        title={course.label}
+        description={course.description}
+      />
 
       {/* Table Selector */}
       <div className="text-center mb-8">

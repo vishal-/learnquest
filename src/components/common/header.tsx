@@ -52,14 +52,6 @@ const Header: React.FC = () => {
     return false;
   });
 
-  // Find matching course based on current route
-  let currentCourse = null;
-  if (currentSubject) {
-    currentCourse = currentSubject.courses.find(
-      (course) => location.pathname === course.route
-    );
-  }
-
   // Determine header background - use subject's pageBackground on colored pages, cream on home
   const headerBackgroundColor = currentSubject
     ? currentSubject.pageBackground
@@ -67,9 +59,7 @@ const Header: React.FC = () => {
 
   // Get contextual description for header
   const getHeaderDescription = (): string => {
-    if (currentCourse) {
-      return currentCourse.description;
-    } else if (currentSubject) {
+    if (currentSubject) {
       return currentSubject.description;
     } else {
       return "What shall we learn today?";
