@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import type { Course } from "../../../types/subject.types";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
 import CourseContent from "../../ui/courseContent";
+import Input from "../../ui/input";
+import ConfettiBurst from "../../ui/confettiBurst";
+import StreakBadge from "../../ui/streakBadge";
 
-const ReadTheClock: React.FC<{ course: Course }> = ({
-  course: { description }
-}) => {
+// ─── Helpers ───────────────────────────────────────────────────────────────
+
+function speak(text: string) {
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.rate = 0.9;
+  utt.pitch = 1.1;
+  window.speechSynthesis.speak(utt);
+}
+
+// ─── Main Component ────────────────────────────────────────────────────────
+
+export default function ReadTheClock({ course }: { course: Course }) {
   const [randomHour, setRandomHour] = useState(
     () => Math.floor(Math.random() * 12) + 1
   );
@@ -15,111 +29,171 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
   );
   const [guessedHour, setGuessedHour] = useState("");
   const [guessedMinute, setGuessedMinute] = useState("");
-  const [feedback, setFeedback] = useState<string | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [answered, setAnswered] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState("");
+  const [showFeedbackToast, setShowFeedbackToast] = useState(false);
+  const [feedbackIsCorrect, setFeedbackIsCorrect] = useState<boolean | null>(
+    null
+  );
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [showStreakBadge, setShowStreakBadge] = useState(false);
+  const confettiTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const generateNewTime = () => {
+  const generateNewTime = useCallback(() => {
     setRandomHour(Math.floor(Math.random() * 12) + 1);
     setRandomMinute(Math.floor(Math.random() * 60));
     setGuessedHour("");
     setGuessedMinute("");
-    setFeedback(null);
-    setIsCorrect(null);
-  };
+    setAnswered(false);
+    setFeedbackMsg("");
+    setShowFeedbackToast(false);
+    setFeedbackIsCorrect(null);
+    setShowStreakBadge(false);
+  }, []);
 
   const checkAnswer = () => {
     const hourGuess = parseInt(guessedHour);
     const minuteGuess = parseInt(guessedMinute);
 
     if (isNaN(hourGuess) || isNaN(minuteGuess)) {
-      setFeedback("Please enter both hours and minutes!");
-      setIsCorrect(false);
+      setFeedbackMsg("Please enter both hours and minutes!");
+      setFeedbackIsCorrect(false);
+      setShowFeedbackToast(true);
+      setAnswered(true);
       return;
     }
 
+    setAnswered(true);
+
     if (hourGuess === randomHour && minuteGuess === randomMinute) {
-      setFeedback("Great job! That's correct! 🎉");
-      setIsCorrect(true);
+      const msg = Feedback.getEncouragement();
+      setFeedbackMsg(msg);
+      setFeedbackIsCorrect(true);
+      setStreak((prev) => {
+        const newStreak = prev + 1;
+        if (newStreak > 1) {
+          setShowStreakBadge(true);
+        }
+        return newStreak;
+      });
+      setShowConfetti(true);
+      speak(msg.replace(/[🎉⭐🙌🌟💥👏🚀🧡🧠🎊]/g, ""));
+      if (confettiTimer.current) clearTimeout(confettiTimer.current);
+      confettiTimer.current = setTimeout(() => setShowConfetti(false), 1200);
+
+      setTimeout(() => {
+        setShowFeedbackToast(true);
+      }, 300);
     } else {
-      setFeedback(
-        `Not quite right. The correct time is ${randomHour} : ${randomMinute
-          .toString()
-          .padStart(2, "0")}`
-      );
-      setIsCorrect(false);
+      const msg = Feedback.getTryAgain();
+      setFeedbackMsg(msg);
+      setFeedbackIsCorrect(false);
+      setStreak(0);
+      speak("Not quite, try again!");
+      setShowFeedbackToast(true);
     }
   };
 
   const hourDegrees = (randomHour % 12) * 30 + randomMinute / 2;
   const minuteDegrees = randomMinute * 6;
 
+  const handleFeedbackToastClose = () => {
+    setShowFeedbackToast(false);
+    generateNewTime();
+  };
+
+  // Initialize
+  useEffect(() => {
+    generateNewTime();
+  }, [generateNewTime]);
+
   return (
-    <CourseContent>
-      <CourseContent.Title description={description} />
-      {/* Analog Clock */}
-      <div className="w-64 h-64 relative mx-auto my-6 rounded-full border-4 border-gray-800 bg-white shadow-lg">
-        {/* Clock numbers */}
-        {[...Array(12)].map((_, i) => {
-          const number = i === 0 ? 12 : i;
-          const angle = i * 30;
-          const x = Math.sin((angle * Math.PI) / 180) * 90;
-          const y = -Math.cos((angle * Math.PI) / 180) * 90;
+    <>
+      <ConfettiBurst active={showConfetti} />
 
-          return (
-            <div
-              key={i}
-              className="absolute left-1/2 top-1/2 text-xl font-bold text-gray-800"
-              style={{
-                transform: `translate(${x - 8}px, ${y - 12}px)`
-              }}
-            >
-              {number}
-            </div>
-          );
-        })}
+      <CourseContent>
+        <CourseContent.Title description={course.description} />
 
-        {/* Hour markers */}
-        {[...Array(12)].map((_, i) => {
-          const rotation = i * 30;
-          return (
+        {/* Streak Badge */}
+        {showStreakBadge && (
+          <StreakBadge
+            count={streak}
+            duration={2000}
+            onDismiss={() => setShowStreakBadge(false)}
+          />
+        )}
+
+        {/* Analog Clock */}
+        <CourseContent.Card className="border-4 mb-8">
+          <div className="w-64 h-64 relative mx-auto my-6 rounded-full border-4 border-[#2D2016] bg-white shadow-lg">
+            {/* Clock numbers */}
+            {[...Array(12)].map((_, i) => {
+              const number = i === 0 ? 12 : i;
+              const angle = i * 30;
+              const x = Math.sin((angle * Math.PI) / 180) * 90;
+              const y = -Math.cos((angle * Math.PI) / 180) * 90;
+
+              return (
+                <div
+                  key={i}
+                  className="absolute left-1/2 top-1/2 font-poppins font-bold text-xl text-[#2D2016]"
+                  style={{
+                    transform: `translate(${x - 8}px, ${y - 12}px)`
+                  }}
+                >
+                  {number}
+                </div>
+              );
+            })}
+
+            {/* Hour markers */}
+            {[...Array(12)].map((_, i) => {
+              const rotation = i * 30;
+              return (
+                <div
+                  key={i}
+                  className="absolute w-1 h-5 bg-[#2D2016] left-1/2 top-1"
+                  style={{
+                    transformOrigin: "2px 120px",
+                    transform: `translateX(-50%) rotate(${rotation}deg)`
+                  }}
+                />
+              );
+            })}
+
+            {/* Hour hand */}
             <div
-              key={i}
-              className="absolute w-1 h-5 bg-gray-800 left-1/2 top-1"
+              className="absolute w-1.5 h-16 bg-[#2D2016] left-1/2 bottom-1/2 rounded-sm"
               style={{
-                transformOrigin: "2px 120px",
-                transform: `translateX(-50%) rotate(${rotation}deg)`
+                transformOrigin: "bottom center",
+                transform: `translateX(-50%) rotate(${hourDegrees}deg)`
               }}
             />
-          );
-        })}
 
-        {/* Hour hand */}
-        <div
-          className="absolute w-1.5 h-16 bg-gray-800 left-1/2 bottom-1/2 rounded-sm"
-          style={{
-            transformOrigin: "bottom center",
-            transform: `translateX(-50%) rotate(${hourDegrees}deg)`
-          }}
-        />
+            {/* Minute hand */}
+            <div
+              className="absolute w-0.5 h-24 bg-[#5B9BFF] left-1/2 bottom-1/2 rounded-sm"
+              style={{
+                transformOrigin: "bottom center",
+                transform: `translateX(-50%) rotate(${minuteDegrees}deg)`
+              }}
+            />
 
-        {/* Minute hand */}
-        <div
-          className="absolute w-0.5 h-24 bg-gray-600 left-1/2 bottom-1/2 rounded-sm"
-          style={{
-            transformOrigin: "bottom center",
-            transform: `translateX(-50%) rotate(${minuteDegrees}deg)`
-          }}
-        />
+            {/* Center dot */}
+            <div className="absolute w-3 h-3 bg-[#2D2016] rounded-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+          </div>
 
-        {/* Center dot */}
-        <div className="absolute w-3 h-3 bg-gray-800 rounded-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-      </div>
+          <p className="text-center font-nunito font-bold text-xs text-[#9B8B6E] mt-3">
+            What time is shown? 👇
+          </p>
+        </CourseContent.Card>
 
-      {/* Input section */}
-      <div className="mt-6 flex gap-4 justify-center items-center">
-        <div className="flex flex-col">
-          <label className="text-sm text-gray-500 mb-1">Hours</label>
-          <input
+        {/* Input section */}
+        <div className="flex gap-4 justify-center items-end mb-8">
+          <Input
+            label="Hours"
+            placeholder="1-12"
             value={guessedHour}
             onChange={(e) => {
               const value = e.target.value;
@@ -127,15 +201,17 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
                 setGuessedHour(value);
               }
             }}
-            min={1}
-            max={12}
-            className="w-20 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            variant="primary"
+            inputSize="md"
+            disabled={answered}
+            className="w-24 text-center"
           />
-        </div>
-        <div className="text-2xl font-bold mt-6">:</div>
-        <div className="flex flex-col">
-          <label className="text-sm text-gray-500 mb-1">Minutes</label>
-          <input
+          <div className="text-3xl font-poppins font-bold text-[#2D2016]">
+            :
+          </div>
+          <Input
+            label="Minutes"
+            placeholder="0-59"
             value={guessedMinute}
             onChange={(e) => {
               const value = e.target.value;
@@ -146,36 +222,46 @@ const ReadTheClock: React.FC<{ course: Course }> = ({
                 setGuessedMinute(value);
               }
             }}
-            min={0}
-            max={59}
-            className="w-20 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            variant="primary"
+            inputSize="md"
+            disabled={answered}
+            className="w-24 text-center"
           />
         </div>
-      </div>
 
-      {/* Buttons */}
-      <div className="mt-9 text-center">
-        <Button
-          label="Check Answer"
-          variant="secondary"
-          onClick={checkAnswer}
-        />
+        {/* Buttons */}
+        <div className="flex gap-3 justify-center mb-8">
+          <Button
+            label="Check Answer"
+            variant="secondary"
+            onClick={checkAnswer}
+            disabled={answered}
+          />
+          <Button
+            label="New Time"
+            variant="primary"
+            onClick={() => generateNewTime()}
+          />
+        </div>
+      </CourseContent>
 
-        <p>&#160;</p>
-
-        <Button label="New Time" onClick={generateNewTime} />
-      </div>
-
-      <p>&#160;</p>
-
-      {feedback && (
-        <Feedback
-          variant={isCorrect ? "success" : "danger"}
-          message={feedback}
+      {/* Toast Feedback */}
+      {feedbackIsCorrect === true && (
+        <Feedback.ToastCorrect
+          isVisible={showFeedbackToast}
+          message={feedbackMsg}
+          onClose={handleFeedbackToastClose}
+          duration={2000}
         />
       )}
-    </CourseContent>
+      {feedbackIsCorrect === false && (
+        <Feedback.ToastIncorrect
+          isVisible={showFeedbackToast}
+          message={feedbackMsg}
+          onClose={handleFeedbackToastClose}
+          duration={2000}
+        />
+      )}
+    </>
   );
-};
-
-export default ReadTheClock;
+}

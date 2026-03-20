@@ -40,12 +40,12 @@ const generateChallenge = (tableNumber: number): Challenge => {
   return {
     question,
     options: Array.from(options).sort(() => Math.random() - 0.5),
-    correctAnswer,
+    correctAnswer
   };
 };
 
 const MathTables: React.FC<{ course: Course }> = ({
-  course: { description },
+  course: { description }
 }) => {
   const [selectedNumber, setSelectedNumber] = useState<number>(2);
   const [mode, setMode] = useState<"view" | "test">("view");
@@ -77,7 +77,7 @@ const MathTables: React.FC<{ course: Course }> = ({
     } else {
       setFeedback({
         message: `Incorrect. The correct answer was ${challenge.correctAnswer}.`,
-        variant: "danger",
+        variant: "danger"
       });
     }
   };
@@ -96,8 +96,8 @@ const MathTables: React.FC<{ course: Course }> = ({
         <Select
           label="Choose a number: "
           options={Array.from({ length: 19 }, (_, i) => ({
-            displayLabel: (i + 2).toString(),
-            optionValue: i + 2,
+            label: (i + 2).toString(),
+            value: i + 2
           }))}
           value={selectedNumber}
           onChange={(n) => setSelectedNumber(Number(n))}
