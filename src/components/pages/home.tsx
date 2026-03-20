@@ -74,7 +74,7 @@ const HomePage = () => {
                   <span className="text-5xl leading-none">
                     <Icon icon={subject.icon} width="60" height="60" />
                   </span>
-                  <span className="font-fredoka text-[13px] text-white tracking-[0.3px] text-shadow text-center w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                  <span className="font-poppins text-[13px] text-white tracking-[0.3px] text-shadow text-center w-full overflow-hidden text-ellipsis whitespace-nowrap">
                     {subject.label}
                   </span>
                 </div>
@@ -133,7 +133,7 @@ const HomePage = () => {
                           <span className="font-nunito font-black text-[11px] text-[#9B8B6E] uppercase tracking-[0.5px]">
                             {subject.label}
                           </span>
-                          <p className="font-fredoka text-base text-[#2D2016] m-0 mt-0.5 mb-1.5 leading-tight">
+                          <p className="font-poppins text-base text-[#2D2016] m-0 mt-0.5 mb-1.5 leading-tight">
                             {subject.courses && subject.courses.length > 0
                               ? `${subject.courses.length} Course${subject.courses.length !== 1 ? "s" : ""}`
                               : "Explore Now"}

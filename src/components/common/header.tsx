@@ -152,7 +152,7 @@ const Header: React.FC = () => {
         <p className="font-nunito text-[12px] font-bold text-[#333] m-0 tracking-[0.5px] uppercase">
           {getGreeting().text}! {getGreeting().emoji}
         </p>
-        <h1 className="font-fredoka text-[16px] text-[#2D2016] m-1 leading-tight">
+        <h1 className="font-poppins text-[16px] text-[#2D2016] m-1 leading-tight">
           {getHeaderDescription()}
         </h1>
       </div>

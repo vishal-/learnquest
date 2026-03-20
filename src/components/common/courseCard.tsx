@@ -49,7 +49,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, tab }) => {
 
         {/* Content */}
         <div className="flex-1 p-[12px_13px]">
-          <p className="font-fredoka text-base text-[#2D2016] m-0 mb-1 leading-[1.2]">
+          <p className="font-poppins text-base text-[#2D2016] m-0 mb-1 leading-[1.2]">
             {course.label}
           </p>
           <p className="font-nunito font-semibold text-xs text-[#9B8B6E] m-0 leading-[1.3]">
