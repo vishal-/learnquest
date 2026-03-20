@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from "react";
-// TODO: Replace with the correct path if the hook exists elsewhere, or implement the hook below if missing.
-import { useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { speak } from "../../../lib/speak";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
 import CourseContent from "../../ui/courseContent";
 import type { Course } from "../../../types/subject.types";
-
-// Simple speech synthesis hook implementation
-const useSpeechSynthesis = () => {
-  return useCallback((text: string) => {
-    if ("speechSynthesis" in window) {
-      const utterance = new window.SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(utterance);
-    }
-  }, []);
-};
 
 const IdentifyNumber: React.FC<{ course: Course }> = ({
   course: { label }
@@ -23,14 +12,9 @@ const IdentifyNumber: React.FC<{ course: Course }> = ({
   const [options, setOptions] = useState<number[]>([]);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const speak = useSpeechSynthesis();
   const [range, setRange] = useState<number>(10); // Default range is 0-10
 
-  useEffect(() => {
-    generateQuestion(); // Set initial question on component load
-  }, []);
-
-  const generateQuestion = () => {
+  const generateQuestion = useCallback(() => {
     const number = Math.floor(Math.random() * (range + 1)); // Random number within the selected range
     const choices = new Set<number>();
     choices.add(number);
@@ -43,12 +27,16 @@ const IdentifyNumber: React.FC<{ course: Course }> = ({
     setOptions(Array.from(choices).sort(() => Math.random() - 0.5)); // Shuffle options
     setSelectedOption(null);
     setIsCorrect(null);
-    
+
     // Auto-play the number
     setTimeout(() => {
       speak(number.toString());
     }, 500);
-  };
+  }, [range]);
+
+  useEffect(() => {
+    generateQuestion(); // Set initial question on component load and when range changes
+  }, [generateQuestion]);
 
   const handleOptionClick = (option: number) => {
     setSelectedOption(option);
@@ -119,8 +107,8 @@ const IdentifyNumber: React.FC<{ course: Course }> = ({
                 ? option === randomNumber
                   ? "success"
                   : option === selectedOption
-                  ? "danger"
-                  : "option"
+                    ? "danger"
+                    : "option"
                 : "option"
             }
             disabled={selectedOption !== null}

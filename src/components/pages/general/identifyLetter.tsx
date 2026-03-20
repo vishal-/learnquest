@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { speak } from "../../../lib/speak";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
 import CourseContent from "../../ui/courseContent";
@@ -30,14 +31,10 @@ export default function IdentifyLetter({ course }: { course: Course }) {
     setOptions(allOptions);
     setSelectedOption(null);
     setIsCorrect(null);
-    
+
     // Auto-play the letter
     setTimeout(() => {
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(letter);
-        utterance.rate = 0.7;
-        speechSynthesis.speak(utterance);
-      }
+      speak(letter, { rate: 0.7 });
     }, 500);
   }, []);
 
@@ -47,10 +44,8 @@ export default function IdentifyLetter({ course }: { course: Course }) {
   };
 
   const handleSpeak = () => {
-    if (currentLetter && "speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(currentLetter);
-      utterance.rate = 0.7;
-      speechSynthesis.speak(utterance);
+    if (currentLetter) {
+      speak(currentLetter, { rate: 0.7 });
     }
   };
 
@@ -80,8 +75,8 @@ export default function IdentifyLetter({ course }: { course: Course }) {
                 ? option === currentLetter
                   ? "success"
                   : option === selectedOption
-                  ? "danger"
-                  : "option"
+                    ? "danger"
+                    : "option"
                 : "option"
             }
             onClick={() => handleOptionClick(option)}

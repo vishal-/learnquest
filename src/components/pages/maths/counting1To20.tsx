@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { articles } from "../../../lib/math.constants";
+import { speak } from "../../../lib/speak";
 import CourseContent from "../../ui/courseContent";
 import Feedback from "../../ui/feedback";
 import ConfettiBurst from "../../ui/confettiBurst";
@@ -10,15 +11,6 @@ import type { Course } from "../../../types/subject.types";
 
 function randomFrom<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function speak(text: string) {
-  if (!("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.rate = 0.9;
-  utt.pitch = 1.1;
-  window.speechSynthesis.speak(utt);
 }
 
 // ─── Main Component ────────────────────────────────────────────────────────

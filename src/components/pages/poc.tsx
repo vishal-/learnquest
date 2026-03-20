@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { speak } from "../../lib/speak";
 
 // Basic Hindi numbers map (for 0–1000)
 const hindiNumbers = {
@@ -152,30 +153,8 @@ const POC = () => {
   //   }, []);
 
   const handleRead = () => {
-    if ("speechSynthesis" in window) {
-      console.log("yo");
-      const hindiText = convertToHindi(number);
-      console.log("Hindi Text:", hindiText);
-      const utterance = new SpeechSynthesisUtterance(hindiText);
-      utterance.lang = "hi-IN";
-
-      const voices = window.speechSynthesis.getVoices();
-
-      console.log("Available Voices:", voices);
-
-      const hindiVoice = voices.find((v) => v.lang === "hi-IN");
-
-      console.log(hindiVoice);
-
-      if (hindiVoice) {
-        console.log("Using Hindi voice:", hindiVoice.name);
-        utterance.voice = hindiVoice;
-      }
-
-      window.speechSynthesis.speak(utterance);
-    } else {
-      alert("Your browser does not support speech synthesis.");
-    }
+    const hindiText = convertToHindi(number);
+    speak(hindiText, { language: "hi-IN" });
   };
 
   return (

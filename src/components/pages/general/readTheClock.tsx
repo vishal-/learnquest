@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { speak } from "../../../lib/speak";
 import type { Course } from "../../../types/subject.types";
 import Button from "../../ui/button";
 import Feedback from "../../ui/feedback";
@@ -6,17 +7,6 @@ import CourseContent from "../../ui/courseContent";
 import Input from "../../ui/input";
 import ConfettiBurst from "../../ui/confettiBurst";
 import StreakBadge from "../../ui/streakBadge";
-
-// ─── Helpers ───────────────────────────────────────────────────────────────
-
-function speak(text: string) {
-  if (!("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.rate = 0.9;
-  utt.pitch = 1.1;
-  window.speechSynthesis.speak(utt);
-}
 
 // ─── Main Component ────────────────────────────────────────────────────────
 
