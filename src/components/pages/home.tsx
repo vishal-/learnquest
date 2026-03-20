@@ -1,27 +1,27 @@
 import { useState, useEffect } from "react";
 import { useSubjects } from "../../hooks/useSubjects";
+import { useCourseHistoryStore } from "../../store/courseHistoryStore";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import "../../styles/home.css";
 
-const StarRating = ({ count }: { count: number }) => (
-  <div className="flex gap-0.5">
-    {[1, 2, 3].map((i) => (
-      <span
-        key={i}
-        className={`text-sm ${i <= count ? "opacity-100" : "opacity-25"}`}
-      >
-        ⭐
-      </span>
-    ))}
-  </div>
-);
-
 const HomePage = () => {
   const { subjects } = useSubjects();
+  const { getRecentCourses } = useCourseHistoryStore();
   const navigate = useNavigate();
   const [activeSubject, setActiveSubject] = useState<string | null>(null);
   const [pressedCard, setPressedCard] = useState<number | null>(null);
+  const recentCourses = getRecentCourses(3);
+
+  // Helper function to find subject for a course
+  const findSubjectForCourse = (courseId: string) => {
+    for (const subject of subjects) {
+      if (subject.courses?.some((c) => c.id === courseId)) {
+        return subject;
+      }
+    }
+    return null;
+  };
 
   useEffect(() => {
     setActiveSubject(null);
@@ -83,80 +83,77 @@ const HomePage = () => {
           })}
         </div>
 
-        {/* Recent Activity - Showing subject descriptions as a teaser */}
-        <div
-          className="px-5 pb-5 animate-slide-up"
-          style={{ animationDelay: "0.35s" }}
-        >
-          <div className="section-label my-5">
-            <div className="divider-line" />
-            <span className="divider-text">EXPLORE MORE</span>
-            <div className="divider-line" />
-          </div>
+        {/* Recent Activity - Show last 3 accessed courses */}
+        {recentCourses.length > 0 && (
+          <div
+            className="px-5 pb-5 animate-slide-up"
+            style={{ animationDelay: "0.35s" }}
+          >
+            <div className="section-label my-5">
+              <div className="divider-line" />
+              <span className="divider-text">RECENT ACTIVITY</span>
+              <div className="divider-line" />
+            </div>
 
-          <div className="flex flex-col gap-3">
-            {subjects.slice(0, 3).map((subject, i) => {
-              return (
-                <div
-                  key={subject.id}
-                  className="recent-card border-[3px] border-[#2D2016] rounded-[20px] overflow-hidden bg-white transition-all duration-150"
-                  style={{
-                    boxShadow: `4px 4px 0 ${subject.shadow}, 4px 4px 0 1px #2D2016`,
-                    animation: `slideUp 0.4s ${0.5 + i * 0.1}s ease both`,
-                    opacity: 0,
-                    animationFillMode: "forwards",
-                    ...(pressedCard === i
-                      ? {
-                          transform: "scale(0.97)",
-                          boxShadow: `2px 2px 0 ${subject.shadow}`
-                        }
-                      : {})
-                  }}
-                  onPointerDown={() => setPressedCard(i)}
-                  onPointerUp={() => setPressedCard(null)}
-                  onPointerLeave={() => setPressedCard(null)}
-                  onClick={() => navigate(subject.route)}
-                >
-                  <div className="flex items-center">
-                    {/* Color strip */}
-                    <div
-                      className="w-16 flex items-center justify-center text-[28px] flex-shrink-0 border-r-[3px] border-[#2D2016]"
-                      style={{ background: subject.bg }}
-                    >
-                      <Icon icon={subject.icon} width="32" height="32" />
-                    </div>
+            <div className="flex flex-col gap-3">
+              {recentCourses.map((course, i) => {
+                const subject = findSubjectForCourse(course.id);
+                if (!subject) return null;
 
-                    {/* Content */}
-                    <div className="flex-1 p-3">
-                      <div className="flex justify-between items-start mb-1">
-                        <div>
-                          <span className="font-nunito font-black text-[11px] text-[#9B8B6E] uppercase tracking-[0.5px]">
-                            {subject.label}
-                          </span>
-                          <p className="font-poppins text-base text-[#2D2016] m-0 mt-0.5 mb-1.5 leading-tight">
-                            {subject.courses && subject.courses.length > 0
-                              ? `${subject.courses.length} Course${subject.courses.length !== 1 ? "s" : ""}`
-                              : "Explore Now"}
-                          </p>
-                        </div>
-                        <StarRating
-                          count={Math.min(
-                            3,
-                            (subject.courses?.length || 0) + 1
-                          )}
-                        />
+                return (
+                  <div
+                    key={course.id}
+                    className="recent-card border-[3px] border-[#2D2016] rounded-[20px] overflow-hidden bg-white transition-all duration-150"
+                    style={{
+                      boxShadow: `4px 4px 0 ${subject.shadow}, 4px 4px 0 1px #2D2016`,
+                      animation: `slideUp 0.4s ${0.5 + i * 0.1}s ease both`,
+                      opacity: 0,
+                      animationFillMode: "forwards",
+                      ...(pressedCard === i
+                        ? {
+                            transform: "scale(0.97)",
+                            boxShadow: `2px 2px 0 ${subject.shadow}`
+                          }
+                        : {})
+                    }}
+                    onPointerDown={() => setPressedCard(i)}
+                    onPointerUp={() => setPressedCard(null)}
+                    onPointerLeave={() => setPressedCard(null)}
+                    onClick={() => navigate(course.route)}
+                  >
+                    <div className="flex items-center">
+                      {/* Color strip */}
+                      <div
+                        className="w-16 flex items-center justify-center text-[28px] flex-shrink-0 border-r-[3px] border-[#2D2016]"
+                        style={{ background: subject.bg }}
+                      >
+                        <Icon icon={course.icon} width="32" height="32" />
                       </div>
 
-                      <p className="font-nunito font-semibold text-[12px] text-gray-600 m-0 leading-tight">
-                        {subject.description}
-                      </p>
+                      {/* Content */}
+                      <div className="flex-1 p-3">
+                        <div className="flex justify-between items-start mb-1">
+                          <div>
+                            <span className="font-nunito font-black text-[11px] text-[#9B8B6E] uppercase tracking-[0.5px]">
+                              {subject.label}
+                            </span>
+                            <p className="font-poppins text-base text-[#2D2016] m-0 mt-0.5 mb-1.5 leading-tight">
+                              {course.label}
+                            </p>
+                          </div>
+                        </div>
+
+                        <p className="font-nunito font-semibold text-[12px] text-gray-600 m-0 leading-tight">
+                          {course.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Bottom spacer */}
         <div className="h-8" />
