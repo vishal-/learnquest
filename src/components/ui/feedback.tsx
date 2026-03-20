@@ -295,7 +295,7 @@ const FeedbackToastIncorrect: React.FC<ToastFeedbackProps> = ({
   isVisible,
   message,
   onClose,
-  duration = 2000
+  duration = 3000
 }) => {
   if (!isVisible) return null;
 

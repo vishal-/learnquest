@@ -77,7 +77,9 @@ export default function ReadTheClock({ course }: { course: Course }) {
       }, 300);
     } else {
       const msg = Feedback.getTryAgain();
-      setFeedbackMsg(msg);
+      const correctTime = `${randomHour}:${randomMinute.toString().padStart(2, "0")}`;
+      const feedbackWithAnswer = `${msg}\n\nThe correct time was ${correctTime}`;
+      setFeedbackMsg(feedbackWithAnswer);
       setFeedbackIsCorrect(false);
       setStreak(0);
       speak("Not quite, try again!");
