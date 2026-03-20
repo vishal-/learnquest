@@ -78,10 +78,10 @@ export const coursesData: Course[] = [
     subjectId: SubjectId.STEM,
     label: "Units of Measurement",
     description: "What category does this unit belong to?",
-    icon: "twemoji:measuring-tape",
+    icon: "twemoji:input-symbols",
     route: "/stem/units",
     component: "units",
-    category: CourseCategory.LEARN,
+    category: CourseCategory.PRACTICE,
   },
   {
     id: "world_capitals_of_countries",
