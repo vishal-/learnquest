@@ -1,27 +1,10 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { articles } from "../../../lib/math.constants";
-import Button from "../../ui/button";
 import CourseContent from "../../ui/courseContent";
+import Feedback from "../../ui/feedback";
 import type { Course } from "../../../types/subject.types";
 
 // ─── Constants ─────────────────────────────────────────────────────────────
-
-const ENCOURAGEMENTS = [
-  "Amazing! 🎉",
-  "Super! ⭐",
-  "You got it! 🙌",
-  "Brilliant! 🌟",
-  "Nailed it! 💥",
-  "Perfect! 👏",
-  "Awesome! 🚀"
-];
-
-const TRIES_AGAIN = [
-  "Oops! Try again 🙈",
-  "Not quite… 🤔",
-  "Almost! Have another go 🔄",
-  "Keep trying! 💪"
-];
 
 const CONFETTI_COLORS = [
   "#FF6B9D",
@@ -159,16 +142,16 @@ export default function Counting1To20({ course }: { course: Course }) {
 
     if (option === currentCount) {
       setOptionStates({ [option]: "correct" });
-      const msg = randomFrom(ENCOURAGEMENTS);
+      const msg = Feedback.getEncouragement();
       setFeedbackMsg(msg);
       setStreak((s) => s + 1);
       setShowConfetti(true);
-      speak(msg.replace(/[🎉⭐🙌🌟💥👏🚀]/g, ""));
+      speak(msg.replace(/[🎉⭐🙌🌟💥👏🚀🧡🧠🎊]/g, ""));
       if (confettiTimer.current) clearTimeout(confettiTimer.current);
       confettiTimer.current = setTimeout(() => setShowConfetti(false), 1200);
     } else {
       setOptionStates({ [option]: "wrong", [currentCount]: "correct" });
-      const msg = randomFrom(TRIES_AGAIN);
+      const msg = Feedback.getTryAgain();
       setFeedbackMsg(msg);
       setStreak(0);
       setShakeWrong(option);
@@ -211,13 +194,7 @@ export default function Counting1To20({ course }: { course: Course }) {
         </div>
 
         {/* Streak Badge */}
-        {streak > 1 && (
-          <div className="flex justify-center mb-6 animate-bounce-scale">
-            <div className="bg-[#FFD93D] border-3 border-[#2D2016] rounded-full px-4 py-2 font-poppins font-bold text-sm shadow-[0_3px_0_#C8A800]">
-              🔥 {streak} in a row!
-            </div>
-          </div>
-        )}
+        {streak > 1 && <Feedback.Streak count={streak} />}
 
         {/* Question Card */}
         <CourseContent.Card className="border-4 mb-8">
@@ -299,21 +276,22 @@ export default function Counting1To20({ course }: { course: Course }) {
         </CourseContent.OptionsGrid>
 
         {/* Feedback */}
-        {feedbackMsg && (
-          <div className="text-center space-y-4 mb-8">
-            <div className="font-poppins font-bold text-2xl text-[#2D2016]">
-              {feedbackMsg}
-            </div>
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={handleNext}
-              className="w-full"
-            >
-              Next Challenge ✨
-            </Button>
-          </div>
-        )}
+        {feedbackMsg &&
+          (optionStates[currentCount] === "correct" ? (
+            <Feedback.Correct
+              message={feedbackMsg}
+              onAction={handleNext}
+              actionLabel="Next Challenge"
+              className="mb-8"
+            />
+          ) : (
+            <Feedback.Incorrect
+              message={feedbackMsg}
+              onAction={handleNext}
+              actionLabel="Try Again"
+              className="mb-8"
+            />
+          ))}
       </CourseContent>
     </>
   );
