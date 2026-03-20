@@ -87,8 +87,13 @@ export default function Counting1To20({ course }: { course: Course }) {
   );
   const [answered, setAnswered] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState("");
+  const [showFeedbackToast, setShowFeedbackToast] = useState(false);
+  const [feedbackIsCorrect, setFeedbackIsCorrect] = useState<boolean | null>(
+    null
+  );
   const [showConfetti, setShowConfetti] = useState(false);
   const [streak, setStreak] = useState(0);
+  const [showStreakToast, setShowStreakToast] = useState(false);
   const [shakeWrong, setShakeWrong] = useState<number | null>(null);
   const [emojiPop, setEmojiPop] = useState(false);
   const confettiTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -115,6 +120,9 @@ export default function Counting1To20({ course }: { course: Course }) {
     setOptionStates({});
     setAnswered(false);
     setFeedbackMsg("");
+    setShowFeedbackToast(false);
+    setFeedbackIsCorrect(null);
+    setShowStreakToast(false);
     setEmojiPop(true);
     setTimeout(() => setEmojiPop(false), 400);
   }, [range]);
@@ -144,23 +152,41 @@ export default function Counting1To20({ course }: { course: Course }) {
       setOptionStates({ [option]: "correct" });
       const msg = Feedback.getEncouragement();
       setFeedbackMsg(msg);
-      setStreak((s) => s + 1);
+      setFeedbackIsCorrect(true);
+      setStreak((prev) => {
+        const newStreak = prev + 1;
+        // Show streak toast if new streak > 1
+        if (newStreak > 1) {
+          setShowStreakToast(true);
+        }
+        return newStreak;
+      });
       setShowConfetti(true);
       speak(msg.replace(/[🎉⭐🙌🌟💥👏🚀🧡🧠🎊]/g, ""));
       if (confettiTimer.current) clearTimeout(confettiTimer.current);
       confettiTimer.current = setTimeout(() => setShowConfetti(false), 1200);
+
+      // Show feedback toast after a short delay
+      setTimeout(() => {
+        setShowFeedbackToast(true);
+      }, 300);
     } else {
       setOptionStates({ [option]: "wrong", [currentCount]: "correct" });
       const msg = Feedback.getTryAgain();
       setFeedbackMsg(msg);
+      setFeedbackIsCorrect(false);
       setStreak(0);
       setShakeWrong(option);
       speak("Not quite, try again!");
       setTimeout(() => setShakeWrong(null), 500);
+
+      // Show feedback toast immediately
+      setShowFeedbackToast(true);
     }
   };
 
-  const handleNext = () => {
+  const handleFeedbackToastClose = () => {
+    setShowFeedbackToast(false);
     generateQuestion();
   };
 
@@ -274,25 +300,31 @@ export default function Counting1To20({ course }: { course: Course }) {
             );
           })}
         </CourseContent.OptionsGrid>
-
-        {/* Feedback */}
-        {feedbackMsg &&
-          (optionStates[currentCount] === "correct" ? (
-            <Feedback.Correct
-              message={feedbackMsg}
-              onAction={handleNext}
-              actionLabel="Next Challenge"
-              className="mb-8"
-            />
-          ) : (
-            <Feedback.Incorrect
-              message={feedbackMsg}
-              onAction={handleNext}
-              actionLabel="Try Again"
-              className="mb-8"
-            />
-          ))}
       </CourseContent>
+
+      {/* Toast Feedback */}
+      <Feedback.ToastStreak
+        isVisible={showStreakToast}
+        count={streak}
+        onClose={() => setShowStreakToast(false)}
+        duration={1500}
+      />
+      {feedbackIsCorrect === true && (
+        <Feedback.ToastCorrect
+          isVisible={showFeedbackToast}
+          message={feedbackMsg}
+          onClose={handleFeedbackToastClose}
+          duration={2000}
+        />
+      )}
+      {feedbackIsCorrect === false && (
+        <Feedback.ToastIncorrect
+          isVisible={showFeedbackToast}
+          message={feedbackMsg}
+          onClose={handleFeedbackToastClose}
+          duration={2000}
+        />
+      )}
     </>
   );
 }

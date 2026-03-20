@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./button";
+import Toast from "./toast";
 
 // ─── Encouragement Messages ────────────────────────────────────────────────
 
@@ -261,6 +262,73 @@ const FeedbackStreak: React.FC<{
   );
 };
 
+// ─── Toast Feedback Components ────────────────────────────────────────────
+
+type ToastFeedbackProps = {
+  isVisible: boolean;
+  message?: string;
+  onClose: () => void;
+  duration?: number;
+};
+
+const FeedbackToastCorrect: React.FC<ToastFeedbackProps> = ({
+  isVisible,
+  message,
+  onClose,
+  duration = 2000
+}) => {
+  if (!isVisible) return null;
+
+  const displayMessage = message || randomFrom(ENCOURAGEMENTS);
+
+  return (
+    <Toast
+      message={displayMessage}
+      variant="success"
+      duration={duration}
+      onClose={onClose}
+    />
+  );
+};
+
+const FeedbackToastIncorrect: React.FC<ToastFeedbackProps> = ({
+  isVisible,
+  message,
+  onClose,
+  duration = 2000
+}) => {
+  if (!isVisible) return null;
+
+  const displayMessage = message || randomFrom(TRY_AGAIN);
+
+  return (
+    <Toast
+      message={displayMessage}
+      variant="error"
+      duration={duration}
+      onClose={onClose}
+    />
+  );
+};
+
+const FeedbackToastStreak: React.FC<{
+  isVisible: boolean;
+  count: number;
+  onClose: () => void;
+  duration?: number;
+}> = ({ isVisible, count, onClose, duration = 1500 }) => {
+  if (!isVisible || count < 2) return null;
+
+  return (
+    <Toast
+      message={`${count} in a row!`}
+      variant="streak"
+      duration={duration}
+      onClose={onClose}
+    />
+  );
+};
+
 // ─── Export with Sub-components ────────────────────────────────────────────
 
 interface FeedbackComponent extends React.FC<FeedbackProps> {
@@ -269,6 +337,14 @@ interface FeedbackComponent extends React.FC<FeedbackProps> {
   Streak: React.FC<{
     count: number;
     animated?: boolean;
+  }>;
+  ToastCorrect: React.FC<ToastFeedbackProps>;
+  ToastIncorrect: React.FC<ToastFeedbackProps>;
+  ToastStreak: React.FC<{
+    isVisible: boolean;
+    count: number;
+    onClose: () => void;
+    duration?: number;
   }>;
   getEncouragement: () => string;
   getTryAgain: () => string;
@@ -280,6 +356,9 @@ const FeedbackWithComponents = Feedback as unknown as FeedbackComponent;
 FeedbackWithComponents.Correct = FeedbackCorrect;
 FeedbackWithComponents.Incorrect = FeedbackIncorrect;
 FeedbackWithComponents.Streak = FeedbackStreak;
+FeedbackWithComponents.ToastCorrect = FeedbackToastCorrect;
+FeedbackWithComponents.ToastIncorrect = FeedbackToastIncorrect;
+FeedbackWithComponents.ToastStreak = FeedbackToastStreak;
 FeedbackWithComponents.getEncouragement = () => randomFrom(ENCOURAGEMENTS);
 FeedbackWithComponents.getTryAgain = () => randomFrom(TRY_AGAIN);
 FeedbackWithComponents.getHint = () => randomFrom(ENCOURAGING_HINTS);
