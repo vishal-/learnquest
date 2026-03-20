@@ -1,4 +1,5 @@
 import type { Subject, Course } from "../types/subject.types";
+import { CourseCategory } from "../types/subject.types";
 
 export const coursesData: Course[] = [
   {
@@ -9,7 +10,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:clock-face-one-oclock",
     route: "/general/clock",
     component: "clock",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
   {
     id: "general_identify_letter",
@@ -19,7 +20,7 @@ export const coursesData: Course[] = [
     route: "/general/identify-letter",
     component: "identify-letter",
     subjectId: "g.k",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
   {
     id: "hindi_counting",
@@ -29,7 +30,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:1234",
     route: "/hindi/counting",
     component: "counting",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
   {
     id: "hindi_numbers",
@@ -39,7 +40,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:input-numbers",
     route: "/hindi/numbers",
     component: "numbers",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
   {
     id: "maths_counting_1_20",
@@ -49,7 +50,7 @@ export const coursesData: Course[] = [
     route: "/maths/counting-1-20",
     component: "counting-1-20",
     description: "How many are there?",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
   {
     id: "maths_identify_number",
@@ -60,7 +61,7 @@ export const coursesData: Course[] = [
     route: "/maths/identify-number",
     component: "identify-number",
     label: "Identify the Number by sound",
-    category: "practice",
+    category: CourseCategory.PRACTICE,
   },
   {
     id: "maths_tables",
@@ -70,7 +71,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:multiplication-sign",
     route: "/maths/tables",
     component: "tables",
-    category: "practice",
+    category: CourseCategory.PRACTICE,
   },
   {
     id: "stem_units",
@@ -80,7 +81,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:measuring-tape",
     route: "/stem/units",
     component: "units",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
   {
     id: "world_capitals_of_countries",
@@ -90,7 +91,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:classical-building",
     route: "/world/capitals-of-countries",
     component: "capitals-of-countries",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
   {
     id: "world_capitals_of_india",
@@ -100,7 +101,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:building-construction",
     route: "/world/capitals-of-india",
     component: "capitals-of-india",
-    category: "practice",
+    category: CourseCategory.PRACTICE,
   },
   {
     id: "world_challenge_flags",
@@ -110,7 +111,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:trophy",
     route: "/world/challenge-flags",
     component: "challenge-flags",
-    category: "challenge",
+    category: CourseCategory.CHALLENGE,
   },
   {
     id: "world_flags_of_countries",
@@ -120,7 +121,7 @@ export const coursesData: Course[] = [
     route: "/world/flags-of-countries",
     component: "flags-of-countries",
     icon: "twemoji:waving-white-flag",
-    category: "learn",
+    category: CourseCategory.LEARN,
   },
 ];
 

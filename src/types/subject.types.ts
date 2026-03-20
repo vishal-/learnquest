@@ -1,3 +1,9 @@
+export enum CourseCategory {
+  LEARN = "learn",
+  PRACTICE = "practice",
+  CHALLENGE = "challenge",
+}
+
 export interface Course {
   id: string;
   subjectId: string;
@@ -6,7 +12,7 @@ export interface Course {
   icon: string;
   route: string;
   component: string;
-  category: "learn" | "practice" | "challenge";
+  category: CourseCategory;
 }
 
 export interface Subject {
