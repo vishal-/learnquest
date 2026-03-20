@@ -15,7 +15,8 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
     numbers: lazy(() => import("./pages/hindi/hindiNumbers")),
 
     // Maths
-    tables: lazy(() => import("./pages/maths/mathTables")),
+    "learn-tables": lazy(() => import("./pages/maths/learnTables")),
+    "practice-tables": lazy(() => import("./pages/maths/practiceTables")),
     "identify-number": lazy(() => import("./pages/maths/identifyNumber")),
     "counting-1-20": lazy(() => import("./pages/maths/counting1To20")),
 

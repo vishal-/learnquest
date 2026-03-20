@@ -9,7 +9,9 @@ interface FlagData {
   thumbnail: string;
 }
 
-export default function ChallengeFlags() {
+import type { Course } from "../../../types/subject.types";
+
+export default function ChallengeFlags({ course }: { course: Course }) {
   const [flags, setFlags] = useState<Record<string, FlagData>>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -102,38 +104,48 @@ export default function ChallengeFlags() {
 
   if (!gameStarted) {
     return (
-      <div className="p-4 text-center">
-        <h1 className="text-3xl font-bold mb-4">🏳️ Challenge - Flags</h1>
-        <p className="text-lg mb-6">Identify 10 flags in 30 seconds!</p>
-        <button
-          onClick={startGame}
-          className="px-6 py-3 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600"
-        >
-          Start Challenge
-        </button>
-      </div>
+      <CourseContent>
+        <CourseContent.Title
+          title={course.label}
+          description={course.description}
+        />
+        <div className="p-4 text-center">
+          <p className="text-lg mb-6">Identify 10 flags in 30 seconds!</p>
+          <button
+            onClick={startGame}
+            className="px-6 py-3 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600"
+          >
+            Start Challenge
+          </button>
+        </div>
+      </CourseContent>
     );
   }
 
   if (gameEnded) {
     return (
-      <div className="p-4 text-center">
-        <h1 className="text-3xl font-bold mb-4">🏳️ Challenge Complete!</h1>
-        <p className="text-2xl mb-4">Score: {score}/10</p>
-        <p className="text-lg mb-6">
-          {score >= 8
-            ? "Excellent! 🎉"
-            : score >= 6
-            ? "Good job! 👍"
-            : "Keep practicing! 💪"}
-        </p>
-        <button
-          onClick={resetGame}
-          className="px-6 py-3 bg-green-500 text-white rounded-lg font-bold hover:bg-green-600"
-        >
-          Play Again
-        </button>
-      </div>
+      <CourseContent>
+        <CourseContent.Title
+          title={course.label}
+          description={course.description}
+        />
+        <div className="p-4 text-center">
+          <p className="text-2xl mb-4">Score: {score}/10</p>
+          <p className="text-lg mb-6">
+            {score >= 8
+              ? "Excellent! 🎉"
+              : score >= 6
+                ? "Good job! 👍"
+                : "Keep practicing! 💪"}
+          </p>
+          <button
+            onClick={resetGame}
+            className="px-6 py-3 bg-green-500 text-white rounded-lg font-bold hover:bg-green-600"
+          >
+            Play Again
+          </button>
+        </div>
+      </CourseContent>
     );
   }
 

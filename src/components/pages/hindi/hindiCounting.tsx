@@ -1,38 +1,48 @@
 import { hindiNumbers } from "../../../lib/hindi.constants";
-import { FaVolumeUp } from "react-icons/fa";
-import Toast from "../../ui/toast";
-import { useSpeech } from "../../../hooks/useSpeech";
-import type { Course } from "../../../types/subject.types";
+import { speak } from "../../../lib/speak";
 import CourseContent from "../../ui/courseContent";
+import type { Course } from "../../../types/subject.types";
 
-const HindiCounting: React.FC<{ course: Course }> = ({
-  course: { description }
-}) => {
-  const { playAudio, toast, setToast } = useSpeech();
+// ─── Main Component ────────────────────────────────────────────────────────
+
+export default function HindiCounting({ course }: { course: Course }) {
+  const hindiNumbersArray = Object.entries(hindiNumbers);
+
+  const handleSpeak = (word: string) => {
+    speak(word, { language: "hi-IN" });
+  };
 
   return (
     <CourseContent>
-      <CourseContent.Title description={description} />
-      <ul className="flex flex-col gap-3">
-        {Object.entries(hindiNumbers).map(([number, word]) => (
-          <li
-            key={number}
-            className="px-5 py-3 rounded-lg border border-gray-700 font-bold shadow-md flex items-center justify-between"
+      <CourseContent.Title
+        title={course.label}
+        description={course.description}
+      />
+
+      <div className="grid grid-cols-1 gap-3">
+        {hindiNumbersArray.map(([number, word], index) => (
+          <CourseContent.Card
+            key={index}
+            className="border-4 flex items-center justify-between p-6 hover:shadow-lg transition-all"
           >
-            <span className="text-xl">{number}</span>
-            <span className="text-2xl">{word}</span>
+            <div className="flex-1">
+              <p className="font-poppins font-bold text-2xl text-[#2D2016] mb-2">
+                {number}
+              </p>
+              <p className="font-poppins font-bold text-xl text-[#5B9BFF]">
+                {word}
+              </p>
+            </div>
             <button
-              onClick={() => playAudio(word)}
-              className="text-blue-500 hover:text-blue-700 p-1"
+              onClick={() => handleSpeak(word)}
+              className="bg-[#5B9BFF] text-white border-4 border-[#2D2016] rounded-2xl w-16 h-16 flex items-center justify-center text-2xl hover:shadow-[0_4px_0_#2D6FD4] active:translate-y-[2px] active:shadow-[0_2px_0_#2D6FD4] transition-all flex-shrink-0 ml-4"
+              title={`Listen to ${word}`}
             >
-              <FaVolumeUp size={20} />
+              🔊
             </button>
-          </li>
+          </CourseContent.Card>
         ))}
-      </ul>
-      {toast && <Toast message={toast} onClose={() => setToast(null)} />}
+      </div>
     </CourseContent>
   );
-};
-
-export default HindiCounting;
+}

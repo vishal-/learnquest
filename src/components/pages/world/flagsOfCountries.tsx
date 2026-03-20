@@ -2,20 +2,15 @@ import { useState, useEffect } from "react";
 import { getFlags } from "../../../lib/firestore";
 import { appConfig } from "../../../config/app.config";
 import CourseContent from "../../ui/courseContent";
+import type { Course } from "../../../types/subject.types";
 
 interface FlagData {
   image: string;
   thumbnail: string;
 }
 
-interface FlagsOfCountriesProps {
-  course: {
-    description: string;
-  };
-}
-
-export default function FlagsOfCountries({ course }: FlagsOfCountriesProps) {
-  const { description } = course;
+export default function FlagsOfCountries({ course }: { course: Course }) {
+  const { description, label } = course;
   const [flags, setFlags] = useState<Record<string, FlagData>>({});
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +31,7 @@ export default function FlagsOfCountries({ course }: FlagsOfCountriesProps) {
 
   return (
     <CourseContent>
-      <CourseContent.Title description={description} />
+      <CourseContent.Title title={label} description={description} />
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {Object.entries(flags).map(([country, data]) => (

@@ -7,6 +7,16 @@ export const CourseCategory = {
 export type CourseCategoryType =
   (typeof CourseCategory)[keyof typeof CourseCategory];
 
+export const SubjectId = {
+  GENERAL: "g.k",
+  HINDI: "hindi",
+  MATHS: "maths",
+  STEM: "stem",
+  WORLD: "world",
+} as const;
+
+export type SubjectIdType = (typeof SubjectId)[keyof typeof SubjectId];
+
 export interface Course {
   id: string;
   subjectId: string;

@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap");
 @import "tailwindcss";
+@import "./styles/animations.css";
 
 @theme {
   --color-primary: #ff6b6b;
@@ -12,8 +13,10 @@
   --color-pastel-light-pink: #ffafcc;
   --color-pastel-light-blue: #bde0fe;
   --color-pastel-sky-blue: #a2d2ff;
-  --font-fredoka: "Fredoka One", cursive;
+  --font-poppins: "Poppins", sans-serif;
   --font-nunito: "Nunito", sans-serif;
+  --font-family-poppins: var(--font-poppins);
+  --font-family-nunito: var(--font-nunito);
 }
 
 body {
@@ -21,18 +24,13 @@ body {
   color: #2d2016;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translate3d(calc(100vw + 100%), 0, 0);
+/* Custom font classes */
+@layer utilities {
+  .font-poppins {
+    font-family: "Poppins", sans-serif;
   }
-  100% {
-    transform: translate3d(calc(-100vw - 100%), 0, 0);
-  }
-}
 
-.marquee {
-  animation: marquee 21s linear infinite;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  .font-nunito {
+    font-family: "Nunito", sans-serif;
+  }
 }

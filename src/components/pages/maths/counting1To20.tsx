@@ -1,25 +1,49 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { articles } from "../../../lib/math.constants";
-import Button from "../../ui/button";
-import Feedback from "../../ui/feedback";
+import { speak } from "../../../lib/speak";
 import CourseContent from "../../ui/courseContent";
+import Feedback from "../../ui/feedback";
+import ConfettiBurst from "../../ui/confettiBurst";
+import StreakBadge from "../../ui/streakBadge";
 import type { Course } from "../../../types/subject.types";
 
+// ─── Helpers ───────────────────────────────────────────────────────────────
+
+function randomFrom<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// ─── Main Component ────────────────────────────────────────────────────────
+
+type OptionState = "idle" | "correct" | "wrong";
+
 export default function Counting1To20({ course }: { course: Course }) {
-  const [range, setRange] = useState(20);
+  const [range, setRange] = useState<20 | 50>(20);
   const [currentCount, setCurrentCount] = useState(0);
   const [currentArticle, setCurrentArticle] = useState("");
   const [options, setOptions] = useState<number[]>([]);
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [optionStates, setOptionStates] = useState<Record<number, OptionState>>(
+    {}
+  );
+  const [answered, setAnswered] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState("");
+  const [showFeedbackToast, setShowFeedbackToast] = useState(false);
+  const [feedbackIsCorrect, setFeedbackIsCorrect] = useState<boolean | null>(
+    null
+  );
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [showStreakBadge, setShowStreakBadge] = useState(false);
+  const [shakeWrong, setShakeWrong] = useState<number | null>(null);
+  const [emojiPop, setEmojiPop] = useState(false);
+  const confettiTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const generateQuestion = useCallback(() => {
     const count = Math.floor(Math.random() * range) + 1;
     const articleNames = Object.keys(articles);
-    const randomArticle =
-      articleNames[Math.floor(Math.random() * articleNames.length)];
+    const randomArticle = randomFrom(articleNames);
 
-    // Generate 4 options including the correct answer
+    // Generate 4 options
     const wrongOptions: number[] = [];
     while (wrongOptions.length < 3) {
       const wrong = Math.floor(Math.random() * range) + 1;
@@ -33,94 +57,217 @@ export default function Counting1To20({ course }: { course: Course }) {
     setCurrentCount(count);
     setCurrentArticle(randomArticle);
     setOptions(allOptions);
-    setSelectedOption(null);
-    setIsCorrect(null);
+    setOptionStates({});
+    setAnswered(false);
+    setFeedbackMsg("");
+    setShowFeedbackToast(false);
+    setFeedbackIsCorrect(null);
+    setShowStreakBadge(false);
+    setEmojiPop(true);
+    setTimeout(() => setEmojiPop(false), 400);
   }, [range]);
 
-  const handleOptionClick = (option: number) => {
-    setSelectedOption(option);
-    setIsCorrect(option === currentCount);
+  const readQuestion = () => {
+    speak(`Count the ${currentArticle.toLowerCase()}s. How many are there?`);
   };
 
-  // Initialize first question
+  // Auto-read on new question
+  useEffect(() => {
+    if (currentArticle) {
+      const timer = setTimeout(readQuestion, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [currentArticle]); // eslint-disable-line
+
+  // Initialize
   useEffect(() => {
     generateQuestion();
   }, [generateQuestion]);
 
-  return (
-    <CourseContent>
-      <CourseContent.Title description={course.description} />
-      
-      <div className="mb-6 text-center">
-        <div className="flex justify-center gap-4">
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="range"
-              value="20"
-              checked={range === 20}
-              onChange={() => setRange(20)}
-            />
-            1-20
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="range"
-              value="50"
-              checked={range === 50}
-              onChange={() => setRange(50)}
-            />
-            1-50
-          </label>
-        </div>
-      </div>
+  const handleAnswer = (option: number) => {
+    if (answered) return;
+    setAnswered(true);
 
-      <div className="text-center mb-6">
-        <p className="text-lg mb-4">
-          Count the {currentArticle.toLowerCase()}s:
-        </p>
-        <CourseContent.Framed>
-          <div className="text-4xl flex flex-wrap justify-center gap-1">
-            {Array.from({ length: currentCount }, (_, i) => (
-              <span key={i}>
-                {articles[currentArticle as keyof typeof articles]}
+    if (option === currentCount) {
+      setOptionStates({ [option]: "correct" });
+      const msg = Feedback.getEncouragement();
+      setFeedbackMsg(msg);
+      setFeedbackIsCorrect(true);
+      setStreak((prev) => {
+        const newStreak = prev + 1;
+        // Show streak badge if new streak > 1
+        if (newStreak > 1) {
+          setShowStreakBadge(true);
+        }
+        return newStreak;
+      });
+      setShowConfetti(true);
+      speak(msg.replace(/[🎉⭐🙌🌟💥👏🚀🧡🧠🎊]/g, ""));
+      if (confettiTimer.current) clearTimeout(confettiTimer.current);
+      confettiTimer.current = setTimeout(() => setShowConfetti(false), 1200);
+
+      // Show feedback toast after a short delay
+      setTimeout(() => {
+        setShowFeedbackToast(true);
+      }, 300);
+    } else {
+      setOptionStates({ [option]: "wrong", [currentCount]: "correct" });
+      const msg = Feedback.getTryAgain();
+      setFeedbackMsg(msg);
+      setFeedbackIsCorrect(false);
+      setStreak(0);
+      setShakeWrong(option);
+      speak("Not quite, try again!");
+      setTimeout(() => setShakeWrong(null), 500);
+
+      // Show feedback toast immediately
+      setShowFeedbackToast(true);
+    }
+  };
+
+  const handleFeedbackToastClose = () => {
+    setShowFeedbackToast(false);
+    generateQuestion();
+  };
+
+  const emoji = articles[currentArticle as keyof typeof articles] ?? "🔢";
+
+  return (
+    <>
+      <ConfettiBurst active={showConfetti} />
+
+      <CourseContent>
+        <CourseContent.Title
+          title={course.label}
+          description={course.description}
+        />
+
+        {/* Range Selector */}
+        <div className="flex justify-center gap-3 mb-6">
+          {([20, 50] as const).map((r) => (
+            <button
+              key={r}
+              onClick={() => {
+                setRange(r);
+                generateQuestion();
+              }}
+              className={`px-6 py-2 rounded-lg font-poppins font-bold text-sm border-3 border-[#2D2016] transition-all ${
+                range === r
+                  ? "bg-[#5B9BFF] text-white shadow-[0_4px_0_#2D6FD4]"
+                  : "bg-white text-[#2D2016] shadow-[0_3px_0_#2D2016] hover:shadow-[0_2px_0_#2D2016] hover:translate-y-[1px]"
+              }`}
+            >
+              1–{r}
+            </button>
+          ))}
+        </div>
+
+        {/* Streak Badge */}
+        {showStreakBadge && (
+          <StreakBadge
+            count={streak}
+            duration={2000}
+            onDismiss={() => setShowStreakBadge(false)}
+          />
+        )}
+
+        {/* Question Card */}
+        <CourseContent.Card className="border-4 mb-8">
+          {/* Question + Listen Button */}
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <p className="font-poppins font-bold text-lg text-[#2D2016]">
+              How many{" "}
+              <span className="text-[#5B9BFF]">
+                {currentArticle.toLowerCase()}s
+              </span>
+              ?
+            </p>
+            <button
+              onClick={readQuestion}
+              title="Listen"
+              className="flex-shrink-0 bg-[#5B9BFF] text-white border-3 border-[#2D2016] rounded-lg w-12 h-12 flex items-center justify-center text-xl hover:shadow-[0_2px_0_#2D2016] active:translate-y-[2px] active:shadow-[0_1px_0_#2D2016] transition-all"
+            >
+              🔊
+            </button>
+          </div>
+
+          {/* Emoji Grid */}
+          <div
+            className={`bg-[#FFFBF0] border-3 border-[#E5D5B0] rounded-2xl p-4 min-h-[120px] flex flex-wrap justify-center content-center gap-1 ${
+              emojiPop ? "animate-pop-in" : ""
+            }`}
+          >
+            {Array.from({ length: currentCount }).map((_, i) => (
+              <span
+                key={i}
+                className={`inline-block leading-tight transition-all ${
+                  currentCount > 30
+                    ? "text-2xl"
+                    : currentCount > 15
+                      ? "text-3xl"
+                      : "text-4xl"
+                }`}
+              >
+                {emoji}
               </span>
             ))}
           </div>
-        </CourseContent.Framed>
-      </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        {options.map((option) => (
-          <Button
-            key={option}
-            label={option.toString()}
-            variant={
-              selectedOption !== null
-                ? option === currentCount
-                  ? "success"
-                  : option === selectedOption
-                  ? "danger"
-                  : "option"
-                : "option"
-            }
-            onClick={() => handleOptionClick(option)}
-            disabled={selectedOption !== null}
-          />
-        ))}
-      </div>
+          <p className="text-center font-nunito font-bold text-xs text-[#9B8B6E] mt-3">
+            Tap the right number 👇
+          </p>
+        </CourseContent.Card>
 
-      {selectedOption && (
-        <Feedback
-          variant={isCorrect ? "success" : "danger"}
-          message={isCorrect ? "✅ Correct!" : "❌ Try again!"}
+        {/* Options Grid */}
+        <CourseContent.OptionsGrid columns={2} className="mb-8">
+          {options.map((option) => {
+            const state = optionStates[option] ?? "idle";
+            const isWrong = shakeWrong === option && state === "wrong";
+
+            return (
+              <button
+                key={option}
+                onClick={() => handleAnswer(option)}
+                disabled={answered}
+                className={`
+                  w-full py-6 rounded-2xl border-4 font-poppins font-bold text-2xl
+                  transition-all duration-100 cursor-pointer
+                  disabled:cursor-not-allowed
+                  flex items-center justify-center
+                  ${
+                    state === "correct"
+                      ? "bg-[#90EE90] text-white border-[#2D8C40] shadow-[0_4px_0_#2D8C40] scale-105"
+                      : state === "wrong"
+                        ? "bg-[#FF6B6B] text-white border-[#C94B4B] shadow-[0_4px_0_#C94B4B]"
+                        : "bg-white text-[#2D2016] border-[#2D2016] shadow-[0_4px_0_#2D2016] hover:shadow-[0_3px_0_#2D2016] hover:translate-y-[1px]"
+                  }
+                  ${isWrong ? "animate-shake" : ""}
+                `}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </CourseContent.OptionsGrid>
+      </CourseContent>
+
+      {/* Toast Feedback */}
+      {feedbackIsCorrect === true && (
+        <Feedback.ToastCorrect
+          isVisible={showFeedbackToast}
+          message={feedbackMsg}
+          onClose={handleFeedbackToastClose}
+          duration={2000}
         />
       )}
-
-      <div className="text-center mt-9">
-        <Button onClick={generateQuestion} variant="primary" label="Next" />
-      </div>
-    </CourseContent>
+      {feedbackIsCorrect === false && (
+        <Feedback.ToastIncorrect
+          isVisible={showFeedbackToast}
+          message={feedbackMsg}
+          onClose={handleFeedbackToastClose}
+          duration={2000}
+        />
+      )}
+    </>
   );
 }
