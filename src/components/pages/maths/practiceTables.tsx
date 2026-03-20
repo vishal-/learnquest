@@ -1,11 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { speak } from "../../../lib/speak";
-import { numberToWords } from "../../../lib/math.constants";
 import Feedback from "../../ui/feedback";
 import CourseContent from "../../ui/courseContent";
 import ConfettiBurst from "../../ui/confettiBurst";
 import StreakBadge from "../../ui/streakBadge";
-import Button from "../../ui/button";
 import Select from "../../ui/select";
 import type { Course } from "../../../types/subject.types";
 
@@ -27,14 +25,6 @@ const getRandomInt = (min: number, max: number): number =>
 const generateChallenge = (tableNumber: number): Challenge => {
   const multiplier = getRandomInt(1, 12);
   const correctAnswer = tableNumber * multiplier;
-  const useMissingMultiplier = Math.random() < 0.5;
-
-  let question = "";
-  if (useMissingMultiplier) {
-    question = `${numberToWords(tableNumber)} times ? = ${numberToWords(correctAnswer)}`;
-  } else {
-    question = `${numberToWords(tableNumber)} times ${numberToWords(multiplier)} = ?`;
-  }
 
   const options = new Set<number>();
   options.add(correctAnswer);
@@ -47,7 +37,7 @@ const generateChallenge = (tableNumber: number): Challenge => {
     tableNumber,
     multiplier,
     correctAnswer,
-    question,
+    question: `${tableNumber} × ${multiplier} = ?`,
     options: Array.from(options).sort(() => Math.random() - 0.5)
   };
 };
@@ -81,11 +71,6 @@ export default function PracticeTables({ course }: { course: Course }) {
     setShowFeedbackToast(false);
     setFeedbackIsCorrect(null);
     setShowStreakBadge(false);
-
-    // Auto-speak the question
-    setTimeout(() => {
-      speak(newChallenge.question);
-    }, 500);
   }, [selectedNumber]);
 
   const handleAnswer = (option: number) => {
@@ -136,33 +121,9 @@ export default function PracticeTables({ course }: { course: Course }) {
     generateQuestion();
   };
 
-  const readQuestion = () => {
-    if (challenge) {
-      speak(challenge.question);
-    }
-  };
-
   // Initialize on mount
   useEffect(() => {
-    // Ensure voices are loaded before generating first question
-    const loadVoices = () => {
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        generateQuestion();
-        window.speechSynthesis.removeEventListener("voiceschanged", loadVoices);
-      }
-    };
-
-    const voices = window.speechSynthesis.getVoices();
-    if (voices.length > 0) {
-      generateQuestion();
-    } else {
-      window.speechSynthesis.addEventListener("voiceschanged", loadVoices);
-    }
-
-    return () => {
-      window.speechSynthesis.removeEventListener("voiceschanged", loadVoices);
-    };
+    generateQuestion();
   }, [generateQuestion]);
 
   return (
@@ -182,27 +143,25 @@ export default function PracticeTables({ course }: { course: Course }) {
         )}
 
         {/* Table Selector */}
-        <CourseContent.Card className="border-4 mb-8">
-          <div className="text-center">
-            <p className="font-poppins font-bold text-sm text-[#2D2016] mb-4">
-              Select a table to practice:
-            </p>
-            <div className="mb-6 max-w-xs mx-auto">
-              <Select
-                label=""
-                options={Array.from({ length: 19 }, (_, i) => ({
-                  label: (i + 2).toString(),
-                  value: i + 2
-                }))}
-                value={selectedNumber}
-                onChange={(value) => {
-                  setSelectedNumber(Number(value));
-                  setStreak(0);
-                }}
-              />
-            </div>
+        <div className="text-center">
+          <p className="font-poppins font-bold text-sm text-[#2D2016] mb-4">
+            Select a table to practice:
+          </p>
+          <div className="mb-6 max-w-xs mx-auto">
+            <Select
+              label=""
+              options={Array.from({ length: 19 }, (_, i) => ({
+                label: (i + 2).toString(),
+                value: i + 2
+              }))}
+              value={selectedNumber}
+              onChange={(value) => {
+                setSelectedNumber(Number(value));
+                setStreak(0);
+              }}
+            />
           </div>
-        </CourseContent.Card>
+        </div>
 
         {/* Question Card */}
         {challenge && (
@@ -212,16 +171,11 @@ export default function PracticeTables({ course }: { course: Course }) {
                 <p className="font-poppins font-bold text-lg text-[#2D2016] mb-6">
                   Solve this:
                 </p>
-                <div className="bg-gradient-to-r from-[#cdb4db] to-[#ffc8dd] rounded-2xl p-6 text-center border-4 border-[#2D2016] mb-4">
+                <div className="bg-gradient-to-r from-[#cdb4db] to-[#ffc8dd] rounded-2xl p-6 text-center border-4 border-[#2D2016]">
                   <p className="font-poppins font-bold text-2xl text-[#2D2016]">
                     {selectedNumber} × {challenge.multiplier} = ?
                   </p>
                 </div>
-                <Button
-                  onClick={readQuestion}
-                  label="🔊 Repeat"
-                  variant="primary"
-                />
               </div>
             </CourseContent.Card>
 
