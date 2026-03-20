@@ -19,18 +19,18 @@ interface TabConfig {
 
 const TABS: TabConfig[] = [
   {
+    id: CourseCategory.PRACTICE,
+    label: "Practice",
+    emoji: "✏️",
+    color: "#35882a",
+    dark: "#165726"
+  },
+  {
     id: CourseCategory.LEARN,
     label: "Learn",
     emoji: "📖",
     color: "#5B9BFF",
     dark: "#2D6FD4"
-  },
-  {
-    id: CourseCategory.PRACTICE,
-    label: "Practice",
-    emoji: "✏️",
-    color: "#FF9F43",
-    dark: "#C97A20"
   },
   {
     id: CourseCategory.CHALLENGE,
@@ -51,7 +51,7 @@ const SubjectLayout: React.FC<{ subject: Subject }> = ({ subject }) => {
     pageBackground
   } = subject;
   const [activeTab, setActiveTab] = useState<CourseCategoryType>(
-    CourseCategory.LEARN
+    CourseCategory.PRACTICE
   );
 
   // Group courses by category
