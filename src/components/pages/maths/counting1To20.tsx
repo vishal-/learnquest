@@ -2,18 +2,9 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { articles } from "../../../lib/math.constants";
 import CourseContent from "../../ui/courseContent";
 import Feedback from "../../ui/feedback";
+import ConfettiBurst from "../../ui/confettiBurst";
+import StreakBadge from "../../ui/streakBadge";
 import type { Course } from "../../../types/subject.types";
-
-// ─── Constants ─────────────────────────────────────────────────────────────
-
-const CONFETTI_COLORS = [
-  "#FF6B9D",
-  "#FFD93D",
-  "#90EE90",
-  "#5B9BFF",
-  "#FF9F43",
-  "#A855F7"
-];
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
@@ -28,49 +19,6 @@ function speak(text: string) {
   utt.rate = 0.9;
   utt.pitch = 1.1;
   window.speechSynthesis.speak(utt);
-}
-
-// ─── Confetti Component ────────────────────────────────────────────────────
-
-function ConfettiBurst({ active }: { active: boolean }) {
-  if (!active) return null;
-
-  return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        pointerEvents: "none",
-        zIndex: 999
-      }}
-    >
-      {Array.from({ length: 28 }).map((_, i) => {
-        const color = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
-        const left = `${5 + ((i * 3.5) % 90)}%`;
-        const delay = `${(i * 0.04).toFixed(2)}s`;
-        const size = `${8 + (i % 5) * 3}px`;
-        const rotate = `${(i * 47) % 360}deg`;
-
-        return (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              top: "40%",
-              left,
-              width: size,
-              height: size,
-              background: color,
-              borderRadius: i % 3 === 0 ? "50%" : "3px",
-              transform: `rotate(${rotate})`,
-              animation: `confettiFall 0.9s ${delay} ease-out forwards`,
-              opacity: 0
-            }}
-          />
-        );
-      })}
-    </div>
-  );
 }
 
 // ─── Main Component ────────────────────────────────────────────────────────
@@ -93,7 +41,7 @@ export default function Counting1To20({ course }: { course: Course }) {
   );
   const [showConfetti, setShowConfetti] = useState(false);
   const [streak, setStreak] = useState(0);
-  const [showStreakToast, setShowStreakToast] = useState(false);
+  const [showStreakBadge, setShowStreakBadge] = useState(false);
   const [shakeWrong, setShakeWrong] = useState<number | null>(null);
   const [emojiPop, setEmojiPop] = useState(false);
   const confettiTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -122,7 +70,7 @@ export default function Counting1To20({ course }: { course: Course }) {
     setFeedbackMsg("");
     setShowFeedbackToast(false);
     setFeedbackIsCorrect(null);
-    setShowStreakToast(false);
+    setShowStreakBadge(false);
     setEmojiPop(true);
     setTimeout(() => setEmojiPop(false), 400);
   }, [range]);
@@ -155,9 +103,9 @@ export default function Counting1To20({ course }: { course: Course }) {
       setFeedbackIsCorrect(true);
       setStreak((prev) => {
         const newStreak = prev + 1;
-        // Show streak toast if new streak > 1
+        // Show streak badge if new streak > 1
         if (newStreak > 1) {
-          setShowStreakToast(true);
+          setShowStreakBadge(true);
         }
         return newStreak;
       });
@@ -220,7 +168,13 @@ export default function Counting1To20({ course }: { course: Course }) {
         </div>
 
         {/* Streak Badge */}
-        {streak > 1 && <Feedback.Streak count={streak} />}
+        {showStreakBadge && (
+          <StreakBadge
+            count={streak}
+            duration={2000}
+            onDismiss={() => setShowStreakBadge(false)}
+          />
+        )}
 
         {/* Question Card */}
         <CourseContent.Card className="border-4 mb-8">
@@ -303,12 +257,6 @@ export default function Counting1To20({ course }: { course: Course }) {
       </CourseContent>
 
       {/* Toast Feedback */}
-      <Feedback.ToastStreak
-        isVisible={showStreakToast}
-        count={streak}
-        onClose={() => setShowStreakToast(false)}
-        duration={1500}
-      />
       {feedbackIsCorrect === true && (
         <Feedback.ToastCorrect
           isVisible={showFeedbackToast}
