@@ -20,7 +20,7 @@ export const coursesData: Course[] = [
     route: "/general/identify-letter",
     component: "identify-letter",
     subjectId: SubjectId.GENERAL,
-    category: CourseCategory.LEARN,
+    category: CourseCategory.PRACTICE,
   },
   {
     id: "hindi_counting",
@@ -40,7 +40,7 @@ export const coursesData: Course[] = [
     icon: "twemoji:input-numbers",
     route: "/hindi/numbers",
     component: "numbers",
-    category: CourseCategory.LEARN,
+    category: CourseCategory.PRACTICE,
   },
   {
     id: "maths_counting_1_20",
