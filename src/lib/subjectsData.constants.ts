@@ -3,14 +3,14 @@ import { CourseCategory } from "../types/subject.types";
 
 export const coursesData: Course[] = [
   {
-    id: "general_clock",
-    subjectId: "g.k",
+    id: "maths_clock",
+    subjectId: "maths",
     label: "What's the time?",
     description: "Can you read the clock?",
-    icon: "twemoji:clock-face-one-oclock",
-    route: "/general/clock",
+    icon: "noto:four-thirty",
+    route: "/maths/clock",
     component: "clock",
-    category: CourseCategory.LEARN,
+    category: CourseCategory.PRACTICE,
   },
   {
     id: "general_identify_letter",
@@ -46,7 +46,7 @@ export const coursesData: Course[] = [
     id: "maths_counting_1_20",
     subjectId: "maths",
     label: "Counting (1-20)",
-    icon: "twemoji:one-o-clock",
+    icon: "noto:input-numbers",
     route: "/maths/counting-1-20",
     component: "counting-1-20",
     description: "How many are there?",
