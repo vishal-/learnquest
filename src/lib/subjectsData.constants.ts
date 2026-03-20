@@ -1,10 +1,10 @@
 import type { Subject, Course } from "../types/subject.types";
-import { CourseCategory } from "../types/subject.types";
+import { CourseCategory, SubjectId } from "../types/subject.types";
 
 export const coursesData: Course[] = [
   {
     id: "maths_clock",
-    subjectId: "maths",
+    subjectId: SubjectId.MATHS,
     label: "What's the time?",
     description: "Can you read the clock?",
     icon: "noto:four-thirty",
@@ -19,12 +19,12 @@ export const coursesData: Course[] = [
     icon: "twemoji:letter-tiles",
     route: "/general/identify-letter",
     component: "identify-letter",
-    subjectId: "g.k",
+    subjectId: SubjectId.GENERAL,
     category: CourseCategory.LEARN,
   },
   {
     id: "hindi_counting",
-    subjectId: "hindi",
+    subjectId: SubjectId.HINDI,
     label: "हिंदी की गिनती",
     description: "क्या आपको हिंदी में गिनती आती है?",
     icon: "twemoji:1234",
@@ -34,7 +34,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "hindi_numbers",
-    subjectId: "hindi",
+    subjectId: SubjectId.HINDI,
     label: "हिंदी संख्या पहचानें (Numbers)",
     description: "0 से 1000 के बीच की हिन्दी संख्या पहचानें।",
     icon: "twemoji:input-numbers",
@@ -44,7 +44,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "maths_counting_1_20",
-    subjectId: "maths",
+    subjectId: SubjectId.MATHS,
     label: "Counting (1-20)",
     icon: "noto:input-numbers",
     route: "/maths/counting-1-20",
@@ -54,7 +54,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "maths_identify_number",
-    subjectId: "maths",
+    subjectId: SubjectId.MATHS,
     description:
       "An interactive course for preschoolers to learn numbers by speech",
     icon: "twemoji:input-numbers",
@@ -65,7 +65,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "maths_tables",
-    subjectId: "maths",
+    subjectId: SubjectId.MATHS,
     label: "Multiplication Tables",
     description: "Learn and practice tables from 2 to 20.",
     icon: "twemoji:multiplication-sign",
@@ -75,7 +75,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "stem_units",
-    subjectId: "stem",
+    subjectId: SubjectId.STEM,
     label: "Units of Measurement",
     description: "What category does this unit belong to?",
     icon: "twemoji:measuring-tape",
@@ -85,7 +85,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "world_capitals_of_countries",
-    subjectId: "world",
+    subjectId: SubjectId.WORLD,
     label: "Capital Cities of Countries",
     description: "Do you know the capitals of different countries?",
     icon: "twemoji:classical-building",
@@ -95,7 +95,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "world_capitals_of_india",
-    subjectId: "world",
+    subjectId: SubjectId.WORLD,
     label: "Capital Cities of India",
     description: "Do you know the capitals of Indian states?",
     icon: "twemoji:building-construction",
@@ -105,7 +105,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "world_challenge_flags",
-    subjectId: "world",
+    subjectId: SubjectId.WORLD,
     label: "Challenge - Flags",
     description: "Test your flag knowledge! Identify 10 flags in 30 seconds",
     icon: "twemoji:trophy",
@@ -115,7 +115,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "world_flags_of_countries",
-    subjectId: "world",
+    subjectId: SubjectId.WORLD,
     label: "Flags of Countries",
     description: "Learn to identify flags of different countries",
     route: "/world/flags-of-countries",
@@ -127,7 +127,7 @@ export const coursesData: Course[] = [
 
 export const subjectsData: Subject[] = [
   {
-    id: "g.k",
+    id: SubjectId.GENERAL,
     label: "Trivia",
     description: "Explore various topics in general knowledge.",
     route: "/general",
@@ -139,7 +139,7 @@ export const subjectsData: Subject[] = [
     courses: [],
   },
   {
-    id: "stem",
+    id: SubjectId.STEM,
     label: "STEM",
     description: "Explore basic science concepts and experiments.",
     route: "/stem",
@@ -151,7 +151,7 @@ export const subjectsData: Subject[] = [
     courses: [],
   },
   {
-    id: "maths",
+    id: SubjectId.MATHS,
     label: "Maths",
     description: "Learn basic mathematics concepts and operations.",
     route: "/maths",
@@ -163,7 +163,7 @@ export const subjectsData: Subject[] = [
     courses: [],
   },
   {
-    id: "hindi",
+    id: SubjectId.HINDI,
     label: "Hindi",
     description: "Learn & Practice Hindi language",
     route: "/hindi",
@@ -176,7 +176,7 @@ export const subjectsData: Subject[] = [
   },
 
   {
-    id: "world",
+    id: SubjectId.WORLD,
     label: "World",
     description: "Learn about different cultures, geography, and history.",
     route: "/world",
