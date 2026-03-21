@@ -3,6 +3,7 @@ import { useSubjects } from "../../hooks/useSubjects";
 import { useCourseHistoryStore } from "../../store/courseHistoryStore";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import CourseCard from "../common/courseCard";
 import "../../styles/home.css";
 
 const HomePage = () => {
@@ -10,7 +11,6 @@ const HomePage = () => {
   const { getRecentCourses } = useCourseHistoryStore();
   const navigate = useNavigate();
   const [activeSubject, setActiveSubject] = useState<string | null>(null);
-  const [pressedCard, setPressedCard] = useState<number | null>(null);
   const recentCourses = getRecentCourses(3);
 
   // Helper function to find subject for a course
@@ -103,51 +103,23 @@ const HomePage = () => {
                 return (
                   <div
                     key={course.id}
-                    className="recent-card border-[3px] border-[#2D2016] rounded-[20px] overflow-hidden bg-white transition-all duration-150"
                     style={{
-                      boxShadow: `4px 4px 0 ${subject.shadow}, 4px 4px 0 1px #2D2016`,
                       animation: `slideUp 0.4s ${0.5 + i * 0.1}s ease both`,
                       opacity: 0,
-                      animationFillMode: "forwards",
-                      ...(pressedCard === i
-                        ? {
-                            transform: "scale(0.97)",
-                            boxShadow: `2px 2px 0 ${subject.shadow}`
-                          }
-                        : {})
+                      animationFillMode: "forwards"
                     }}
-                    onPointerDown={() => setPressedCard(i)}
-                    onPointerUp={() => setPressedCard(null)}
-                    onPointerLeave={() => setPressedCard(null)}
-                    onClick={() => navigate(course.route)}
                   >
-                    <div className="flex items-center">
-                      {/* Color strip */}
-                      <div
-                        className="w-16 flex items-center justify-center text-[28px] flex-shrink-0 border-r-[3px] border-[#2D2016]"
-                        style={{ background: subject.bg }}
-                      >
-                        <Icon icon={course.icon} width="32" height="32" />
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 p-3">
-                        <div className="flex justify-between items-start mb-1">
-                          <div>
-                            <span className="font-nunito font-black text-[11px] text-[#9B8B6E] uppercase tracking-[0.5px]">
-                              {subject.label}
-                            </span>
-                            <p className="font-poppins text-base text-[#2D2016] m-0 mt-0.5 mb-1.5 leading-tight">
-                              {course.label}
-                            </p>
-                          </div>
-                        </div>
-
-                        <p className="font-nunito font-semibold text-[12px] text-gray-600 m-0 leading-tight">
-                          {course.description}
-                        </p>
-                      </div>
-                    </div>
+                    <CourseCard
+                      course={course}
+                      tab={{
+                        id: subject.id,
+                        label: subject.label,
+                        emoji: subject.icon,
+                        color: subject.bg,
+                        dark: subject.shadow
+                      }}
+                      index={i}
+                    />
                   </div>
                 );
               })}
