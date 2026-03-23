@@ -1,0 +1,240 @@
+{
+  "dog": {
+    "category": "pet",
+    "home": "kennel",
+    "baby": "puppy",
+    "habitat": "human homes",
+    "about": "Dogs are friendly and loyal animals kept as pets. They help humans in many ways like guarding, guiding, and companionship."
+  },
+  "cat": {
+    "category": "pet",
+    "home": "house",
+    "baby": "kitten",
+    "habitat": "human homes",
+    "about": "Cats are small, playful animals known for their independence and hunting skills. They are one of the most popular pets."
+  },
+  "cow": {
+    "category": "farm",
+    "home": "shed",
+    "baby": "calf",
+    "habitat": "farms",
+    "about": "Cows are gentle farm animals that give milk. They are important for dairy products and farming."
+  },
+  "horse": {
+    "category": "farm",
+    "home": "stable",
+    "baby": "foal",
+    "habitat": "farms and grasslands",
+    "about": "Horses are strong animals used for riding and work. They are fast runners and have been companions to humans for centuries."
+  },
+  "sheep": {
+    "category": "farm",
+    "home": "pen",
+    "baby": "lamb",
+    "habitat": "grasslands",
+    "about": "Sheep are farm animals raised for wool and meat. They are gentle and usually live in groups."
+  },
+  "goat": {
+    "category": "farm",
+    "home": "pen",
+    "baby": "kid",
+    "habitat": "farms and hills",
+    "about": "Goats are hardy animals that can climb and eat many types of plants. They provide milk and meat."
+  },
+  "pig": {
+    "category": "farm",
+    "home": "sty",
+    "baby": "piglet",
+    "habitat": "farms",
+    "about": "Pigs are intelligent farm animals known for their strong sense of smell. They are raised for meat."
+  },
+  "chicken": {
+    "category": "farm",
+    "home": "coop",
+    "baby": "chick",
+    "habitat": "farms",
+    "about": "Chickens are birds raised for eggs and meat. They are common on farms and easy to care for."
+  },
+  "duck": {
+    "category": "farm",
+    "home": "coop",
+    "baby": "duckling",
+    "habitat": "ponds and farms",
+    "about": "Ducks are water birds that can swim and walk. They are raised for eggs and feathers."
+  },
+  "lion": {
+    "category": "wild",
+    "home": "den",
+    "baby": "cub",
+    "habitat": "savanna",
+    "about": "Lions are powerful big cats known as the king of the jungle. They live in groups called prides."
+  },
+  "tiger": {
+    "category": "wild",
+    "home": "den",
+    "baby": "cub",
+    "habitat": "forests",
+    "about": "Tigers are large striped cats and strong hunters. They usually live alone in forests."
+  },
+  "elephant": {
+    "category": "wild",
+    "home": "forest",
+    "baby": "calf",
+    "habitat": "forests and grasslands",
+    "about": "Elephants are the largest land animals. They are intelligent and have long trunks."
+  },
+  "monkey": {
+    "category": "wild",
+    "home": "trees",
+    "baby": "infant",
+    "habitat": "forests",
+    "about": "Monkeys are playful animals that live in trees. They are smart and social."
+  },
+  "bear": {
+    "category": "wild",
+    "home": "cave",
+    "baby": "cub",
+    "habitat": "forests and mountains",
+    "about": "Bears are large animals with thick fur. They can be strong but also enjoy fruits and honey."
+  },
+  "fox": {
+    "category": "wild",
+    "home": "den",
+    "baby": "kit",
+    "habitat": "forests",
+    "about": "Foxes are clever animals known for their intelligence and bushy tails."
+  },
+  "wolf": {
+    "category": "wild",
+    "home": "den",
+    "baby": "pup",
+    "habitat": "forests and tundra",
+    "about": "Wolves are social animals that live and hunt in packs. They communicate using howls."
+  },
+  "deer": {
+    "category": "wild",
+    "home": "forest",
+    "baby": "fawn",
+    "habitat": "forests",
+    "about": "Deer are graceful animals with long legs. Many have antlers and are very fast runners."
+  },
+  "giraffe": {
+    "category": "wild",
+    "home": "savanna",
+    "baby": "calf",
+    "habitat": "savanna",
+    "about": "Giraffes are the tallest animals on land. Their long necks help them eat leaves from tall trees."
+  },
+  "zebra": {
+    "category": "wild",
+    "home": "savanna",
+    "baby": "foal",
+    "habitat": "grasslands",
+    "about": "Zebras are known for their black and white stripes. Each zebra has a unique pattern."
+  },
+  "bird": {
+    "category": "bird",
+    "home": "nest",
+    "baby": "chick",
+    "habitat": "trees",
+    "about": "Birds are animals with feathers and wings. Most birds can fly and lay eggs."
+  },
+  "owl": {
+    "category": "bird",
+    "home": "nest",
+    "baby": "owlet",
+    "habitat": "forests",
+    "about": "Owls are night birds with big eyes. They are excellent hunters in the dark."
+  },
+  "eagle": {
+    "category": "bird",
+    "home": "nest",
+    "baby": "eaglet",
+    "habitat": "mountains",
+    "about": "Eagles are powerful birds of prey with sharp vision and strong wings."
+  },
+  "penguin": {
+    "category": "bird",
+    "home": "colony",
+    "baby": "chick",
+    "habitat": "polar regions",
+    "about": "Penguins are birds that cannot fly but are excellent swimmers. They live in cold regions."
+  },
+  "fish": {
+    "category": "water",
+    "home": "water",
+    "baby": "fry",
+    "habitat": "rivers and oceans",
+    "about": "Fish are animals that live in water and breathe through gills. They swim using fins."
+  },
+  "dolphin": {
+    "category": "water",
+    "home": "ocean",
+    "baby": "calf",
+    "habitat": "oceans",
+    "about": "Dolphins are intelligent sea animals known for their playful behavior and communication."
+  },
+  "whale": {
+    "category": "water",
+    "home": "ocean",
+    "baby": "calf",
+    "habitat": "oceans",
+    "about": "Whales are the largest animals on Earth. They live in oceans and breathe air."
+  },
+  "shark": {
+    "category": "water",
+    "home": "ocean",
+    "baby": "pup",
+    "habitat": "oceans",
+    "about": "Sharks are strong fish with sharp teeth. They are important predators in the ocean."
+  },
+  "octopus": {
+    "category": "water",
+    "home": "sea floor",
+    "baby": "larva",
+    "habitat": "oceans",
+    "about": "Octopuses have eight arms and are very intelligent. They can change color to hide."
+  },
+  "frog": {
+    "category": "amphibian",
+    "home": "pond",
+    "baby": "tadpole",
+    "habitat": "wetlands",
+    "about": "Frogs live both in water and on land. They start life as tadpoles and grow into adults."
+  },
+  "snake": {
+    "category": "reptile",
+    "home": "hole",
+    "baby": "snakelet",
+    "habitat": "forests and deserts",
+    "about": "Snakes are long reptiles without legs. Some are poisonous while others are harmless."
+  },
+  "turtle": {
+    "category": "reptile",
+    "home": "water",
+    "baby": "hatchling",
+    "habitat": "oceans and ponds",
+    "about": "Turtles have hard shells that protect them. They live in water and on land."
+  },
+  "butterfly": {
+    "category": "insect",
+    "home": "plants",
+    "baby": "caterpillar",
+    "habitat": "gardens",
+    "about": "Butterflies are colorful insects. They grow from caterpillars through metamorphosis."
+  },
+  "bee": {
+    "category": "insect",
+    "home": "hive",
+    "baby": "larva",
+    "habitat": "gardens",
+    "about": "Bees are important for pollination. They make honey and live in colonies."
+  },
+  "t_rex": {
+    "category": "extinct",
+    "home": "prehistoric land",
+    "baby": "hatchling",
+    "habitat": "prehistoric forests",
+    "about": "T-Rex was a giant meat-eating dinosaur. It lived millions of years ago and is now extinct."
+  }
+}
