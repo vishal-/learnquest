@@ -133,6 +133,16 @@ export const coursesData: Course[] = [
     icon: "twemoji:waving-white-flag",
     category: CourseCategory.LEARN,
   },
+  {
+    id: "trivia_learn_animals",
+    subjectId: SubjectId.GENERAL,
+    label: "Learn About Animals",
+    description: "Discover amazing facts about different animals from around the world",
+    icon: "noto:dog",
+    route: "/general/learn-animals",
+    component: "learn-animals",
+    category: CourseCategory.LEARN,
+  },
 ];
 
 export const subjectsData: Subject[] = [
