@@ -1,0 +1,51 @@
+{
+  "apple": "noto:red-apple",
+  "banana": "noto:banana",
+  "grapes": "noto:grapes",
+  "orange": "noto:orange",
+  "strawberry": "noto:strawberry",
+  "watermelon": "noto:watermelon",
+  "cherries": "noto:cherries",
+
+  "car": "noto:automobile",
+  "bus": "noto:bus",
+  "train": "noto:train",
+  "airplane": "noto:airplane",
+  "bicycle": "noto:bicycle",
+  "truck": "noto:delivery-truck",
+
+  "ball": "noto:soccer-ball",
+  "basketball": "noto:basketball",
+  "tennis_ball": "noto:tennis",
+  "kite": "noto:kite",
+  "teddy": "noto:teddy-bear",
+
+  "star": "noto:star",
+  "heart": "noto:red-heart",
+  "circle": "noto:large-blue-circle",
+  "square": "noto:blue-square",
+  "triangle": "noto:red-triangle-pointed-up",
+
+  "cookie": "noto:cookie",
+  "cake": "noto:birthday-cake",
+  "ice_cream": "noto:ice-cream",
+  "candy": "noto:candy",
+  "lollipop": "noto:lollipop",
+
+  "book": "noto:book",
+  "pencil": "noto:pencil",
+  "crayon": "noto:crayon",
+  "school_bag": "noto:school-satchel",
+
+  "tree": "noto:deciduous-tree",
+  "flower": "noto:blossom",
+  "sun": "noto:sun",
+  "moon": "noto:moon",
+  "cloud": "noto:cloud",
+
+  "gift": "noto:wrapped-gift",
+  "balloon": "noto:balloon",
+  "present": "noto:gift",
+  "cup": "noto:teacup-without-handle",
+  "bottle": "noto:bottle-with-popping-cork"
+}
