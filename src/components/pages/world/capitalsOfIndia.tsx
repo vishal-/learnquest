@@ -73,7 +73,7 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
 
   if (loading) {
     return (
-      <CourseContent>
+      <CourseContent course={course}>
         <CourseContent.Title title={label} description={description} />
         <Loader />
       </CourseContent>
@@ -81,7 +81,7 @@ const CapitalsOfIndia: React.FC<{ course: Course }> = ({
   }
 
   return (
-    <CourseContent>
+    <CourseContent course={course}>
       <CourseContent.Title title={label} description={description} />
 
       <CourseContent.Framed>{currentState}</CourseContent.Framed>

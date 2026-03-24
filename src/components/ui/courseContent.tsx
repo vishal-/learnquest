@@ -1,7 +1,11 @@
 import * as React from "react";
+import BackButton from "../common/backButton";
+import { useSubjects } from "../../hooks/useSubjects";
+import type { Course } from "../../types/subject.types";
 
 interface CourseContentProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+  course?: Course;
 }
 
 interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
@@ -29,10 +33,17 @@ interface OptionsGridProps extends React.HTMLAttributes<HTMLDivElement> {
  * Main CourseContent wrapper - container for consistent course styling
  */
 const CourseContent = React.forwardRef<HTMLDivElement, CourseContentProps>(
-  ({ children, className = "", ...props }, ref) => {
+  ({ children, course, className = "", ...props }, ref) => {
+    const { subjects } = useSubjects();
+
     const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
       event.preventDefault();
     };
+
+    // Get subject route if course is provided
+    const subjectRoute = course
+      ? subjects.find((s) => s.id === course.subjectId)?.route || "/"
+      : null;
 
     return (
       <div
@@ -41,6 +52,12 @@ const CourseContent = React.forwardRef<HTMLDivElement, CourseContentProps>(
         onContextMenu={handleContextMenu}
         {...props}
       >
+        {/* Back Button */}
+        {course && subjectRoute && (
+          <div className="mb-6">
+            <BackButton to={subjectRoute} />
+          </div>
+        )}
         {children}
       </div>
     );

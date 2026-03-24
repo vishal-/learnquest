@@ -30,7 +30,7 @@ export default function FlagsOfCountries({ course }: { course: Course }) {
   }
 
   return (
-    <CourseContent>
+    <CourseContent course={course}>
       <CourseContent.Title title={label} description={description} />
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">

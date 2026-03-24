@@ -7,6 +7,7 @@ import type {
 } from "../../../types/subject.types";
 import { CourseCategory } from "../../../types/subject.types";
 import CourseCard from "../../common/courseCard";
+import BackButton from "../../common/backButton";
 import "../../../styles/subjectLayout.css";
 
 interface TabConfig {
@@ -74,6 +75,11 @@ const SubjectLayout: React.FC<{ subject: Subject }> = ({ subject }) => {
       <div className="subject-layout__bg-dots" />
 
       <div className="subject-layout__wrapper">
+        {/* Back Button */}
+        <div className="px-4 pt-4">
+          <BackButton to="/" />
+        </div>
+
         {/* Hero Header */}
         <div className="subject-layout__header" style={{ background: bg }}>
           {/* Decorative circles */}

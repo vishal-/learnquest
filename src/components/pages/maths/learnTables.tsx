@@ -27,7 +27,7 @@ export default function LearnTables({ course }: { course: Course }) {
   }, []);
 
   return (
-    <CourseContent>
+    <CourseContent course={course}>
       <CourseContent.Title
         title={course.label}
         description={course.description}
