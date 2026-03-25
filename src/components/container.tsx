@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import SignIn from "./pages/signIn";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import AddQuestions from "./pages/admin/addQuestions";
+import NotFound from "./pages/notFound";
 import { useSubjects } from "../hooks/useSubjects";
 import { componentMap } from "./componentMap";
 import { useAuthStore } from "../store/authStore";
@@ -85,6 +86,9 @@ const ContainerContent: React.FC = () => {
                 ))}
               </>
             ))}
+
+            {/* 404 Catch-all Route */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>
