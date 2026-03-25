@@ -4,6 +4,8 @@ import Header from "./common/header";
 import Home from "./pages/home";
 import ContentUpload from "./pages/contentUpload";
 import SignIn from "./pages/signIn";
+import AdminDashboard from "./pages/admin/adminDashboard";
+import AddQuestions from "./pages/admin/addQuestions";
 import { useSubjects } from "../hooks/useSubjects";
 import { componentMap } from "./componentMap";
 import { useAuthStore } from "../store/authStore";
@@ -24,6 +26,9 @@ const ContainerContent: React.FC = () => {
   // Initialize analytics tracking
   useAnalytics();
   useSessionTimer();
+
+  // Check if current route is an admin route
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   // Track course access when route changes
   useEffect(() => {
@@ -53,34 +58,37 @@ const ContainerContent: React.FC = () => {
 
   return (
     <>
-      <Header />
+      {!isAdminRoute && <Header />}
 
-      <div className="flex-1 overflow-y-auto">
-        <Routes>
-          {/* Static Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/content-upload" element={<ContentUpload />} />
-          <Route path="/admin" element={renderComponent("admin", {})} />
+      <div className={isAdminRoute ? "w-full" : "flex-1 overflow-y-auto"}>
+        <div className={isAdminRoute ? "w-full" : "max-w-[430px] mx-auto"}>
+          <Routes>
+            {/* Static Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/content-upload" element={<ContentUpload />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/add-questions" element={<AddQuestions />} />
 
-          {/* Dynamic Routes */}
-          {subjects.map((subject: Subject) => (
-            <>
-              <Route
-                key={`subject_${subject.id}`}
-                path={subject.route}
-                element={renderComponent("subjectLayout", { subject })}
-              />
-              {subject.courses?.map((course: Course) => (
+            {/* Dynamic Routes */}
+            {subjects.map((subject: Subject) => (
+              <>
                 <Route
-                  key={`course_${course.id}`}
-                  path={course.route}
-                  element={renderComponent(course.component, { course })}
+                  key={`subject_${subject.id}`}
+                  path={subject.route}
+                  element={renderComponent("subjectLayout", { subject })}
                 />
-              ))}
-            </>
-          ))}
-        </Routes>
+                {subject.courses?.map((course: Course) => (
+                  <Route
+                    key={`course_${course.id}`}
+                    path={course.route}
+                    element={renderComponent(course.component, { course })}
+                  />
+                ))}
+              </>
+            ))}
+          </Routes>
+        </div>
       </div>
     </>
   );
@@ -101,7 +109,7 @@ const Container: React.FC = () => {
 
   return (
     <HashRouter>
-      <div className="min-h-screen max-w-[430px] mx-auto flex flex-col bg-[#FFFBF0]">
+      <div className="min-h-screen flex flex-col bg-[#FFFBF0]">
         <ContainerContent />
       </div>
     </HashRouter>

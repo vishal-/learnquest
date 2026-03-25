@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthStore } from "../../../store/authStore";
 import { useNavigate } from "react-router-dom";
 import { getIdTokenResult } from "firebase/auth";
+import AdminLayout from "../../layouts/adminLayout";
 import { FiAlertCircle } from "react-icons/fi";
 
 const AdminDashboard: React.FC = () => {
@@ -42,111 +43,139 @@ const AdminDashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="w-full max-w-[430px] mx-auto h-screen bg-[#FFFBF0] flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#FF6B6B] mx-auto mb-4"></div>
-          <p className="text-[#2D2016] font-nunito">Loading...</p>
+      <AdminLayout title="Loading...">
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading...</p>
+          </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
   if (!isAdmin) {
     return (
-      <div className="w-full max-w-[430px] mx-auto h-screen bg-[#FFFBF0] flex items-center justify-center p-4">
-        <div className="text-center">
-          <FiAlertCircle className="h-12 w-12 text-[#C93C20] mx-auto mb-4" />
-          <h2 className="text-[#2D2016] font-poppins text-lg font-bold mb-2">
-            Access Denied
-          </h2>
-          <p className="text-[#9B8B6E] font-nunito text-sm">
-            You don't have permission to access this page.
-          </p>
+      <AdminLayout title="Access Denied">
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <FiAlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+            <h2 className="text-lg font-bold text-gray-900 mb-2">
+              Access Denied
+            </h2>
+            <p className="text-gray-600">
+              You don't have permission to access this page.
+            </p>
+          </div>
         </div>
-      </div>
+      </AdminLayout>
     );
   }
 
   return (
-    <div className="w-full max-w-[430px] mx-auto bg-[#FFFBF0] p-6 pb-20">
-      {/* Admin Dashboard Header */}
-      <div className="mb-8">
-        <h1 className="text-[#2D2016] font-poppins text-xl font-bold mb-2">
-          Admin Dashboard
-        </h1>
-        <p className="text-[#9B8B6E] font-nunito text-sm">
-          Welcome back, admin! Manage LearnQuest content and users.
-        </p>
-      </div>
+    <AdminLayout
+      title="Admin Dashboard"
+      subtitle="Manage quiz questions, users, and content"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Quiz Management Card */}
+        <div
+          onClick={() => navigate("/admin/add-questions")}
+          className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:border-blue-500 transition-all cursor-pointer"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-blue-100 rounded-lg">
+              <span className="text-2xl">📝</span>
+            </div>
+            <h3 className="font-semibold text-gray-900">Add Quiz Questions</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">
+            Import questions from JSON, edit, and save to database
+          </p>
+          <div className="inline-flex items-center gap-2 text-blue-600 font-medium text-sm hover:gap-3 transition-all">
+            Manage
+            <span>→</span>
+          </div>
+        </div>
 
-      {/* Dashboard Cards - Placeholder */}
-      <div className="space-y-4">
         {/* Users Management Card */}
-        <div className="bg-white border-2 border-[#D4C4B0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-          <h3 className="text-[#2D2016] font-poppins font-bold mb-1 flex items-center gap-2">
-            <span className="text-xl">👥</span>
-            Users Management
-          </h3>
-          <p className="text-[#9B8B6E] font-nunito text-xs mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 opacity-50 cursor-not-allowed">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-gray-100 rounded-lg">
+              <span className="text-2xl">👥</span>
+            </div>
+            <h3 className="font-semibold text-gray-900">Users Management</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">
             Manage user accounts and permissions
           </p>
-          <div className="bg-[#F5EBE0] rounded px-3 py-1.5 text-[#2D2016] text-xs font-semibold w-fit">
+          <div className="inline-flex items-center gap-2 text-gray-400 font-medium text-sm">
             Coming Soon
           </div>
         </div>
 
         {/* Content Management Card */}
-        <div className="bg-white border-2 border-[#D4C4B0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-          <h3 className="text-[#2D2016] font-poppins font-bold mb-1 flex items-center gap-2">
-            <span className="text-xl">📚</span>
-            Content Management
-          </h3>
-          <p className="text-[#9B8B6E] font-nunito text-xs mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 opacity-50 cursor-not-allowed">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-gray-100 rounded-lg">
+              <span className="text-2xl">📚</span>
+            </div>
+            <h3 className="font-semibold text-gray-900">Content Management</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">
             Create and edit course content
           </p>
-          <div className="bg-[#F5EBE0] rounded px-3 py-1.5 text-[#2D2016] text-xs font-semibold w-fit">
+          <div className="inline-flex items-center gap-2 text-gray-400 font-medium text-sm">
             Coming Soon
           </div>
         </div>
 
         {/* Analytics Card */}
-        <div className="bg-white border-2 border-[#D4C4B0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-          <h3 className="text-[#2D2016] font-poppins font-bold mb-1 flex items-center gap-2">
-            <span className="text-xl">📊</span>
-            Analytics
-          </h3>
-          <p className="text-[#9B8B6E] font-nunito text-xs mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 opacity-50 cursor-not-allowed">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-gray-100 rounded-lg">
+              <span className="text-2xl">📊</span>
+            </div>
+            <h3 className="font-semibold text-gray-900">Analytics</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">
             View user activity and learning trends
           </p>
-          <div className="bg-[#F5EBE0] rounded px-3 py-1.5 text-[#2D2016] text-xs font-semibold w-fit">
+          <div className="inline-flex items-center gap-2 text-gray-400 font-medium text-sm">
             Coming Soon
           </div>
         </div>
 
         {/* Settings Card */}
-        <div className="bg-white border-2 border-[#D4C4B0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-          <h3 className="text-[#2D2016] font-poppins font-bold mb-1 flex items-center gap-2">
-            <span className="text-xl">⚙️</span>
-            Settings
-          </h3>
-          <p className="text-[#9B8B6E] font-nunito text-xs mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 opacity-50 cursor-not-allowed">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-gray-100 rounded-lg">
+              <span className="text-2xl">⚙️</span>
+            </div>
+            <h3 className="font-semibold text-gray-900">Settings</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">
             Configure app settings and features
           </p>
-          <div className="bg-[#F5EBE0] rounded px-3 py-1.5 text-[#2D2016] text-xs font-semibold w-fit">
+          <div className="inline-flex items-center gap-2 text-gray-400 font-medium text-sm">
             Coming Soon
           </div>
         </div>
       </div>
 
-      {/* Admin Info Card */}
-      <div className="mt-8 bg-[#E8F4F8] border-2 border-[#7DD3C0] rounded-lg p-4">
-        <p className="text-[#2D2016] font-nunito text-xs">
-          <strong>Admin Info:</strong> You have access to admin features through
-          Firebase custom claims. This dashboard is a placeholder for admin
-          functionality.
+      {/* Info Section */}
+      <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 className="font-semibold text-blue-900 mb-2">
+          ℹ️ Admin Panel Info
+        </h3>
+        <p className="text-sm text-blue-800">
+          You have access to admin features through Firebase custom claims. This
+          panel is where you can manage all quiz-related content and system
+          settings. Started with Quiz question management - more features coming
+          soon!
         </p>
       </div>
-    </div>
+    </AdminLayout>
   );
 };
 
