@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "../../layouts/adminLayout";
+import Input from "../../ui/input";
 import Textarea from "../../ui/textarea";
+import Select from "../../ui/select";
+import Button from "../../ui/button";
 import { batchSaveQuestions } from "../../../lib/firestore.questions";
 import { trackFeatureUsage } from "../../../lib/analytics";
+import { QuizSubject, QuizDifficulty } from "../../../types/quiz.type";
 import type { Question } from "../../../types/quiz.type";
 import {
   FiPlus,
@@ -12,6 +16,19 @@ import {
   FiAlertCircle,
   FiCheck
 } from "react-icons/fi";
+
+// Helper function to create SelectOptions from enums
+const getSubjectOptions = () =>
+  Object.values(QuizSubject).map((subject) => ({
+    label: subject,
+    value: subject
+  }));
+
+const getDifficultyOptions = () =>
+  Object.values(QuizDifficulty).map((difficulty) => ({
+    label: difficulty,
+    value: difficulty
+  }));
 
 const AddQuestionsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -168,14 +185,16 @@ const AddQuestionsPage: React.FC = () => {
 ]`}
           />
 
-          <button
-            onClick={handleViewQuestions}
-            disabled={!jsonInput.trim()}
-            className="mt-4 flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <FiPlus className="h-4 w-4" />
-            View Questions
-          </button>
+          <div className="mt-4">
+            <Button
+              onClick={handleViewQuestions}
+              disabled={!jsonInput.trim()}
+              size="md"
+            >
+              <FiPlus className="h-4 w-4 mr-2" />
+              View Questions
+            </Button>
+          </div>
         </div>
 
         {/* Alerts */}
@@ -206,14 +225,6 @@ const AddQuestionsPage: React.FC = () => {
               <h2 className="text-lg font-semibold text-gray-900">
                 Questions ({questions.length})
               </h2>
-              <button
-                onClick={handleSaveQuestions}
-                disabled={loading}
-                className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <FiSave className="h-4 w-4" />
-                {loading ? "Saving..." : "Save All Questions"}
-              </button>
             </div>
 
             <div className="grid gap-4">
@@ -226,71 +237,49 @@ const AddQuestionsPage: React.FC = () => {
                     <h3 className="font-semibold text-gray-900">
                       Question {index + 1}
                     </h3>
-                    <button
+                    <Button
                       onClick={() => handleDeleteQuestion(question.id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                      variant="danger"
+                      size="sm"
                     >
                       <FiTrash2 className="h-4 w-4" />
-                    </button>
+                    </Button>
                   </div>
 
                   <div className="space-y-4">
                     {/* Subject & Difficulty */}
                     <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Subject
-                        </label>
-                        <input
-                          type="text"
-                          value={question.subject}
-                          onChange={(e) =>
-                            handleEditQuestion(
-                              question.id,
-                              "subject",
-                              e.target.value
-                            )
-                          }
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Difficulty
-                        </label>
-                        <input
-                          type="text"
-                          value={question.difficulty}
-                          onChange={(e) =>
-                            handleEditQuestion(
-                              question.id,
-                              "difficulty",
-                              e.target.value
-                            )
-                          }
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div>
+                      <Select
+                        label="Subject"
+                        options={getSubjectOptions()}
+                        value={question.subject}
+                        onChange={(value) =>
+                          handleEditQuestion(question.id, "subject", value)
+                        }
+                      />
+                      <Select
+                        label="Difficulty"
+                        options={getDifficultyOptions()}
+                        value={question.difficulty}
+                        onChange={(value) =>
+                          handleEditQuestion(question.id, "difficulty", value)
+                        }
+                      />
                     </div>
 
                     {/* Question Text */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Question
-                      </label>
-                      <textarea
-                        value={question.question}
-                        onChange={(e) =>
-                          handleEditQuestion(
-                            question.id,
-                            "question",
-                            e.target.value
-                          )
-                        }
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
-                        rows={2}
-                      />
-                    </div>
+                    <Textarea
+                      label="Question"
+                      value={question.question}
+                      onChange={(e) =>
+                        handleEditQuestion(
+                          question.id,
+                          "question",
+                          e.target.value
+                        )
+                      }
+                      textareaSize="md"
+                    />
 
                     {/* Options */}
                     <div>
@@ -299,9 +288,8 @@ const AddQuestionsPage: React.FC = () => {
                       </label>
                       <div className="grid grid-cols-2 gap-2">
                         {question.options.map((option, optIndex) => (
-                          <input
+                          <Input
                             key={optIndex}
-                            type="text"
                             value={option}
                             onChange={(e) => {
                               const updatedOptions = [...question.options];
@@ -313,7 +301,6 @@ const AddQuestionsPage: React.FC = () => {
                               );
                             }}
                             placeholder={`Option ${String.fromCharCode(65 + optIndex)}`}
-                            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                           />
                         ))}
                       </div>
@@ -321,41 +308,50 @@ const AddQuestionsPage: React.FC = () => {
 
                     {/* Answer */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
                         Correct Answer
                       </label>
-                      <input
-                        type="text"
-                        value={question.answer}
-                        onChange={(e) =>
-                          handleEditQuestion(
-                            question.id,
-                            "answer",
-                            e.target.value
-                          )
-                        }
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
+                      <div className="space-y-2">
+                        {question.options.map((option, optIndex) => (
+                          <label
+                            key={optIndex}
+                            className="flex items-center p-2 rounded-lg hover:bg-blue-50 cursor-pointer border-2 border-transparent hover:border-blue-300 transition-all"
+                          >
+                            <input
+                              type="radio"
+                              name={`answer-${question.id}`}
+                              value={option}
+                              checked={question.answer === option}
+                              onChange={() =>
+                                handleEditQuestion(
+                                  question.id,
+                                  "answer",
+                                  option
+                                )
+                              }
+                              className="w-4 h-4 text-blue-600 cursor-pointer"
+                            />
+                            <span className="ml-3 text-sm text-gray-700">
+                              {option}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
                     </div>
 
                     {/* Explanation */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Explanation
-                      </label>
-                      <textarea
-                        value={question.explanation}
-                        onChange={(e) =>
-                          handleEditQuestion(
-                            question.id,
-                            "explanation",
-                            e.target.value
-                          )
-                        }
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
-                        rows={2}
-                      />
-                    </div>
+                    <Textarea
+                      label="Explanation"
+                      value={question.explanation}
+                      onChange={(e) =>
+                        handleEditQuestion(
+                          question.id,
+                          "explanation",
+                          e.target.value
+                        )
+                      }
+                      textareaSize="sm"
+                    />
                   </div>
                 </div>
               ))}
@@ -363,20 +359,22 @@ const AddQuestionsPage: React.FC = () => {
 
             {/* Save Button (Sticky) */}
             <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 flex justify-end gap-4">
-              <button
+              <Button
                 onClick={() => setQuestions([])}
-                className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+                variant="outline"
+                size="md"
               >
                 Clear All
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleSaveQuestions}
                 disabled={loading}
-                className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                variant="success"
+                size="md"
               >
-                <FiSave className="h-4 w-4" />
+                <FiSave className="h-4 w-4 mr-2" />
                 {loading ? "Saving..." : "Save All Questions"}
-              </button>
+              </Button>
             </div>
           </div>
         )}

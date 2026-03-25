@@ -2,7 +2,6 @@ import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import Header from "./common/header";
 import Home from "./pages/home";
-import ContentUpload from "./pages/contentUpload";
 import SignIn from "./pages/signIn";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import AddQuestions from "./pages/admin/addQuestions";
@@ -66,7 +65,6 @@ const ContainerContent: React.FC = () => {
             {/* Static Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/content-upload" element={<ContentUpload />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/add-questions" element={<AddQuestions />} />
 
