@@ -24,6 +24,21 @@
   z-index: 1;
   max-width: 430px;
   margin: 0 auto;
+  width: 100%;
+}
+
+/* Tablet breakpoint */
+@media (min-width: 600px) {
+  .subject-layout__wrapper {
+    max-width: 600px;
+  }
+}
+
+/* Small desktop breakpoint */
+@media (min-width: 900px) {
+  .subject-layout__wrapper {
+    max-width: 800px;
+  }
 }
 
 .subject-layout__header {
@@ -75,6 +90,18 @@
   letter-spacing: 0.5px;
 }
 
+@media (min-width: 600px) {
+  .subject-layout__header-title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 900px) {
+  .subject-layout__header-title {
+    font-size: 56px;
+  }
+}
+
 .subject-layout__header-description {
   font-family: "Nunito", sans-serif;
   font-weight: 700;
@@ -92,6 +119,18 @@
   filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.15));
 }
 
+@media (min-width: 600px) {
+  .subject-layout__header-icon {
+    font-size: 88px;
+  }
+}
+
+@media (min-width: 900px) {
+  .subject-layout__header-icon {
+    font-size: 104px;
+  }
+}
+
 .subject-layout__tabs {
   padding: 16px 20px 0;
   display: grid;
@@ -100,6 +139,20 @@
   animation: tabSlide 0.4s 0.15s ease both;
   opacity: 0;
   animation-fill-mode: forwards;
+}
+
+@media (min-width: 600px) {
+  .subject-layout__tabs {
+    padding: 20px 28px 0;
+    gap: 14px;
+  }
+}
+
+@media (min-width: 900px) {
+  .subject-layout__tabs {
+    padding: 24px 32px 0;
+    gap: 18px;
+  }
 }
 
 .tab-btn {
@@ -116,6 +169,22 @@
   background: #fff;
 }
 
+@media (min-width: 600px) {
+  .tab-btn {
+    border-radius: 20px;
+    padding: 12px 10px;
+    gap: 6px;
+  }
+}
+
+@media (min-width: 900px) {
+  .tab-btn {
+    border-radius: 22px;
+    padding: 14px 12px;
+    gap: 8px;
+  }
+}
+
 .tab-btn:active {
   transform: scale(0.93);
 }
@@ -130,11 +199,35 @@
   line-height: 1;
 }
 
+@media (min-width: 600px) {
+  .tab-btn__emoji {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 900px) {
+  .tab-btn__emoji {
+    font-size: 30px;
+  }
+}
+
 .tab-btn__label {
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 700;
   color: #2d2016;
+}
+
+@media (min-width: 600px) {
+  .tab-btn__label {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 900px) {
+  .tab-btn__label {
+    font-size: 16px;
+  }
 }
 
 .tab-btn__label--active {
@@ -160,10 +253,45 @@
   gap: 12px;
 }
 
+@media (min-width: 600px) {
+  .subject-layout__courses {
+    padding: 2.5rem 1.5rem;
+    gap: 14px;
+  }
+}
+
+@media (min-width: 900px) {
+  .subject-layout__courses {
+    padding: 3rem 2rem;
+    gap: 16px;
+  }
+}
+
 .course-link {
   text-decoration: none;
   opacity: 0;
   animation-fill-mode: forwards;
+  animation: courseSlide 0.4s ease;
+}
+
+/* Stagger animation for course cards */
+.course-link:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.course-link:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.course-link:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.course-link:nth-child(4) {
+  animation-delay: 0.7s;
+}
+.course-link:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.course-link:nth-child(n + 6) {
+  animation-delay: 0.9s;
 }
 
 .course-card {
@@ -187,6 +315,20 @@
   border-right: 3px solid #2d2016;
 }
 
+@media (min-width: 600px) {
+  .course-card__icon-strip {
+    width: 72px;
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 900px) {
+  .course-card__icon-strip {
+    width: 80px;
+    font-size: 36px;
+  }
+}
+
 .course-card__icon {
   font-size: 32px;
 }
@@ -200,6 +342,18 @@
   padding: 12px 13px;
 }
 
+@media (min-width: 600px) {
+  .course-card__content {
+    padding: 14px 16px;
+  }
+}
+
+@media (min-width: 900px) {
+  .course-card__content {
+    padding: 16px 18px;
+  }
+}
+
 .course-card__title {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -209,6 +363,18 @@
   line-height: 1.2;
 }
 
+@media (min-width: 600px) {
+  .course-card__title {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 900px) {
+  .course-card__title {
+    font-size: 18px;
+  }
+}
+
 .course-card__description {
   font-family: "Nunito", sans-serif;
   font-weight: 600;
@@ -216,4 +382,61 @@
   color: #9b8b6e;
   margin: 0;
   line-height: 1.3;
+}
+
+@media (min-width: 600px) {
+  .course-card__description {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 900px) {
+  .course-card__description {
+    font-size: 14px;
+  }
+}
+
+/* Animations */
+@keyframes headerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tabSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes courseSlide {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

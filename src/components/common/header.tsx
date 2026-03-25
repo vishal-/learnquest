@@ -157,7 +157,9 @@ const Header: React.FC = () => {
 
       <div className="flex-1 flex flex-col justify-center">
         <p className="font-nunito text-[12px] font-bold text-[#333] m-0 tracking-[0.5px] uppercase">
-          {getGreeting().text}! {getGreeting().emoji}
+          {user
+            ? `${getGreeting().text}, ${user.displayName?.split(" ")[0] || ""}`
+            : getGreeting().text}
         </p>
         <h1 className="font-poppins text-[16px] text-[#2D2016] m-1 leading-tight">
           {getHeaderDescription()}
@@ -167,10 +169,29 @@ const Header: React.FC = () => {
       <div className="flex items-center gap-2 flex-shrink-0">
         {user ? (
           <div
-            className="w-10 h-10 rounded-full bg-[#FFD93D] border-[2px] border-[#2D2016] shadow-[2px_2px_0_#2D2016] flex items-center justify-center text-lg flex-shrink-0 cursor-pointer hover:scale-105 transition-transform"
+            className="w-10 h-10 rounded-full border-[2px] border-[#2D2016] shadow-[2px_2px_0_#2D2016] flex items-center justify-center text-sm font-semibold flex-shrink-0 cursor-pointer hover:scale-105 transition-transform overflow-hidden bg-[#FFD93D]"
             onClick={() => setIsDrawerOpen(true)}
           >
-            🦊
+            {user.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt={user.displayName || "User"}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback if image fails to load
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            ) : (
+              <span className="text-[#2D2016]">
+                {user.displayName
+                  ?.split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .toUpperCase()
+                  .slice(0, 2) || "👤"}
+              </span>
+            )}
           </div>
         ) : (
           <Link
