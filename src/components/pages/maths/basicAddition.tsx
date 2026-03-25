@@ -5,20 +5,21 @@ import StreakBadge from "../../ui/streakBadge";
 import { useSpeech } from "../../../hooks/useSpeech";
 import type { Course } from "../../../types/subject.types";
 import ConfettiBurst from "../../ui/confettiBurst";
+import mathObjects from "../../../dataset/math.objects.json";
 
 interface MathObject {
   name: string;
   icon: string;
 }
 
-const MATH_OBJECTS: MathObject[] = [
-  { name: "balls", icon: "noto:soccer-ball" },
-  { name: "apples", icon: "noto:red-apple" },
-  { name: "stars", icon: "noto:star" },
-  { name: "hearts", icon: "noto:red-heart" },
-  { name: "cookies", icon: "noto:cookie" },
-  { name: "balloons", icon: "noto:balloon" }
-];
+const objectToArray = (obj: Record<string, string>): MathObject[] => {
+  return Object.entries(obj).map(([name, icon]) => ({
+    name,
+    icon
+  }));
+};
+
+const MATH_OBJECTS: MathObject[] = objectToArray(mathObjects);
 
 interface Question {
   num1: number;
