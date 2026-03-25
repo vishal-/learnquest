@@ -130,7 +130,7 @@ export default function PracticeTables({ course }: { course: Course }) {
     <>
       <ConfettiBurst active={showConfetti} />
 
-      <CourseContent>
+      <CourseContent course={course}>
         <CourseContent.Title
           title={course.label}
           description={course.description}

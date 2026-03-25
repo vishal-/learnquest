@@ -3,13 +3,13 @@ import { CourseCategory, SubjectId } from "../types/subject.types";
 
 export const coursesData: Course[] = [
   {
-    id: "maths_clock",
+    id: "maths_basic_addition",
     subjectId: SubjectId.MATHS,
-    label: "What's the time?",
-    description: "Can you read the clock?",
-    icon: "noto:four-thirty",
-    route: "/maths/clock",
-    component: "clock",
+    label: "Add the Objects (1-10)",
+    description: "Learn basic addition with fun animated objects!",
+    icon: "noto:soccer-ball",
+    route: "/maths/basic-addition",
+    component: "basic-addition",
     category: CourseCategory.PRACTICE,
   },
   {
@@ -61,6 +61,16 @@ export const coursesData: Course[] = [
     route: "/maths/identify-number",
     component: "identify-number",
     label: "Identify the Number by sound",
+    category: CourseCategory.PRACTICE,
+  },
+  {
+    id: "maths_clock",
+    subjectId: SubjectId.MATHS,
+    label: "What's the time?",
+    description: "Can you read the clock?",
+    icon: "noto:four-thirty",
+    route: "/maths/clock",
+    component: "clock",
     category: CourseCategory.PRACTICE,
   },
   {
@@ -131,6 +141,16 @@ export const coursesData: Course[] = [
     route: "/world/flags-of-countries",
     component: "flags-of-countries",
     icon: "twemoji:waving-white-flag",
+    category: CourseCategory.LEARN,
+  },
+  {
+    id: "trivia_learn_animals",
+    subjectId: SubjectId.GENERAL,
+    label: "Learn About Animals",
+    description: "Discover amazing facts about different animals from around the world",
+    icon: "noto:dog",
+    route: "/general/learn-animals",
+    component: "learn-animals",
     category: CourseCategory.LEARN,
   },
 ];

@@ -3,6 +3,9 @@ import { lazy } from "react";
 
 // This maps the string identifiers from Firestore to the actual lazy-loaded components.
 export const componentMap: { [key: string]: React.LazyExoticComponent<React.ComponentType<any>> } = {
+    // Admin
+    admin: lazy(() => import("./pages/admin/adminDashboard")),
+
     // Layouts
     subjectLayout: lazy(() => import("./pages/layouts/subjectLayout")),
 
@@ -19,6 +22,7 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
     "practice-tables": lazy(() => import("./pages/maths/practiceTables")),
     "identify-number": lazy(() => import("./pages/maths/identifyNumber")),
     "counting-1-20": lazy(() => import("./pages/maths/counting1To20")),
+    "basic-addition": lazy(() => import("./pages/maths/basicAddition")),
 
     // STEM
     units: lazy(() => import("./pages/stem/units")),
@@ -28,4 +32,7 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
     "capitals-of-countries": lazy(() => import("./pages/world/capitalsOfCountries")),
     "flags-of-countries": lazy(() => import("./pages/world/flagsOfCountries")),
     "challenge-flags": lazy(() => import("./pages/world/challengeFlags")),
+
+    // Trivia
+    "learn-animals": lazy(() => import("./pages/trivia/learnAnimals")),
 };

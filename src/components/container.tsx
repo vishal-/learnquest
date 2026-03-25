@@ -2,14 +2,18 @@ import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import Header from "./common/header";
 import Home from "./pages/home";
-import ContentUpload from "./pages/contentUpload";
 import SignIn from "./pages/signIn";
+import AdminDashboard from "./pages/admin/adminDashboard";
+import AddQuestions from "./pages/admin/addQuestions";
+import NotFound from "./pages/notFound";
 import { useSubjects } from "../hooks/useSubjects";
 import { componentMap } from "./componentMap";
 import { useAuthStore } from "../store/authStore";
 import { useCourseHistoryStore } from "../store/courseHistoryStore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase.config";
+import { useAnalytics, useSessionTimer } from "../hooks/useAnalytics";
+import { trackCourseAccess } from "../lib/analytics";
 import type { Subject, Course } from "../types/subject.types";
 
 // Inner component that uses useLocation (needs to be inside Router)
@@ -18,6 +22,13 @@ const ContainerContent: React.FC = () => {
   const location = useLocation();
   const { addCourseAccess } = useCourseHistoryStore();
   const lastTrackedPathRef = useRef<string | null>(null);
+
+  // Initialize analytics tracking
+  useAnalytics();
+  useSessionTimer();
+
+  // Check if current route is an admin route
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   // Track course access when route changes
   useEffect(() => {
@@ -28,11 +39,12 @@ const ContainerContent: React.FC = () => {
       return;
     }
 
-    // Find if this path matches a course route
+    // Find if this path matches a course route and track it
     for (const subject of subjects) {
       const course = subject.courses?.find((c) => c.route === currentPath);
       if (course) {
         addCourseAccess(course);
+        trackCourseAccess(course.id, course.label, subject.id);
         lastTrackedPathRef.current = currentPath;
         break;
       }
@@ -46,33 +58,39 @@ const ContainerContent: React.FC = () => {
 
   return (
     <>
-      <Header />
+      {!isAdminRoute && <Header />}
 
-      <div className="flex-1 overflow-y-auto">
-        <Routes>
-          {/* Static Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/content-upload" element={<ContentUpload />} />
+      <div className={isAdminRoute ? "w-full" : "flex-1 overflow-y-auto"}>
+        <div className={isAdminRoute ? "w-full" : "max-w-[430px] mx-auto"}>
+          <Routes>
+            {/* Static Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/add-questions" element={<AddQuestions />} />
 
-          {/* Dynamic Routes */}
-          {subjects.map((subject: Subject) => (
-            <>
-              <Route
-                key={`subject_${subject.id}`}
-                path={subject.route}
-                element={renderComponent("subjectLayout", { subject })}
-              />
-              {subject.courses?.map((course: Course) => (
+            {/* Dynamic Routes */}
+            {subjects.map((subject: Subject) => (
+              <>
                 <Route
-                  key={`course_${course.id}`}
-                  path={course.route}
-                  element={renderComponent(course.component, { course })}
+                  key={`subject_${subject.id}`}
+                  path={subject.route}
+                  element={renderComponent("subjectLayout", { subject })}
                 />
-              ))}
-            </>
-          ))}
-        </Routes>
+                {subject.courses?.map((course: Course) => (
+                  <Route
+                    key={`course_${course.id}`}
+                    path={course.route}
+                    element={renderComponent(course.component, { course })}
+                  />
+                ))}
+              </>
+            ))}
+
+            {/* 404 Catch-all Route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </div>
     </>
   );
@@ -93,7 +111,7 @@ const Container: React.FC = () => {
 
   return (
     <HashRouter>
-      <div className="min-h-screen max-w-[430px] mx-auto flex flex-col bg-[#FFFBF0]">
+      <div className="min-h-screen flex flex-col bg-[#FFFBF0]">
         <ContainerContent />
       </div>
     </HashRouter>

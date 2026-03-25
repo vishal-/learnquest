@@ -136,7 +136,7 @@ export default function Counting1To20({ course }: { course: Course }) {
     <>
       <ConfettiBurst active={showConfetti} />
 
-      <CourseContent>
+      <CourseContent course={course}>
         <CourseContent.Title
           title={course.label}
           description={course.description}
