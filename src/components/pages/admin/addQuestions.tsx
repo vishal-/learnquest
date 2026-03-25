@@ -281,41 +281,20 @@ const AddQuestionsPage: React.FC = () => {
                       textareaSize="md"
                     />
 
-                    {/* Options */}
+                    {/* Options with Answer Selection */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Options
-                      </label>
-                      <div className="grid grid-cols-2 gap-2">
-                        {question.options.map((option, optIndex) => (
-                          <Input
-                            key={optIndex}
-                            value={option}
-                            onChange={(e) => {
-                              const updatedOptions = [...question.options];
-                              updatedOptions[optIndex] = e.target.value;
-                              handleEditQuestion(
-                                question.id,
-                                "options",
-                                updatedOptions
-                              );
-                            }}
-                            placeholder={`Option ${String.fromCharCode(65 + optIndex)}`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Answer */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Correct Answer
+                        Options & Correct Answer
                       </label>
                       <div className="space-y-2">
                         {question.options.map((option, optIndex) => (
-                          <label
+                          <div
                             key={optIndex}
-                            className="flex items-center p-2 rounded-lg hover:bg-blue-50 cursor-pointer border-2 border-transparent hover:border-blue-300 transition-all"
+                            className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                              question.answer === option
+                                ? "border-blue-500 bg-blue-50"
+                                : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
+                            }`}
                           >
                             <input
                               type="radio"
@@ -329,12 +308,23 @@ const AddQuestionsPage: React.FC = () => {
                                   option
                                 )
                               }
-                              className="w-4 h-4 text-blue-600 cursor-pointer"
+                              className="w-4 h-4 text-blue-600 cursor-pointer flex-shrink-0"
                             />
-                            <span className="ml-3 text-sm text-gray-700">
-                              {option}
-                            </span>
-                          </label>
+                            <Input
+                              value={option}
+                              onChange={(e) => {
+                                const updatedOptions = [...question.options];
+                                updatedOptions[optIndex] = e.target.value;
+                                handleEditQuestion(
+                                  question.id,
+                                  "options",
+                                  updatedOptions
+                                );
+                              }}
+                              placeholder={`Option ${String.fromCharCode(65 + optIndex)}`}
+                              className="flex-grow"
+                            />
+                          </div>
                         ))}
                       </div>
                     </div>
