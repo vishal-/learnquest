@@ -15,8 +15,9 @@ const getRandomElements = <T,>(arr: T[], count: number): T[] => {
 type CountryCapitalMap = Record<string, string>;
 
 const CapitalOfCountries: React.FC<{ course: Course }> = ({
-  course: { label, description }
+  course
 }) => {
+  const { label, description } = course;
   const [countriesAndCapitals, setCountriesAndCapitals] =
     useState<CountryCapitalMap>({});
   const [loading, setLoading] = useState(true);
