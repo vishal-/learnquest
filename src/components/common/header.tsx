@@ -10,6 +10,7 @@ import { auth } from "../../config/firebase.config";
 import { FiLogOut, FiLogIn } from "react-icons/fi";
 import { useAdmin } from "../../hooks/useAdmin";
 import { MdAdminPanelSettings } from "react-icons/md";
+import { trackSignOut } from "../../lib/analytics";
 
 const DrawerItem: React.FC<{
   label: string;
@@ -71,6 +72,7 @@ const Header: React.FC = () => {
 
   const handleSignOut = async () => {
     try {
+      trackSignOut();
       await signOut(auth);
       setIsDrawerOpen(false);
       navigate("/");

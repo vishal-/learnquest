@@ -10,6 +10,7 @@ import { useAuthStore } from "../../store/authStore";
 import { useNavigate } from "react-router-dom";
 import Button from "../ui/button";
 import { FcGoogle } from "react-icons/fc";
+import { trackSignIn } from "../../lib/analytics";
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const SignIn: React.FC = () => {
       try {
         const provider = new GoogleAuthProvider();
         const result = await signInWithPopup(auth, provider);
+        trackSignIn("google");
         setUser(result.user);
         navigate("/");
       } catch (err) {

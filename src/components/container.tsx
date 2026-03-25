@@ -10,6 +10,8 @@ import { useAuthStore } from "../store/authStore";
 import { useCourseHistoryStore } from "../store/courseHistoryStore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase.config";
+import { useAnalytics, useSessionTimer } from "../hooks/useAnalytics";
+import { trackCourseAccess } from "../lib/analytics";
 import type { Subject, Course } from "../types/subject.types";
 
 // Inner component that uses useLocation (needs to be inside Router)
@@ -18,6 +20,10 @@ const ContainerContent: React.FC = () => {
   const location = useLocation();
   const { addCourseAccess } = useCourseHistoryStore();
   const lastTrackedPathRef = useRef<string | null>(null);
+
+  // Initialize analytics tracking
+  useAnalytics();
+  useSessionTimer();
 
   // Track course access when route changes
   useEffect(() => {
@@ -28,11 +34,12 @@ const ContainerContent: React.FC = () => {
       return;
     }
 
-    // Find if this path matches a course route
+    // Find if this path matches a course route and track it
     for (const subject of subjects) {
       const course = subject.courses?.find((c) => c.route === currentPath);
       if (course) {
         addCourseAccess(course);
+        trackCourseAccess(course.id, course.label, subject.id);
         lastTrackedPathRef.current = currentPath;
         break;
       }
