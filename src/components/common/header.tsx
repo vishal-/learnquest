@@ -8,6 +8,8 @@ import { useAuthStore } from "../../store/authStore";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
 import { FiLogOut, FiLogIn } from "react-icons/fi";
+import { useAdmin } from "../../hooks/useAdmin";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const DrawerItem: React.FC<{
   label: string;
@@ -40,6 +42,7 @@ const Header: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { subjects } = useSubjects();
   const { user } = useAuthStore();
+  const { isAdmin } = useAdmin();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -116,6 +119,18 @@ const Header: React.FC = () => {
                     {user.displayName || user.email}
                   </div>
                 </div>
+
+                {isAdmin && (
+                  <Link
+                    to="/admin"
+                    onClick={() => setIsDrawerOpen(false)}
+                    className="w-full flex items-center gap-2 p-3 text-left text-[#0066CC] hover:bg-[#F5EBE0] rounded transition-colors font-nunito font-semibold mb-2"
+                  >
+                    <MdAdminPanelSettings className="h-4 w-4" />
+                    Admin Dashboard
+                  </Link>
+                )}
+
                 <button
                   onClick={handleSignOut}
                   className="w-full flex items-center gap-2 p-3 text-left text-[#C93C20] hover:bg-[#F5EBE0] rounded transition-colors font-nunito font-semibold"

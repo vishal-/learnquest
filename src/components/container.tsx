@@ -54,6 +54,7 @@ const ContainerContent: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/content-upload" element={<ContentUpload />} />
+          <Route path="/admin" element={renderComponent("admin", {})} />
 
           {/* Dynamic Routes */}
           {subjects.map((subject: Subject) => (

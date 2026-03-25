@@ -3,6 +3,9 @@ import { lazy } from "react";
 
 // This maps the string identifiers from Firestore to the actual lazy-loaded components.
 export const componentMap: { [key: string]: React.LazyExoticComponent<React.ComponentType<any>> } = {
+    // Admin
+    admin: lazy(() => import("./pages/admin/adminDashboard")),
+
     // Layouts
     subjectLayout: lazy(() => import("./pages/layouts/subjectLayout")),
 
