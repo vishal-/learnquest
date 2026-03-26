@@ -1,18 +1,20 @@
-# LearnQuest - Interactive Learning for Kids
+# Wizado - Big brains, little legends
+
+**Big brains, little legends - Your learning adventure starts here**
 
 🌐 **Try it now: [wiz.poovi.in](https://wiz.poovi.in/)**
 
 ---
 
-## What is LearnQuest?
+## What is Wizado?
 
-LearnQuest is an interactive learning platform designed to make education fun and engaging for children. Through interactive activities, games, and challenges, kids can explore multiple subjects at their own pace while earning rewards and tracking their progress.
+Wizado is an interactive learning platform designed to make education fun and engaging for children. Big brains, little legends - through interactive activities, games, and challenges, kids can explore multiple subjects at their own pace while earning rewards and tracking their progress.
 
 ---
 
 ## Our Purpose
 
-We believe learning should be **engaging, fun, and accessible**. LearnQuest transforms traditional education into an interactive experience where children:
+We believe learning should be **engaging, fun, and accessible**. Wizado transforms traditional education into an interactive experience where children:
 
 - 🎮 Learn through interactive games and activities
 - 🎯 Build confidence through immediate feedback

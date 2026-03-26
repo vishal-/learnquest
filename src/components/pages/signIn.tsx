@@ -51,10 +51,10 @@ const SignIn: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 p-4">
         <div className="bg-slate-800 rounded-lg shadow-2xl p-8 max-w-md w-full border border-slate-700">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-slate-100 mb-2">
-              LearnQuest
-            </h1>
-            <p className="text-slate-400">Sign in to continue learning</p>
+            <h1 className="text-3xl font-bold text-slate-100 mb-2">Wizado</h1>
+            <p className="text-slate-400">
+              Big brains, little legends - Your learning adventure starts here
+            </p>
           </div>
 
           {error && (
