@@ -7,7 +7,7 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
     admin: lazy(() => import("./pages/admin/adminDashboard")),
 
     // Layouts
-    subjectLayout: lazy(() => import("./pages/layouts/subjectLayout")),
+    subjectLayout: lazy(() => import("./layouts/subjectLayout")),
 
     // General
     clock: lazy(() => import("./pages/general/readTheClock")),

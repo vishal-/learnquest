@@ -1,6 +1,6 @@
 import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import Header from "./layout/header";
+import Header from "./layouts/header";
 import Home from "./pages/home";
 import SignIn from "./pages/signIn";
 import AdminDashboard from "./pages/admin/adminDashboard";
