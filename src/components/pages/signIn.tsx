@@ -5,12 +5,12 @@ import {
   signOut,
   onAuthStateChanged
 } from "firebase/auth";
-import { auth } from "../../config/firebase.config";
-import { useAuthStore } from "../../store/authStore";
+import { auth } from "@/config/firebase.config";
+import { useAuthStore } from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
-import Button from "../ui/button";
+import Button from "@/components/ui/forms/button";
 import { FcGoogle } from "react-icons/fc";
-import { trackSignIn } from "../../lib/analytics";
+import { trackSignIn } from "@/lib/analytics";
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();

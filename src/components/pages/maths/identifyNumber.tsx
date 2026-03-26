@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { speak } from "../../../lib/speak";
-import { numberToWords } from "../../../lib/math.constants";
-import Feedback from "../../ui/feedback";
-import CourseContent from "../../ui/courseContent";
-import ConfettiBurst from "../../ui/confettiBurst";
-import StreakBadge from "../../ui/streakBadge";
-import Button from "../../ui/button";
-import type { Course } from "../../../types/subject.types";
+import { speak } from "@/lib/speak";
+import { numberToWords } from "@/lib/math.constants";
+import Feedback from "@/components/ui/feedback/feedback";
+import CourseContent from "@/components/ui/display/courseContent";
+import ConfettiBurst from "@/components/ui/feedback/confettiBurst";
+import StreakBadge from "@/components/ui/feedback/streakBadge";
+import Button from "@/components/ui/forms/button";
+import type { Course } from "@/types/subject.types";
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 

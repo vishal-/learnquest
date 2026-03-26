@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import type { Course } from "../../types/subject.types";
+import type { Course } from "@/types/subject.types";
 
 interface TabConfig {
   id: string;

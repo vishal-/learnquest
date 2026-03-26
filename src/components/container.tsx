@@ -1,20 +1,20 @@
 import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import Header from "./common/header";
+import Header from "./layout/header";
 import Home from "./pages/home";
 import SignIn from "./pages/signIn";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import AddQuestions from "./pages/admin/addQuestions";
 import NotFound from "./pages/notFound";
-import { useSubjects } from "../hooks/useSubjects";
+import { useSubjects } from "@/hooks/useSubjects";
 import { componentMap } from "./componentMap";
-import { useAuthStore } from "../store/authStore";
-import { useCourseHistoryStore } from "../store/courseHistoryStore";
+import { useAuthStore } from "@/store/authStore";
+import { useCourseHistoryStore } from "@/store/courseHistoryStore";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config/firebase.config";
-import { useAnalytics, useSessionTimer } from "../hooks/useAnalytics";
-import { trackCourseAccess } from "../lib/analytics";
-import type { Subject, Course } from "../types/subject.types";
+import { auth } from "@/config/firebase.config";
+import { useAnalytics, useSessionTimer } from "@/hooks/useAnalytics";
+import { trackCourseAccess } from "@/lib/analytics";
+import type { Subject, Course } from "@/types/subject.types";
 
 // Inner component that uses useLocation (needs to be inside Router)
 const ContainerContent: React.FC = () => {

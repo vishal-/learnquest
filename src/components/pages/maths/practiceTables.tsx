@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { speak } from "../../../lib/speak";
-import Feedback from "../../ui/feedback";
-import CourseContent from "../../ui/courseContent";
-import ConfettiBurst from "../../ui/confettiBurst";
-import StreakBadge from "../../ui/streakBadge";
-import Select from "../../ui/select";
-import type { Course } from "../../../types/subject.types";
+import { speak } from "@/lib/speak";
+import Feedback from "@/components/ui/feedback/feedback";
+import CourseContent from "@/components/ui/display/courseContent";
+import ConfettiBurst from "@/components/ui/feedback/confettiBurst";
+import StreakBadge from "@/components/ui/feedback/streakBadge";
+import Select from "@/components/ui/forms/select";
+import type { Course } from "@/types/subject.types";
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 

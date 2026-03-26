@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAuthStore } from "../../../store/authStore";
+import { useAuthStore } from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
 import { getIdTokenResult } from "firebase/auth";
-import AdminLayout from "../../layouts/adminLayout";
+import AdminLayout from "@/components/layouts/adminLayout";
 import { FiAlertCircle } from "react-icons/fi";
 
 const AdminDashboard: React.FC = () => {

@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { Icon } from "@iconify/react";
-import CourseContent from "../../ui/courseContent";
-import StreakBadge from "../../ui/streakBadge";
-import { useSpeech } from "../../../hooks/useSpeech";
-import type { Course } from "../../../types/subject.types";
-import ConfettiBurst from "../../ui/confettiBurst";
-import mathObjects from "../../../dataset/math.objects.json";
+import CourseContent from "@/components/ui/display/courseContent";
+import StreakBadge from "@/components/ui/feedback/streakBadge";
+import { useSpeech } from "@/hooks/useSpeech";
+import type { Course } from "@/types/subject.types";
+import ConfettiBurst from "@/components/ui/feedback/confettiBurst";
+import mathObjects from "@/dataset/math.objects.json";
 
 interface MathObject {
   name: string;

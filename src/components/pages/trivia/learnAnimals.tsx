@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
-import animalsData from "../../../dataset/animals.json";
-import AnimalDetailsPopup from "../../ui/animalDetailsPopup";
-import CourseContent from "../../ui/courseContent";
-import type { Course } from "../../../types/subject.types";
+import animalsData from "@/dataset/animals.json";
+import AnimalDetailsPopup from "@/components/ui/modals/animalDetailsPopup";
+import CourseContent from "@/components/ui/display/courseContent";
+import type { Course } from "@/types/subject.types";
 
 interface AnimalDetails {
   icon: string;

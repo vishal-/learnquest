@@ -4,11 +4,11 @@ import type {
   Subject,
   Course,
   CourseCategoryType
-} from "../../../types/subject.types";
-import { CourseCategory } from "../../../types/subject.types";
-import CourseCard from "../../common/courseCard";
-import BackButton from "../../common/backButton";
-import "../../../styles/subjectLayout.css";
+} from "@/types/subject.types";
+import { CourseCategory } from "@/types/subject.types";
+import CourseCard from "@/components/ui/cards/courseCard";
+import BackButton from "@/components/ui/navigation/backButton";
+import "@/styles/subjectLayout.css";
 
 interface TabConfig {
   id: CourseCategoryType;

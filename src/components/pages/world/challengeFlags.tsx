@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import { getFlags } from "../../../lib/firestore";
-import { appConfig } from "../../../config/app.config";
-import Button from "../../ui/button";
-import CourseContent from "../../ui/courseContent";
+import { getFlags } from "@/lib/firestore";
+import { appConfig } from "@/config/app.config";
+import Button from "@/components/ui/forms/button";
+import CourseContent from "@/components/ui/display/courseContent";
+import type { Course } from "@/types/subject.types";
 
 interface FlagData {
   image: string;
   thumbnail: string;
 }
-
-import type { Course } from "../../../types/subject.types";
 
 export default function ChallengeFlags({ course }: { course: Course }) {
   const [flags, setFlags] = useState<Record<string, FlagData>>({});

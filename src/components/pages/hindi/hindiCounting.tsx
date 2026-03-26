@@ -1,7 +1,7 @@
-import { hindiNumbers } from "../../../lib/hindi.constants";
-import { speak } from "../../../lib/speak";
-import CourseContent from "../../ui/courseContent";
-import type { Course } from "../../../types/subject.types";
+import { hindiNumbers } from "@/lib/hindi.constants";
+import { speak } from "@/lib/speak";
+import CourseContent from "@/components/ui/display/courseContent";
+import type { Course } from "@/types/subject.types";
 
 // ─── Main Component ────────────────────────────────────────────────────────
 

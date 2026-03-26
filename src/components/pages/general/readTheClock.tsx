@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { speak } from "../../../lib/speak";
-import type { Course } from "../../../types/subject.types";
-import Button from "../../ui/button";
-import Feedback from "../../ui/feedback";
-import CourseContent from "../../ui/courseContent";
-import Input from "../../ui/input";
-import ConfettiBurst from "../../ui/confettiBurst";
-import StreakBadge from "../../ui/streakBadge";
+import { speak } from "@/lib/speak";
+import type { Course } from "@/types/subject.types";
+import Button from "@/components/ui/forms/button";
+import Feedback from "@/components/ui/feedback/feedback";
+import CourseContent from "@/components/ui/display/courseContent";
+import Input from "@/components/ui/forms/input";
+import ConfettiBurst from "@/components/ui/feedback/confettiBurst";
+import StreakBadge from "@/components/ui/feedback/streakBadge";
 
 // ─── Main Component ────────────────────────────────────────────────────────
 

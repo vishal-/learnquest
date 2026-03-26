@@ -1,11 +1,11 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-import { hindiNumbers } from "../../../lib/hindi.constants";
-import { speak } from "../../../lib/speak";
-import Feedback from "../../ui/feedback";
-import CourseContent from "../../ui/courseContent";
-import ConfettiBurst from "../../ui/confettiBurst";
-import StreakBadge from "../../ui/streakBadge";
-import type { Course } from "../../../types/subject.types";
+import { hindiNumbers } from "@/lib/hindi.constants";
+import { speak } from "@/lib/speak";
+import Feedback from "@/components/ui/feedback/feedback";
+import CourseContent from "@/components/ui/display/courseContent";
+import ConfettiBurst from "@/components/ui/feedback/confettiBurst";
+import StreakBadge from "@/components/ui/feedback/streakBadge";
+import type { Course } from "@/types/subject.types";
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 

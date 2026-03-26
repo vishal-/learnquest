@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
-import { useAdmin } from "../../hooks/useAdmin";
+import { useAuthStore } from "@/store/authStore";
+import { useAdmin } from "@/hooks/useAdmin";
 import { FiLogOut, FiChevronLeft } from "react-icons/fi";
 import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebase.config";
-import { trackSignOut } from "../../lib/analytics";
+import { auth } from "@/config/firebase.config";
+import { trackSignOut } from "@/lib/analytics";
 
 interface AdminLayoutProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
-import CourseContent from "../../ui/courseContent";
-import Select from "../../ui/select";
-import type { Course } from "../../../types/subject.types";
+import CourseContent from "@/components/ui/display/courseContent";
+import Select from "@/components/ui/forms/select";
+import type { Course } from "@/types/subject.types";
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 

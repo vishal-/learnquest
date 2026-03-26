@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { getFlags } from "../../../lib/firestore";
-import { appConfig } from "../../../config/app.config";
-import CourseContent from "../../ui/courseContent";
-import type { Course } from "../../../types/subject.types";
+import { getFlags } from "@/lib/firestore";
+import { appConfig } from "@/config/app.config";
+import CourseContent from "@/components/ui/display/courseContent";
+import type { Course } from "@/types/subject.types";
 
 interface FlagData {
   image: string;

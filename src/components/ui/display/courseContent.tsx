@@ -1,7 +1,7 @@
 import * as React from "react";
-import BackButton from "../common/backButton";
-import { useSubjects } from "../../hooks/useSubjects";
-import type { Course } from "../../types/subject.types";
+import BackButton from "@/components/ui/navigation/backButton";
+import { useSubjects } from "@/hooks/useSubjects";
+import type { Course } from "@/types/subject.types";
 
 interface CourseContentProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

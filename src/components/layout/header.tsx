@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
-import Drawer from "../ui/drawer";
-import { useSubjects } from "../../hooks/useSubjects";
+import Drawer from "@/components/ui/modals/drawer";
+import { useSubjects } from "@/hooks/useSubjects";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "@/store/authStore";
 import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebase.config";
+import { auth } from "@/config/firebase.config";
 import { FiLogOut, FiLogIn } from "react-icons/fi";
-import { useAdmin } from "../../hooks/useAdmin";
+import { useAdmin } from "@/hooks/useAdmin";
 import { MdAdminPanelSettings } from "react-icons/md";
-import { trackSignOut } from "../../lib/analytics";
+import { trackSignOut } from "@/lib/analytics";
 
 const DrawerItem: React.FC<{
   label: string;

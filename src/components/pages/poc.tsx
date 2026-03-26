@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { speak } from "../../lib/speak";
+import { speak } from "@/lib/speak";
 
 // Basic Hindi numbers map (for 0–1000)
 const hindiNumbers = {

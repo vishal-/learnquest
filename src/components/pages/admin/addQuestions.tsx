@@ -1,34 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AdminLayout from "../../layouts/adminLayout";
-import Input from "../../ui/input";
-import Textarea from "../../ui/textarea";
-import Select from "../../ui/select";
-import Button from "../../ui/button";
-import { batchSaveQuestions } from "../../../lib/firestore.questions";
-import { trackFeatureUsage } from "../../../lib/analytics";
-import { QuizSubject, QuizDifficulty } from "../../../types/quiz.type";
-import type { Question } from "../../../types/quiz.type";
-import {
-  FiPlus,
-  FiTrash2,
-  FiSave,
-  FiAlertCircle,
-  FiCheck
-} from "react-icons/fi";
-
-// Helper function to create SelectOptions from enums
-const getSubjectOptions = () =>
-  Object.values(QuizSubject).map((subject) => ({
-    label: subject,
-    value: subject
-  }));
-
-const getDifficultyOptions = () =>
-  Object.values(QuizDifficulty).map((difficulty) => ({
-    label: difficulty,
-    value: difficulty
-  }));
+import AdminLayout from "@/components/layouts/adminLayout";
+import Textarea from "@/components/ui/forms/textarea";
+import Button from "@/components/ui/forms/button";
+import QuestionCard from "@/components/ui/questions/questionCard";
+import { batchSaveQuestions } from "@/lib/firestore.questions";
+import { trackFeatureUsage } from "@/lib/analytics";
+import type { Question } from "@/types/quiz.type";
+import { FiPlus, FiSave, FiAlertCircle, FiCheck } from "react-icons/fi";
 
 const AddQuestionsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -229,121 +208,15 @@ const AddQuestionsPage: React.FC = () => {
 
             <div className="grid gap-4">
               {questions.map((question, index) => (
-                <div
+                <QuestionCard
                   key={question.id}
-                  className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-semibold text-gray-900">
-                      Question {index + 1}
-                    </h3>
-                    <Button
-                      onClick={() => handleDeleteQuestion(question.id)}
-                      variant="danger"
-                      size="sm"
-                    >
-                      <FiTrash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  <div className="space-y-4">
-                    {/* Subject & Difficulty */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <Select
-                        label="Subject"
-                        options={getSubjectOptions()}
-                        value={question.subject}
-                        onChange={(value) =>
-                          handleEditQuestion(question.id, "subject", value)
-                        }
-                      />
-                      <Select
-                        label="Difficulty"
-                        options={getDifficultyOptions()}
-                        value={question.difficulty}
-                        onChange={(value) =>
-                          handleEditQuestion(question.id, "difficulty", value)
-                        }
-                      />
-                    </div>
-
-                    {/* Question Text */}
-                    <Textarea
-                      label="Question"
-                      value={question.question}
-                      onChange={(e) =>
-                        handleEditQuestion(
-                          question.id,
-                          "question",
-                          e.target.value
-                        )
-                      }
-                      textareaSize="md"
-                    />
-
-                    {/* Options with Answer Selection */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Options & Correct Answer
-                      </label>
-                      <div className="space-y-2">
-                        {question.options.map((option, optIndex) => (
-                          <div
-                            key={optIndex}
-                            className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
-                              question.answer === option
-                                ? "border-blue-500 bg-blue-50"
-                                : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name={`answer-${question.id}`}
-                              value={option}
-                              checked={question.answer === option}
-                              onChange={() =>
-                                handleEditQuestion(
-                                  question.id,
-                                  "answer",
-                                  option
-                                )
-                              }
-                              className="w-4 h-4 text-blue-600 cursor-pointer flex-shrink-0"
-                            />
-                            <Input
-                              value={option}
-                              onChange={(e) => {
-                                const updatedOptions = [...question.options];
-                                updatedOptions[optIndex] = e.target.value;
-                                handleEditQuestion(
-                                  question.id,
-                                  "options",
-                                  updatedOptions
-                                );
-                              }}
-                              placeholder={`Option ${String.fromCharCode(65 + optIndex)}`}
-                              className="flex-grow"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Explanation */}
-                    <Textarea
-                      label="Explanation"
-                      value={question.explanation}
-                      onChange={(e) =>
-                        handleEditQuestion(
-                          question.id,
-                          "explanation",
-                          e.target.value
-                        )
-                      }
-                      textareaSize="sm"
-                    />
-                  </div>
-                </div>
+                  question={question}
+                  index={index + 1}
+                  mode="edit"
+                  onEdit={handleEditQuestion}
+                  onDelete={handleDeleteQuestion}
+                  showDeleteButton={true}
+                />
               ))}
             </div>
 

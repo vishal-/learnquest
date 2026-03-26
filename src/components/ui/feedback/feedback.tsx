@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./button";
+import Button from "@/components/ui/forms/button";
 import Toast from "./toast";
 
 // ─── Encouragement Messages ────────────────────────────────────────────────

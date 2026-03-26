@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useSubjects } from "../../hooks/useSubjects";
-import { useCourseHistoryStore } from "../../store/courseHistoryStore";
+import { useSubjects } from "@/hooks/useSubjects";
+import { useCourseHistoryStore } from "@/store/courseHistoryStore";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import CourseCard from "../common/courseCard";
-import "../../styles/home.css";
+import CourseCard from "@/components/ui/cards/courseCard";
+import "@/styles/home.css";
 
 const HomePage = () => {
   const { subjects } = useSubjects();

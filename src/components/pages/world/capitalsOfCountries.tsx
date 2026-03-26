@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../config/firebase.config";
-import type { Course } from "../../../types/subject.types";
-import CourseContent from "../../ui/courseContent";
-import Button from "../../ui/button";
-import Feedback from "../../ui/feedback";
-import Loader from "../../ui/loader";
+import { db } from "@/config/firebase.config";
+import type { Course } from "@/types/subject.types";
+import CourseContent from "@/components/ui/display/courseContent";
+import Button from "@/components/ui/forms/button";
+import Feedback from "@/components/ui/feedback/feedback";
+import Loader from "@/components/ui/display/loader";
 
 const getRandomElements = <T,>(arr: T[], count: number): T[] => {
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -14,9 +14,7 @@ const getRandomElements = <T,>(arr: T[], count: number): T[] => {
 
 type CountryCapitalMap = Record<string, string>;
 
-const CapitalOfCountries: React.FC<{ course: Course }> = ({
-  course
-}) => {
+const CapitalOfCountries: React.FC<{ course: Course }> = ({ course }) => {
   const { label, description } = course;
   const [countriesAndCapitals, setCountriesAndCapitals] =
     useState<CountryCapitalMap>({});
