@@ -2,14 +2,14 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import SubjectLayout from "../subjectLayout";
-import { CourseCategory } from "../../../types/subject.types";
+import { CourseCategory } from "@/types/subject.types";
 
 // Mock dependencies
 vi.mock("@iconify/react", () => ({
   Icon: ({ icon, style }: any) => <div style={style} data-icon={icon}></div>
 }));
 vi.mock("@/components/ui/cards/courseCard", () => ({
-  default: ({ course, tab }: any) => (
+  default: ({ course }: any) => (
     <div data-testid={`course-${course.id}`}>{course.label}</div>
   )
 }));
