@@ -1,7 +1,7 @@
 {
-  "name": "Wiz Whiz - Interactive Learning App",
-  "short_name": "Wiz Whiz",
-  "description": "Educational web application for children to learn various subjects interactively",
+  "name": "Wizado - Big brains, little legends",
+  "short_name": "Wizado",
+  "description": "Big brains, little legends - Your learning adventure starts here. An interactive learning platform for children to discover and master various subjects.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,19 +9,29 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "android-chrome-192x192.png",
+      "src": "v2/favicon-16x16-v2.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "v2/favicon-32x32-v2.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "v2/android-chrome-192x192-v2.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "android-chrome-512x512.png",
+      "src": "v2/android-chrome-512x512-v2.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "apple-touch-icon.png",
+      "src": "v2/apple-touch-icon-v2.png",
       "sizes": "180x180",
       "type": "image/png"
     }

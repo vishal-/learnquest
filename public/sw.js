@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wiz-whiz-v1';
+const CACHE_NAME = 'wizado-v2';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
