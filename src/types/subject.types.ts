@@ -8,11 +8,12 @@ export type CourseCategoryType =
   (typeof CourseCategory)[keyof typeof CourseCategory];
 
 export const SubjectId = {
-  GENERAL: "g.k",
+  TRIVIA: "trivia",
   HINDI: "hindi",
   MATHS: "maths",
   STEM: "stem",
   WORLD: "world",
+  ENGLISH: "english",
 } as const;
 
 export type SubjectIdType = (typeof SubjectId)[keyof typeof SubjectId];

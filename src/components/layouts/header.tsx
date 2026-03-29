@@ -27,17 +27,17 @@ const DrawerItem: React.FC<{
 );
 
 // Helper function to get greeting based on time of day
-const getGreeting = (): { text: string; emoji: string } => {
-  const hour = new Date().getHours();
+// const getGreeting = (): { text: string; emoji: string } => {
+//   const hour = new Date().getHours();
 
-  if (hour >= 5 && hour < 12) {
-    return { text: "Good morning", emoji: "🌅" };
-  } else if (hour >= 12 && hour < 17) {
-    return { text: "Good afternoon", emoji: "☀️" };
-  } else {
-    return { text: "Good evening", emoji: "🌆" };
-  }
-};
+//   if (hour >= 5 && hour < 12) {
+//     return { text: "Good morning", emoji: "🌅" };
+//   } else if (hour >= 12 && hour < 17) {
+//     return { text: "Good afternoon", emoji: "☀️" };
+//   } else {
+//     return { text: "Good evening", emoji: "🌆" };
+//   }
+// };
 
 const Header: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -156,11 +156,11 @@ const Header: React.FC = () => {
       </Drawer>
 
       <div className="flex-1 flex flex-col justify-center">
-        <p className="font-nunito text-[12px] font-bold text-[#333] m-0 tracking-[0.5px] uppercase">
+        {/* <p className="font-nunito text-[12px] font-bold text-[#333] m-0 tracking-[0.5px] uppercase">
           {user
             ? `${getGreeting().text}, ${user.displayName?.split(" ")[0] || ""}`
             : getGreeting().text}
-        </p>
+        </p> */}
         <h1 className="font-poppins text-[16px] text-[#2D2016] m-1 leading-tight">
           {getHeaderDescription()}
         </h1>

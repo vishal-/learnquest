@@ -17,9 +17,9 @@ export const coursesData: Course[] = [
     label: "Identify the Letter",
     description: "Listen to letters and identify them from multiple choices",
     icon: "noto:input-latin-uppercase",
-    route: "/general/identify-letter",
+    route: "/english/identify-letter",
     component: "identify-letter",
-    subjectId: SubjectId.GENERAL,
+    subjectId: SubjectId.ENGLISH,
     category: CourseCategory.PRACTICE,
   },
   {
@@ -145,11 +145,11 @@ export const coursesData: Course[] = [
   },
   {
     id: "trivia_learn_animals",
-    subjectId: SubjectId.GENERAL,
+    subjectId: SubjectId.TRIVIA,
     label: "Learn About Animals",
     description: "Discover amazing facts about different animals from around the world",
     icon: "noto:dog",
-    route: "/general/learn-animals",
+    route: "/trivia/learn-animals",
     component: "learn-animals",
     category: CourseCategory.LEARN,
   },
@@ -157,10 +157,10 @@ export const coursesData: Course[] = [
 
 export const subjectsData: Subject[] = [
   {
-    id: SubjectId.GENERAL,
+    id: SubjectId.TRIVIA,
     label: "Trivia",
     description: "Explore various topics in general knowledge.",
-    route: "/general",
+    route: "/trivia",
     icon: "twemoji:brain",
     bg: "#4b1212",
     shadow: "#C94B4B",
@@ -204,7 +204,18 @@ export const subjectsData: Subject[] = [
     pageBackground: "#bde0fe",
     courses: [],
   },
-
+  {
+    id: SubjectId.ENGLISH,
+    label: "English",
+    description: "Learn & Practice English language",
+    route: "/english",
+    icon: "noto:input-latin-uppercase",
+    bg: "#2c5f8d",
+    shadow: "#4A90E2",
+    rotate: "1deg",
+    pageBackground: "#fff4e6",
+    courses: [],
+  },
   {
     id: SubjectId.WORLD,
     label: "World",

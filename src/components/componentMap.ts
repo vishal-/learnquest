@@ -9,9 +9,8 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
     // Layouts
     subjectLayout: lazy(() => import("./layouts/subjectLayout")),
 
-    // General
-    clock: lazy(() => import("./pages/general/readTheClock")),
-    "identify-letter": lazy(() => import("./pages/general/identifyLetter")),
+    // English
+    "identify-letter": lazy(() => import("./pages/english/identifyLetter")),
 
     // Hindi
     counting: lazy(() => import("./pages/hindi/hindiCounting")),
@@ -19,6 +18,7 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
 
     // Maths
     "learn-tables": lazy(() => import("./pages/maths/learnTables")),
+    clock: lazy(() => import("./pages/maths/readTheClock")),
     "practice-tables": lazy(() => import("./pages/maths/practiceTables")),
     "identify-number": lazy(() => import("./pages/maths/identifyNumber")),
     "counting-1-20": lazy(() => import("./pages/maths/counting1To20")),

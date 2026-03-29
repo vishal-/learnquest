@@ -67,26 +67,26 @@ describe("Header Component", () => {
     expect(menuButton).toBeInTheDocument();
   });
 
-  it("should show greeting based on current time", () => {
-    (authStore.useAuthStore as any).mockReturnValue({
-      user: null
-    });
+  //   it("should show greeting based on current time", () => {
+  //     (authStore.useAuthStore as any).mockReturnValue({
+  //       user: null
+  //     });
 
-    const hour = new Date().getHours();
-    let expectedGreeting = "";
+  //     const hour = new Date().getHours();
+  //     let expectedGreeting = "";
 
-    if (hour >= 5 && hour < 12) {
-      expectedGreeting = "Good morning";
-    } else if (hour >= 12 && hour < 17) {
-      expectedGreeting = "Good afternoon";
-    } else {
-      expectedGreeting = "Good evening";
-    }
+  //     if (hour >= 5 && hour < 12) {
+  //       expectedGreeting = "Good morning";
+  //     } else if (hour >= 12 && hour < 17) {
+  //       expectedGreeting = "Good afternoon";
+  //     } else {
+  //       expectedGreeting = "Good evening";
+  //     }
 
-    renderHeader();
-    const greetingText = screen.getByText(new RegExp(expectedGreeting, "i"));
-    expect(greetingText).toBeInTheDocument();
-  });
+  //     renderHeader();
+  //     const greetingText = screen.getByText(new RegExp(expectedGreeting, "i"));
+  //     expect(greetingText).toBeInTheDocument();
+  //   });
 
   it("should display user name when logged in", () => {
     (authStore.useAuthStore as any).mockReturnValue({
