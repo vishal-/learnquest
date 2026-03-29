@@ -1,0 +1,1338 @@
+{
+  "Afghanistan": {
+    "flag": "twemoji:flag-afghanistan",
+    "capital": "Kabul",
+    "currency": "Afghan Afghani",
+    "continent": "Asia",
+    "languages": ["Pashto", "Dari"],
+    "about": "Afghanistan is a landlocked country in Asia known for rugged mountains, ancient trade routes, and diverse cultural history."
+  },
+  "Albania": {
+    "flag": "twemoji:flag-albania",
+    "capital": "Tirana",
+    "currency": "Albanian Lek",
+    "continent": "Europe",
+    "languages": ["Albanian"],
+    "about": "Albania is a Balkan country with Adriatic coastline, rich history, and a blend of cultural influences."
+  },
+  "Algeria": {
+    "flag": "twemoji:flag-algeria",
+    "capital": "Algiers",
+    "currency": "Algerian Dinar",
+    "continent": "Africa",
+    "languages": ["Arabic", "Berber"],
+    "about": "Algeria is Africa’s largest country, featuring Sahara desert landscapes and a Mediterranean coastline."
+  },
+  "Andorra": {
+    "flag": "twemoji:flag-andorra",
+    "capital": "Andorra la Vella",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Catalan"],
+    "about": "Andorra is a small principality in the Pyrenees mountains known for skiing and tourism."
+  },
+  "Angola": {
+    "flag": "twemoji:flag-angola",
+    "capital": "Luanda",
+    "currency": "Angolan Kwanza",
+    "continent": "Africa",
+    "languages": ["Portuguese"],
+    "about": "Angola is a southern African country rich in natural resources and known for its Atlantic coastline."
+  },
+  "Antigua and Barbuda": {
+    "flag": "twemoji:flag-antigua-and-barbuda",
+    "capital": "Saint John's",
+    "currency": "East Caribbean Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Antigua and Barbuda is a Caribbean nation known for beaches and coral reefs."
+  },
+  "Argentina": {
+    "flag": "twemoji:flag-argentina",
+    "capital": "Buenos Aires",
+    "currency": "Argentine Peso",
+    "continent": "South America",
+    "languages": ["Spanish"],
+    "about": "Argentina is known for tango, diverse landscapes, and vibrant cultural life."
+  },
+  "Armenia": {
+    "flag": "twemoji:flag-armenia",
+    "capital": "Yerevan",
+    "currency": "Armenian Dram",
+    "continent": "Asia",
+    "languages": ["Armenian"],
+    "about": "Armenia is a mountainous country with ancient history and rich cultural heritage."
+  },
+  "Australia": {
+    "flag": "twemoji:flag-australia",
+    "capital": "Canberra",
+    "currency": "Australian Dollar",
+    "continent": "Oceania",
+    "languages": ["English"],
+    "about": "Australia is a vast island nation known for unique wildlife and diverse landscapes."
+  },
+  "Austria": {
+    "flag": "twemoji:flag-austria",
+    "capital": "Vienna",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["German"],
+    "about": "Austria is known for alpine scenery, classical music heritage, and historic cities."
+  },
+  "Azerbaijan": {
+    "flag": "twemoji:flag-azerbaijan",
+    "capital": "Baku",
+    "currency": "Azerbaijani Manat",
+    "continent": "Asia",
+    "languages": ["Azerbaijani"],
+    "about": "Azerbaijan lies at the crossroads of Europe and Asia, known for oil reserves and rich culture."
+  },
+  "Bahamas": {
+    "flag": "twemoji:flag-bahamas",
+    "capital": "Nassau",
+    "currency": "Bahamian Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "The Bahamas is a Caribbean country known for beaches, coral reefs, and tourism."
+  },
+  "Bahrain": {
+    "flag": "twemoji:flag-bahrain",
+    "capital": "Manama",
+    "currency": "Bahraini Dinar",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Bahrain is a small island nation in the Persian Gulf known for finance and oil."
+  },
+  "Bangladesh": {
+    "flag": "twemoji:flag-bangladesh",
+    "capital": "Dhaka",
+    "currency": "Bangladeshi Taka",
+    "continent": "Asia",
+    "languages": ["Bengali"],
+    "about": "Bangladesh is a densely populated country known for rivers, agriculture, and textile industry."
+  },
+  "Barbados": {
+    "flag": "twemoji:flag-barbados",
+    "capital": "Bridgetown",
+    "currency": "Barbadian Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Barbados is a Caribbean island nation known for beaches and British colonial heritage."
+  },
+  "Belarus": {
+    "flag": "twemoji:flag-belarus",
+    "capital": "Minsk",
+    "currency": "Belarusian Ruble",
+    "continent": "Europe",
+    "languages": ["Belarusian", "Russian"],
+    "about": "Belarus is an Eastern European country known for forests and Soviet-era architecture."
+  },
+  "Belgium": {
+    "flag": "twemoji:flag-belgium",
+    "capital": "Brussels",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Dutch", "French"],
+    "about": "Belgium is known for medieval towns, EU institutions, and diverse culture."
+  },
+  "Belize": {
+    "flag": "twemoji:flag-belize",
+    "capital": "Belmopan",
+    "currency": "Belize Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Belize is known for Caribbean coastlines, reefs, and Mayan ruins."
+  },
+  "Benin": {
+    "flag": "twemoji:flag-benin",
+    "capital": "Porto-Novo",
+    "currency": "West African CFA Franc",
+    "continent": "Africa",
+    "languages": ["French"],
+    "about": "Benin is a West African country known for history of the Dahomey Kingdom."
+  },
+  "Bhutan": {
+    "flag": "twemoji:flag-bhutan",
+    "capital": "Thimphu",
+    "currency": "Bhutanese Ngultrum",
+    "continent": "Asia",
+    "languages": ["Dzongkha"],
+    "about": "Bhutan is a Himalayan kingdom known for Gross National Happiness and monasteries."
+  },
+  "Bolivia": {
+    "flag": "twemoji:flag-bolivia",
+    "capital": "Sucre",
+    "currency": "Bolivian Boliviano",
+    "continent": "South America",
+    "languages": ["Spanish"],
+    "about": "Bolivia is known for Andes mountains, salt flats, and indigenous culture."
+  },
+  "Bosnia and Herzegovina": {
+    "flag": "twemoji:flag-bosnia-and-herzegovina",
+    "capital": "Sarajevo",
+    "currency": "Convertible Mark",
+    "continent": "Europe",
+    "languages": ["Bosnian", "Croatian"],
+    "about": "Bosnia and Herzegovina is known for diverse culture and Ottoman-era architecture."
+  },
+  "Botswana": {
+    "flag": "twemoji:flag-botswana",
+    "capital": "Gaborone",
+    "currency": "Botswana Pula",
+    "continent": "Africa",
+    "languages": ["English", "Tswana"],
+    "about": "Botswana is known for wildlife, especially the Okavango Delta."
+  },
+  "Brazil": {
+    "flag": "twemoji:flag-brazil",
+    "capital": "Brasília",
+    "currency": "Brazilian Real",
+    "continent": "South America",
+    "languages": ["Portuguese"],
+    "about": "Brazil is South America’s largest country, famous for Amazon rainforest and Carnival."
+  },
+  "Brunei": {
+    "flag": "twemoji:flag-brunei",
+    "capital": "Bandar Seri Begawan",
+    "currency": "Brunei Dollar",
+    "continent": "Asia",
+    "languages": ["Malay"],
+    "about": "Brunei is a wealthy Southeast Asian nation known for oil reserves and Islamic culture."
+  },
+  "El Salvador": {
+    "flag": "twemoji:flag-el-salvador",
+    "capital": "San Salvador",
+    "currency": "US Dollar",
+    "continent": "North America",
+    "languages": ["Spanish"],
+    "about": "El Salvador is Central America’s smallest country, known for volcanoes and Pacific coastline."
+  },
+  "Equatorial Guinea": {
+    "flag": "twemoji:flag-equatorial-guinea",
+    "capital": "Malabo",
+    "currency": "Central African CFA Franc",
+    "continent": "Africa",
+    "languages": ["Spanish", "French"],
+    "about": "Equatorial Guinea is an oil-rich country with mainland and island territories."
+  },
+  "Eritrea": {
+    "flag": "twemoji:flag-eritrea",
+    "capital": "Asmara",
+    "currency": "Eritrean Nakfa",
+    "continent": "Africa",
+    "languages": ["Tigrinya", "Arabic"],
+    "about": "Eritrea is a Horn of Africa nation known for Red Sea coastline and Italian-era architecture."
+  },
+  "Estonia": {
+    "flag": "twemoji:flag-estonia",
+    "capital": "Tallinn",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Estonian"],
+    "about": "Estonia is a Baltic country known for digital innovation and medieval architecture."
+  },
+  "Eswatini": {
+    "flag": "twemoji:flag-eswatini",
+    "capital": "Mbabane",
+    "currency": "Swazi Lilangeni",
+    "continent": "Africa",
+    "languages": ["Swati", "English"],
+    "about": "Eswatini is a small monarchy in southern Africa known for cultural festivals."
+  },
+  "Ethiopia": {
+    "flag": "twemoji:flag-ethiopia",
+    "capital": "Addis Ababa",
+    "currency": "Ethiopian Birr",
+    "continent": "Africa",
+    "languages": ["Amharic"],
+    "about": "Ethiopia is one of Africa’s oldest nations, known for ancient history and diverse cultures."
+  },
+  "Fiji": {
+    "flag": "twemoji:flag-fiji",
+    "capital": "Suva",
+    "currency": "Fijian Dollar",
+    "continent": "Oceania",
+    "languages": ["English", "Fijian"],
+    "about": "Fiji is an island nation in the Pacific known for beaches and coral reefs."
+  },
+  "Finland": {
+    "flag": "twemoji:flag-finland",
+    "capital": "Helsinki",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Finnish", "Swedish"],
+    "about": "Finland is known for lakes, forests, and high quality of life."
+  },
+  "France": {
+    "flag": "twemoji:flag-france",
+    "capital": "Paris",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["French"],
+    "about": "France is known for art, cuisine, and global cultural influence."
+  },
+  "Gabon": {
+    "flag": "twemoji:flag-gabon",
+    "capital": "Libreville",
+    "currency": "Central African CFA Franc",
+    "continent": "Africa",
+    "languages": ["French"],
+    "about": "Gabon is rich in biodiversity with rainforests and wildlife."
+  },
+  "Gambia": {
+    "flag": "twemoji:flag-gambia",
+    "capital": "Banjul",
+    "currency": "Gambian Dalasi",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "The Gambia is a small West African country along the Gambia River."
+  },
+  "Georgia": {
+    "flag": "twemoji:flag-georgia",
+    "capital": "Tbilisi",
+    "currency": "Georgian Lari",
+    "continent": "Asia",
+    "languages": ["Georgian"],
+    "about": "Georgia lies at the crossroads of Europe and Asia, known for wine and mountains."
+  },
+  "Germany": {
+    "flag": "twemoji:flag-germany",
+    "capital": "Berlin",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["German"],
+    "about": "Germany is Europe’s largest economy, known for engineering and history."
+  },
+  "Ghana": {
+    "flag": "twemoji:flag-ghana",
+    "capital": "Accra",
+    "currency": "Ghanaian Cedi",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "Ghana is known for gold, cocoa, and rich cultural heritage."
+  },
+  "Greece": {
+    "flag": "twemoji:flag-greece",
+    "capital": "Athens",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Greek"],
+    "about": "Greece is known for ancient civilization, islands, and Mediterranean culture."
+  },
+  "Grenada": {
+    "flag": "twemoji:flag-grenada",
+    "capital": "St. George's",
+    "currency": "East Caribbean Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Grenada is a Caribbean island known as the Spice Isle."
+  },
+  "Guatemala": {
+    "flag": "twemoji:flag-guatemala",
+    "capital": "Guatemala City",
+    "currency": "Guatemalan Quetzal",
+    "continent": "North America",
+    "languages": ["Spanish"],
+    "about": "Guatemala is known for Mayan heritage, volcanoes, and rainforests."
+  },
+  "Guinea": {
+    "flag": "twemoji:flag-guinea",
+    "capital": "Conakry",
+    "currency": "Guinean Franc",
+    "continent": "Africa",
+    "languages": ["French"],
+    "about": "Guinea is a West African country rich in minerals and natural resources."
+  },
+  "Guinea-Bissau": {
+    "flag": "twemoji:flag-guinea-bissau",
+    "capital": "Bissau",
+    "currency": "West African CFA Franc",
+    "continent": "Africa",
+    "languages": ["Portuguese"],
+    "about": "Guinea-Bissau is known for coastal islands and biodiversity."
+  },
+  "Guyana": {
+    "flag": "twemoji:flag-guyana",
+    "capital": "Georgetown",
+    "currency": "Guyanese Dollar",
+    "continent": "South America",
+    "languages": ["English"],
+    "about": "Guyana is known for rainforests and waterfalls like Kaieteur Falls."
+  },
+  "Haiti": {
+    "flag": "twemoji:flag-haiti",
+    "capital": "Port-au-Prince",
+    "currency": "Haitian Gourde",
+    "continent": "North America",
+    "languages": ["French", "Haitian Creole"],
+    "about": "Haiti is known for vibrant culture and history as the first Black republic."
+  },
+  "Honduras": {
+    "flag": "twemoji:flag-honduras",
+    "capital": "Tegucigalpa",
+    "currency": "Honduran Lempira",
+    "continent": "North America",
+    "languages": ["Spanish"],
+    "about": "Honduras is known for Caribbean beaches and Mayan ruins."
+  },
+  "Hungary": {
+    "flag": "twemoji:flag-hungary",
+    "capital": "Budapest",
+    "currency": "Hungarian Forint",
+    "continent": "Europe",
+    "languages": ["Hungarian"],
+    "about": "Hungary is known for thermal baths and historic Budapest."
+  },
+  "Iceland": {
+    "flag": "twemoji:flag-iceland",
+    "capital": "Reykjavík",
+    "currency": "Icelandic Króna",
+    "continent": "Europe",
+    "languages": ["Icelandic"],
+    "about": "Iceland is known for volcanoes, glaciers, and geothermal energy."
+  },
+  "India": {
+    "flag": "twemoji:flag-india",
+    "capital": "New Delhi",
+    "currency": "Indian Rupee",
+    "continent": "Asia",
+    "languages": ["Hindi", "English"],
+    "about": "India is a diverse country with rich culture, history, and rapid economic growth."
+  },
+  "Indonesia": {
+    "flag": "twemoji:flag-indonesia",
+    "capital": "Jakarta",
+    "currency": "Indonesian Rupiah",
+    "continent": "Asia",
+    "languages": ["Indonesian"],
+    "about": "Indonesia is an archipelago of thousands of islands known for biodiversity and cultural diversity."
+  },
+  "Iran": {
+    "flag": "twemoji:flag-iran",
+    "capital": "Tehran",
+    "currency": "Iranian Rial",
+    "continent": "Asia",
+    "languages": ["Persian"],
+    "about": "Iran is known for ancient Persian history, cultural heritage, and diverse landscapes."
+  },
+  "Iraq": {
+    "flag": "twemoji:flag-iraq",
+    "capital": "Baghdad",
+    "currency": "Iraqi Dinar",
+    "continent": "Asia",
+    "languages": ["Arabic", "Kurdish"],
+    "about": "Iraq is home to ancient Mesopotamian civilization and rich historical heritage."
+  },
+  "Ireland": {
+    "flag": "twemoji:flag-ireland",
+    "capital": "Dublin",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["English", "Irish"],
+    "about": "Ireland is known for green landscapes, folklore, and vibrant culture."
+  },
+  "Israel": {
+    "flag": "twemoji:flag-israel",
+    "capital": "Jerusalem",
+    "currency": "Israeli New Shekel",
+    "continent": "Asia",
+    "languages": ["Hebrew", "Arabic"],
+    "about": "Israel is known for historical and religious significance and advanced technology sector."
+  },
+  "Italy": {
+    "flag": "twemoji:flag-italy",
+    "capital": "Rome",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Italian"],
+    "about": "Italy is known for art, cuisine, and historic landmarks like the Colosseum."
+  },
+  "Jamaica": {
+    "flag": "twemoji:flag-jamaica",
+    "capital": "Kingston",
+    "currency": "Jamaican Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Jamaica is known for reggae music, beaches, and vibrant culture."
+  },
+  "Japan": {
+    "flag": "twemoji:flag-japan",
+    "capital": "Tokyo",
+    "currency": "Japanese Yen",
+    "continent": "Asia",
+    "languages": ["Japanese"],
+    "about": "Japan blends tradition and technology, known for innovation and cultural heritage."
+  },
+  "Jordan": {
+    "flag": "twemoji:flag-jordan",
+    "capital": "Amman",
+    "currency": "Jordanian Dinar",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Jordan is known for historical sites like Petra and desert landscapes."
+  },
+  "Kazakhstan": {
+    "flag": "twemoji:flag-kazakhstan",
+    "capital": "Astana",
+    "currency": "Kazakhstani Tenge",
+    "continent": "Asia",
+    "languages": ["Kazakh", "Russian"],
+    "about": "Kazakhstan is a vast Central Asian country known for steppes and natural resources."
+  },
+  "Kenya": {
+    "flag": "twemoji:flag-kenya",
+    "capital": "Nairobi",
+    "currency": "Kenyan Shilling",
+    "continent": "Africa",
+    "languages": ["English", "Swahili"],
+    "about": "Kenya is known for wildlife safaris and diverse landscapes."
+  },
+  "Kiribati": {
+    "flag": "twemoji:flag-kiribati",
+    "capital": "South Tarawa",
+    "currency": "Australian Dollar",
+    "continent": "Oceania",
+    "languages": ["English", "Gilbertese"],
+    "about": "Kiribati is a Pacific island nation threatened by rising sea levels."
+  },
+  "Kuwait": {
+    "flag": "twemoji:flag-kuwait",
+    "capital": "Kuwait City",
+    "currency": "Kuwaiti Dinar",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Kuwait is a wealthy Gulf country known for oil reserves."
+  },
+  "Kyrgyzstan": {
+    "flag": "twemoji:flag-kyrgyzstan",
+    "capital": "Bishkek",
+    "currency": "Kyrgyzstani Som",
+    "continent": "Asia",
+    "languages": ["Kyrgyz", "Russian"],
+    "about": "Kyrgyzstan is known for mountainous terrain and nomadic traditions."
+  },
+  "Laos": {
+    "flag": "twemoji:flag-laos",
+    "capital": "Vientiane",
+    "currency": "Lao Kip",
+    "continent": "Asia",
+    "languages": ["Lao"],
+    "about": "Laos is a landlocked Southeast Asian country known for Buddhist monasteries."
+  },
+  "Latvia": {
+    "flag": "twemoji:flag-latvia",
+    "capital": "Riga",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Latvian"],
+    "about": "Latvia is a Baltic country known for forests and historic architecture."
+  },
+  "Lebanon": {
+    "flag": "twemoji:flag-lebanon",
+    "capital": "Beirut",
+    "currency": "Lebanese Pound",
+    "continent": "Asia",
+    "languages": ["Arabic", "French"],
+    "about": "Lebanon is known for Mediterranean culture and ancient history."
+  },
+  "Lesotho": {
+    "flag": "twemoji:flag-lesotho",
+    "capital": "Maseru",
+    "currency": "Lesotho Loti",
+    "continent": "Africa",
+    "languages": ["Sesotho", "English"],
+    "about": "Lesotho is a mountainous country entirely surrounded by South Africa."
+  },
+  "Liberia": {
+    "flag": "twemoji:flag-liberia",
+    "capital": "Monrovia",
+    "currency": "Liberian Dollar",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "Liberia is known for its history as a settlement for freed slaves."
+  },
+  "Libya": {
+    "flag": "twemoji:flag-libya",
+    "capital": "Tripoli",
+    "currency": "Libyan Dinar",
+    "continent": "Africa",
+    "languages": ["Arabic"],
+    "about": "Libya is a North African country with vast deserts and oil resources."
+  },
+  "Liechtenstein": {
+    "flag": "twemoji:flag-liechtenstein",
+    "capital": "Vaduz",
+    "currency": "Swiss Franc",
+    "continent": "Europe",
+    "languages": ["German"],
+    "about": "Liechtenstein is a small alpine principality known for banking and mountains."
+  },
+  "Lithuania": {
+    "flag": "twemoji:flag-lithuania",
+    "capital": "Vilnius",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Lithuanian"],
+    "about": "Lithuania is a Baltic country known for forests and medieval history."
+  },
+  "Luxembourg": {
+    "flag": "twemoji:flag-luxembourg",
+    "capital": "Luxembourg",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Luxembourgish", "French"],
+    "about": "Luxembourg is a small European country known for finance and high income."
+  },
+  "Madagascar": {
+    "flag": "twemoji:flag-madagascar",
+    "capital": "Antananarivo",
+    "currency": "Malagasy Ariary",
+    "continent": "Africa",
+    "languages": ["Malagasy", "French"],
+    "about": "Madagascar is known for unique wildlife found nowhere else."
+  },
+  "Malawi": {
+    "flag": "twemoji:flag-malawi",
+    "capital": "Lilongwe",
+    "currency": "Malawian Kwacha",
+    "continent": "Africa",
+    "languages": ["English", "Chichewa"],
+    "about": "Malawi is known as the Warm Heart of Africa and Lake Malawi."
+  },
+  "Malaysia": {
+    "flag": "twemoji:flag-malaysia",
+    "capital": "Kuala Lumpur",
+    "currency": "Malaysian Ringgit",
+    "continent": "Asia",
+    "languages": ["Malay"],
+    "about": "Malaysia is a Southeast Asian country known for rainforests, diverse culture, and modern cities."
+  },
+  "Maldives": {
+    "flag": "twemoji:flag-maldives",
+    "capital": "Malé",
+    "currency": "Maldivian Rufiyaa",
+    "continent": "Asia",
+    "languages": ["Dhivehi"],
+    "about": "Maldives is an island nation known for coral reefs, luxury resorts, and clear waters."
+  },
+  "Mali": {
+    "flag": "twemoji:flag-mali",
+    "capital": "Bamako",
+    "currency": "West African CFA Franc",
+    "continent": "Africa",
+    "languages": ["French"],
+    "about": "Mali is a West African country known for ancient cities like Timbuktu."
+  },
+  "Malta": {
+    "flag": "twemoji:flag-malta",
+    "capital": "Valletta",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Maltese", "English"],
+    "about": "Malta is a Mediterranean island nation known for historic sites and tourism."
+  },
+  "Marshall Islands": {
+    "flag": "twemoji:flag-marshall-islands",
+    "capital": "Majuro",
+    "currency": "US Dollar",
+    "continent": "Oceania",
+    "languages": ["Marshallese", "English"],
+    "about": "Marshall Islands is a Pacific nation of coral atolls vulnerable to rising sea levels."
+  },
+  "Mauritania": {
+    "flag": "twemoji:flag-mauritania",
+    "capital": "Nouakchott",
+    "currency": "Mauritanian Ouguiya",
+    "continent": "Africa",
+    "languages": ["Arabic"],
+    "about": "Mauritania is largely desert with nomadic traditions and Saharan landscapes."
+  },
+  "Mauritius": {
+    "flag": "twemoji:flag-mauritius",
+    "capital": "Port Louis",
+    "currency": "Mauritian Rupee",
+    "continent": "Africa",
+    "languages": ["English", "French"],
+    "about": "Mauritius is an island nation known for beaches, reefs, and multicultural society."
+  },
+  "Mexico": {
+    "flag": "twemoji:flag-mexico",
+    "capital": "Mexico City",
+    "currency": "Mexican Peso",
+    "continent": "North America",
+    "languages": ["Spanish"],
+    "about": "Mexico is known for ancient civilizations, cuisine, and vibrant culture."
+  },
+  "Micronesia": {
+    "flag": "twemoji:flag-micronesia",
+    "capital": "Palikir",
+    "currency": "US Dollar",
+    "continent": "Oceania",
+    "languages": ["English"],
+    "about": "Micronesia is a Pacific island nation consisting of many small islands."
+  },
+  "Moldova": {
+    "flag": "twemoji:flag-moldova",
+    "capital": "Chișinău",
+    "currency": "Moldovan Leu",
+    "continent": "Europe",
+    "languages": ["Romanian"],
+    "about": "Moldova is an Eastern European country known for vineyards and rural landscapes."
+  },
+  "Monaco": {
+    "flag": "twemoji:flag-monaco",
+    "capital": "Monaco",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["French"],
+    "about": "Monaco is a tiny wealthy principality known for casinos and luxury lifestyle."
+  },
+  "Mongolia": {
+    "flag": "twemoji:flag-mongolia",
+    "capital": "Ulaanbaatar",
+    "currency": "Mongolian Tögrög",
+    "continent": "Asia",
+    "languages": ["Mongolian"],
+    "about": "Mongolia is known for vast steppes and nomadic traditions."
+  },
+  "Montenegro": {
+    "flag": "twemoji:flag-montenegro",
+    "capital": "Podgorica",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Montenegrin"],
+    "about": "Montenegro is known for Adriatic coastlines and mountainous terrain."
+  },
+  "Morocco": {
+    "flag": "twemoji:flag-morocco",
+    "capital": "Rabat",
+    "currency": "Moroccan Dirham",
+    "continent": "Africa",
+    "languages": ["Arabic", "Berber"],
+    "about": "Morocco is known for deserts, markets, and historic cities like Marrakech."
+  },
+  "Mozambique": {
+    "flag": "twemoji:flag-mozambique",
+    "capital": "Maputo",
+    "currency": "Mozambican Metical",
+    "continent": "Africa",
+    "languages": ["Portuguese"],
+    "about": "Mozambique is known for Indian Ocean coastline and marine biodiversity."
+  },
+  "Myanmar": {
+    "flag": "twemoji:flag-myanmar",
+    "capital": "Naypyidaw",
+    "currency": "Myanmar Kyat",
+    "continent": "Asia",
+    "languages": ["Burmese"],
+    "about": "Myanmar is known for Buddhist temples and diverse ethnic groups."
+  },
+  "Namibia": {
+    "flag": "twemoji:flag-namibia",
+    "capital": "Windhoek",
+    "currency": "Namibian Dollar",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "Namibia is known for deserts, wildlife, and the Namib Desert."
+  },
+  "Nauru": {
+    "flag": "twemoji:flag-nauru",
+    "capital": "Yaren",
+    "currency": "Australian Dollar",
+    "continent": "Oceania",
+    "languages": ["Nauruan", "English"],
+    "about": "Nauru is one of the world’s smallest island nations."
+  },
+  "Nepal": {
+    "flag": "twemoji:flag-nepal",
+    "capital": "Kathmandu",
+    "currency": "Nepalese Rupee",
+    "continent": "Asia",
+    "languages": ["Nepali"],
+    "about": "Nepal is home to Mount Everest and rich Himalayan culture."
+  },
+  "Netherlands": {
+    "flag": "twemoji:flag-netherlands",
+    "capital": "Amsterdam",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Dutch"],
+    "about": "Netherlands is known for canals, windmills, and cycling culture."
+  },
+  "New Zealand": {
+    "flag": "twemoji:flag-new-zealand",
+    "capital": "Wellington",
+    "currency": "New Zealand Dollar",
+    "continent": "Oceania",
+    "languages": ["English", "Māori"],
+    "about": "New Zealand is known for stunning landscapes and Maori culture."
+  },
+  "Nicaragua": {
+    "flag": "twemoji:flag-nicaragua",
+    "capital": "Managua",
+    "currency": "Nicaraguan Córdoba",
+    "continent": "North America",
+    "languages": ["Spanish"],
+    "about": "Nicaragua is known for lakes, volcanoes, and colonial cities."
+  },
+  "Niger": {
+    "flag": "twemoji:flag-niger",
+    "capital": "Niamey",
+    "currency": "West African CFA Franc",
+    "continent": "Africa",
+    "languages": ["French"],
+    "about": "Niger is a landlocked country largely covered by the Sahara desert."
+  },
+  "Nigeria": {
+    "flag": "twemoji:flag-nigeria",
+    "capital": "Abuja",
+    "currency": "Nigerian Naira",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "Nigeria is Africa’s most populous country with diverse cultures."
+  },
+  "North Korea": {
+    "flag": "twemoji:flag-north-korea",
+    "capital": "Pyongyang",
+    "currency": "North Korean Won",
+    "continent": "Asia",
+    "languages": ["Korean"],
+    "about": "North Korea is a highly centralized state with limited global interaction."
+  },
+  "North Macedonia": {
+    "flag": "twemoji:flag-north-macedonia",
+    "capital": "Skopje",
+    "currency": "Macedonian Denar",
+    "continent": "Europe",
+    "languages": ["Macedonian"],
+    "about": "North Macedonia is a Balkan country known for mountains, lakes, and historic heritage."
+  },
+  "Norway": {
+    "flag": "twemoji:flag-norway",
+    "capital": "Oslo",
+    "currency": "Norwegian Krone",
+    "continent": "Europe",
+    "languages": ["Norwegian"],
+    "about": "Norway is known for fjords, northern lights, and high living standards."
+  },
+  "Oman": {
+    "flag": "twemoji:flag-oman",
+    "capital": "Muscat",
+    "currency": "Omani Rial",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Oman is known for deserts, coastline, and rich maritime history."
+  },
+  "Pakistan": {
+    "flag": "twemoji:flag-pakistan",
+    "capital": "Islamabad",
+    "currency": "Pakistani Rupee",
+    "continent": "Asia",
+    "languages": ["Urdu", "English"],
+    "about": "Pakistan features diverse landscapes from mountains to plains and a rich cultural heritage."
+  },
+  "Palau": {
+    "flag": "twemoji:flag-palau",
+    "capital": "Ngerulmud",
+    "currency": "US Dollar",
+    "continent": "Oceania",
+    "languages": ["Palauan", "English"],
+    "about": "Palau is a Pacific island nation known for marine biodiversity and coral reefs."
+  },
+  "Panama": {
+    "flag": "twemoji:flag-panama",
+    "capital": "Panama City",
+    "currency": "Panamanian Balboa",
+    "continent": "North America",
+    "languages": ["Spanish"],
+    "about": "Panama is known for the Panama Canal connecting Atlantic and Pacific oceans."
+  },
+  "Papua New Guinea": {
+    "flag": "twemoji:flag-papua-new-guinea",
+    "capital": "Port Moresby",
+    "currency": "Papua New Guinean Kina",
+    "continent": "Oceania",
+    "languages": ["English"],
+    "about": "Papua New Guinea is known for cultural diversity and tropical rainforests."
+  },
+  "Paraguay": {
+    "flag": "twemoji:flag-paraguay",
+    "capital": "Asunción",
+    "currency": "Paraguayan Guaraní",
+    "continent": "South America",
+    "languages": ["Spanish", "Guaraní"],
+    "about": "Paraguay is known for bilingual culture and inland rivers."
+  },
+  "Peru": {
+    "flag": "twemoji:flag-peru",
+    "capital": "Lima",
+    "currency": "Peruvian Sol",
+    "continent": "South America",
+    "languages": ["Spanish"],
+    "about": "Peru is known for Machu Picchu, Andes mountains, and ancient Inca civilization."
+  },
+  "Philippines": {
+    "flag": "twemoji:flag-philippines",
+    "capital": "Manila",
+    "currency": "Philippine Peso",
+    "continent": "Asia",
+    "languages": ["Filipino", "English"],
+    "about": "Philippines is an archipelago known for beaches, biodiversity, and vibrant culture."
+  },
+  "Poland": {
+    "flag": "twemoji:flag-poland",
+    "capital": "Warsaw",
+    "currency": "Polish Złoty",
+    "continent": "Europe",
+    "languages": ["Polish"],
+    "about": "Poland is known for medieval towns and strong historical identity."
+  },
+  "Portugal": {
+    "flag": "twemoji:flag-portugal",
+    "capital": "Lisbon",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Portuguese"],
+    "about": "Portugal is known for maritime history, coastal cities, and cuisine."
+  },
+  "Qatar": {
+    "flag": "twemoji:flag-qatar",
+    "capital": "Doha",
+    "currency": "Qatari Riyal",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Qatar is a wealthy Gulf nation known for natural gas reserves and modern skyline."
+  },
+  "Romania": {
+    "flag": "twemoji:flag-romania",
+    "capital": "Bucharest",
+    "currency": "Romanian Leu",
+    "continent": "Europe",
+    "languages": ["Romanian"],
+    "about": "Romania is known for Carpathian mountains and medieval castles."
+  },
+  "Russia": {
+    "flag": "twemoji:flag-russia",
+    "capital": "Moscow",
+    "currency": "Russian Ruble",
+    "continent": "Europe/Asia",
+    "languages": ["Russian"],
+    "about": "Russia is the world’s largest country spanning Europe and Asia."
+  },
+  "Rwanda": {
+    "flag": "twemoji:flag-rwanda",
+    "capital": "Kigali",
+    "currency": "Rwandan Franc",
+    "continent": "Africa",
+    "languages": ["Kinyarwanda", "English"],
+    "about": "Rwanda is known for mountainous terrain and gorilla conservation."
+  },
+  "Saint Kitts and Nevis": {
+    "flag": "twemoji:flag-saint-kitts-and-nevis",
+    "capital": "Basseterre",
+    "currency": "East Caribbean Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Saint Kitts and Nevis is a Caribbean nation known for beaches and sugar plantations."
+  },
+  "Saint Lucia": {
+    "flag": "twemoji:flag-saint-lucia",
+    "capital": "Castries",
+    "currency": "East Caribbean Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Saint Lucia is known for volcanic beaches and the Pitons."
+  },
+  "Saint Vincent and the Grenadines": {
+    "flag": "twemoji:flag-saint-vincent-and-the-grenadines",
+    "capital": "Kingstown",
+    "currency": "East Caribbean Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "This Caribbean nation consists of a main island and smaller islands."
+  },
+  "Samoa": {
+    "flag": "twemoji:flag-samoa",
+    "capital": "Apia",
+    "currency": "Samoan Tala",
+    "continent": "Oceania",
+    "languages": ["Samoan", "English"],
+    "about": "Samoa is known for Polynesian culture and tropical scenery."
+  },
+  "San Marino": {
+    "flag": "twemoji:flag-san-marino",
+    "capital": "San Marino",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Italian"],
+    "about": "San Marino is one of the world’s smallest republics located in Italy."
+  },
+  "Sao Tome and Principe": {
+    "flag": "twemoji:flag-sao-tome-and-principe",
+    "capital": "São Tomé",
+    "currency": "São Tomé and Príncipe Dobra",
+    "continent": "Africa",
+    "languages": ["Portuguese"],
+    "about": "São Tomé and Príncipe is an island nation known for cocoa production."
+  },
+  "Saudi Arabia": {
+    "flag": "twemoji:flag-saudi-arabia",
+    "capital": "Riyadh",
+    "currency": "Saudi Riyal",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Saudi Arabia is known for deserts, oil reserves, and Islamic holy cities."
+  },
+  "Senegal": {
+    "flag": "twemoji:flag-senegal",
+    "capital": "Dakar",
+    "currency": "West African CFA Franc",
+    "continent": "Africa",
+    "languages": ["French"],
+    "about": "Senegal is known for music, culture, and Atlantic coastline."
+  },
+  "Serbia": {
+    "flag": "twemoji:flag-serbia",
+    "capital": "Belgrade",
+    "currency": "Serbian Dinar",
+    "continent": "Europe",
+    "languages": ["Serbian"],
+    "about": "Serbia is a Balkan country known for history and vibrant culture."
+  },
+  "Seychelles": {
+    "flag": "twemoji:flag-seychelles",
+    "capital": "Victoria",
+    "currency": "Seychellois Rupee",
+    "continent": "Africa",
+    "languages": ["English", "French"],
+    "about": "Seychelles is an island nation known for beaches, coral reefs, and biodiversity."
+  },
+  "Sierra Leone": {
+    "flag": "twemoji:flag-sierra-leone",
+    "capital": "Freetown",
+    "currency": "Sierra Leonean Leone",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "Sierra Leone is known for tropical beaches and rich natural resources."
+  },
+  "Singapore": {
+    "flag": "twemoji:flag-singapore",
+    "capital": "Singapore",
+    "currency": "Singapore Dollar",
+    "continent": "Asia",
+    "languages": ["English", "Malay"],
+    "about": "Singapore is a global financial hub known for cleanliness and modern infrastructure."
+  },
+  "Slovakia": {
+    "flag": "twemoji:flag-slovakia",
+    "capital": "Bratislava",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Slovak"],
+    "about": "Slovakia is known for castles, mountains, and historic towns."
+  },
+  "Slovenia": {
+    "flag": "twemoji:flag-slovenia",
+    "capital": "Ljubljana",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Slovene"],
+    "about": "Slovenia is known for lakes, Alps, and green landscapes."
+  },
+  "Solomon Islands": {
+    "flag": "twemoji:flag-solomon-islands",
+    "capital": "Honiara",
+    "currency": "Solomon Islands Dollar",
+    "continent": "Oceania",
+    "languages": ["English"],
+    "about": "Solomon Islands is a Pacific nation known for WWII history and marine life."
+  },
+  "Somalia": {
+    "flag": "twemoji:flag-somalia",
+    "capital": "Mogadishu",
+    "currency": "Somali Shilling",
+    "continent": "Africa",
+    "languages": ["Somali", "Arabic"],
+    "about": "Somalia is located in the Horn of Africa with a long coastline."
+  },
+  "South Africa": {
+    "flag": "twemoji:flag-south-africa",
+    "capital": "Pretoria",
+    "currency": "South African Rand",
+    "continent": "Africa",
+    "languages": ["English", "Zulu"],
+    "about": "South Africa is known for cultural diversity and wildlife."
+  },
+  "South Sudan": {
+    "flag": "twemoji:flag-south-sudan",
+    "capital": "Juba",
+    "currency": "South Sudanese Pound",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "South Sudan is one of the world’s newest countries with diverse cultures."
+  },
+  "South Korea": {
+    "flag": "twemoji:flag-south-korea",
+    "capital": "Seoul",
+    "currency": "South Korean Won",
+    "continent": "Asia",
+    "languages": ["Korean"],
+    "about": "South Korea is known for technology, K-pop, and economic growth."
+  },
+  "Spain": {
+    "flag": "twemoji:flag-spain",
+    "capital": "Madrid",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Spanish"],
+    "about": "Spain is known for culture, cuisine, and historic cities."
+  },
+  "Sri Lanka": {
+    "flag": "twemoji:flag-sri-lanka",
+    "capital": "Sri Jayawardenepura Kotte",
+    "currency": "Sri Lankan Rupee",
+    "continent": "Asia",
+    "languages": ["Sinhala", "Tamil"],
+    "about": "Sri Lanka is an island nation known for tea, wildlife, and ancient ruins."
+  },
+  "Sudan": {
+    "flag": "twemoji:flag-sudan",
+    "capital": "Khartoum",
+    "currency": "Sudanese Pound",
+    "continent": "Africa",
+    "languages": ["Arabic"],
+    "about": "Sudan is known for Nile River and ancient Nubian history."
+  },
+  "Suriname": {
+    "flag": "twemoji:flag-suriname",
+    "capital": "Paramaribo",
+    "currency": "Surinamese Dollar",
+    "continent": "South America",
+    "languages": ["Dutch"],
+    "about": "Suriname is known for rainforests and cultural diversity."
+  },
+  "Sweden": {
+    "flag": "twemoji:flag-sweden",
+    "capital": "Stockholm",
+    "currency": "Swedish Krona",
+    "continent": "Europe",
+    "languages": ["Swedish"],
+    "about": "Sweden is known for innovation, welfare system, and natural beauty."
+  },
+  "Switzerland": {
+    "flag": "twemoji:flag-switzerland",
+    "capital": "Bern",
+    "currency": "Swiss Franc",
+    "continent": "Europe",
+    "languages": ["German", "French"],
+    "about": "Switzerland is known for Alps, neutrality, and high living standards."
+  },
+  "Syria": {
+    "flag": "twemoji:flag-syria",
+    "capital": "Damascus",
+    "currency": "Syrian Pound",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Syria is one of the oldest inhabited regions with rich history."
+  },
+  "Tajikistan": {
+    "flag": "twemoji:flag-tajikistan",
+    "capital": "Dushanbe",
+    "currency": "Tajikistani Somoni",
+    "continent": "Asia",
+    "languages": ["Tajik"],
+    "about": "Tajikistan is a mountainous country in Central Asia."
+  },
+  "Tanzania": {
+    "flag": "twemoji:flag-tanzania",
+    "capital": "Dodoma",
+    "currency": "Tanzanian Shilling",
+    "continent": "Africa",
+    "languages": ["Swahili", "English"],
+    "about": "Tanzania is known for Mount Kilimanjaro and Serengeti wildlife."
+  },
+  "Thailand": {
+    "flag": "twemoji:flag-thailand",
+    "capital": "Bangkok",
+    "currency": "Thai Baht",
+    "continent": "Asia",
+    "languages": ["Thai"],
+    "about": "Thailand is known for beaches, temples, and vibrant street life."
+  },
+  "Timor-Leste": {
+    "flag": "twemoji:flag-timor-leste",
+    "capital": "Dili",
+    "currency": "US Dollar",
+    "continent": "Asia",
+    "languages": ["Tetum", "Portuguese"],
+    "about": "Timor-Leste is a Southeast Asian nation known for coral reefs."
+  },
+  "Togo": {
+    "flag": "twemoji:flag-togo",
+    "capital": "Lomé",
+    "currency": "West African CFA Franc",
+    "continent": "Africa",
+    "languages": ["French"],
+    "about": "Togo is a narrow West African country with diverse landscapes."
+  },
+  "Tonga": {
+    "flag": "twemoji:flag-tonga",
+    "capital": "Nuku'alofa",
+    "currency": "Tongan Paʻanga",
+    "continent": "Oceania",
+    "languages": ["Tongan", "English"],
+    "about": "Tonga is a Polynesian kingdom of many islands."
+  },
+  "Trinidad and Tobago": {
+    "flag": "twemoji:flag-trinidad-and-tobago",
+    "capital": "Port of Spain",
+    "currency": "Trinidad and Tobago Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "Trinidad and Tobago is known for Carnival and Caribbean culture."
+  },
+  "Tunisia": {
+    "flag": "twemoji:flag-tunisia",
+    "capital": "Tunis",
+    "currency": "Tunisian Dinar",
+    "continent": "Africa",
+    "languages": ["Arabic"],
+    "about": "Tunisia is known for Mediterranean coast and ancient Carthage."
+  },
+  "Turkey": {
+    "flag": "twemoji:flag-turkey",
+    "capital": "Ankara",
+    "currency": "Turkish Lira",
+    "continent": "Asia",
+    "languages": ["Turkish"],
+    "about": "Turkey bridges Europe and Asia with rich history and culture."
+  },
+  "Turkmenistan": {
+    "flag": "twemoji:flag-turkmenistan",
+    "capital": "Ashgabat",
+    "currency": "Turkmenistani Manat",
+    "continent": "Asia",
+    "languages": ["Turkmen"],
+    "about": "Turkmenistan is known for deserts and natural gas reserves."
+  },
+  "Tuvalu": {
+    "flag": "twemoji:flag-tuvalu",
+    "capital": "Funafuti",
+    "currency": "Australian Dollar",
+    "continent": "Oceania",
+    "languages": ["Tuvaluan", "English"],
+    "about": "Tuvalu is a low-lying island nation threatened by sea-level rise."
+  },
+  "Uganda": {
+    "flag": "twemoji:flag-uganda",
+    "capital": "Kampala",
+    "currency": "Ugandan Shilling",
+    "continent": "Africa",
+    "languages": ["English", "Swahili"],
+    "about": "Uganda is known for wildlife, including mountain gorillas."
+  },
+  "Ukraine": {
+    "flag": "twemoji:flag-ukraine",
+    "capital": "Kyiv",
+    "currency": "Ukrainian Hryvnia",
+    "continent": "Europe",
+    "languages": ["Ukrainian"],
+    "about": "Ukraine is known for fertile plains and rich cultural heritage."
+  },
+  "United Arab Emirates": {
+    "flag": "twemoji:flag-united-arab-emirates",
+    "capital": "Abu Dhabi",
+    "currency": "UAE Dirham",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "UAE is known for modern cities, luxury lifestyle, and desert landscapes."
+  },
+  "United Kingdom": {
+    "flag": "twemoji:flag-united-kingdom",
+    "capital": "London",
+    "currency": "British Pound",
+    "continent": "Europe",
+    "languages": ["English"],
+    "about": "UK is known for history, monarchy, and global influence."
+  },
+  "United States": {
+    "flag": "twemoji:flag-united-states",
+    "capital": "Washington, D.C.",
+    "currency": "US Dollar",
+    "continent": "North America",
+    "languages": ["English"],
+    "about": "USA is a global superpower known for innovation and cultural impact."
+  },
+  "Uruguay": {
+    "flag": "twemoji:flag-uruguay",
+    "capital": "Montevideo",
+    "currency": "Uruguayan Peso",
+    "continent": "South America",
+    "languages": ["Spanish"],
+    "about": "Uruguay is known for progressive policies and coastal cities."
+  },
+  "Uzbekistan": {
+    "flag": "twemoji:flag-uzbekistan",
+    "capital": "Tashkent",
+    "currency": "Uzbekistani Som",
+    "continent": "Asia",
+    "languages": ["Uzbek"],
+    "about": "Uzbekistan is known for Silk Road cities like Samarkand."
+  },
+  "Vanuatu": {
+    "flag": "twemoji:flag-vanuatu",
+    "capital": "Port Vila",
+    "currency": "Vanuatu Vatu",
+    "continent": "Oceania",
+    "languages": ["Bislama", "English"],
+    "about": "Vanuatu is known for volcanic islands and cultural traditions."
+  },
+  "Vatican City": {
+    "flag": "twemoji:flag-vatican-city",
+    "capital": "Vatican City",
+    "currency": "Euro",
+    "continent": "Europe",
+    "languages": ["Italian"],
+    "about": "Vatican City is the smallest independent state and headquarters of the Catholic Church."
+  },
+  "Venezuela": {
+    "flag": "twemoji:flag-venezuela",
+    "capital": "Caracas",
+    "currency": "Venezuelan Bolívar",
+    "continent": "South America",
+    "languages": ["Spanish"],
+    "about": "Venezuela is known for oil reserves and Angel Falls."
+  },
+  "Vietnam": {
+    "flag": "twemoji:flag-vietnam",
+    "capital": "Hanoi",
+    "currency": "Vietnamese Dong",
+    "continent": "Asia",
+    "languages": ["Vietnamese"],
+    "about": "Vietnam is known for rich history, cuisine, and scenic landscapes."
+  },
+  "Yemen": {
+    "flag": "twemoji:flag-yemen",
+    "capital": "Sana'a",
+    "currency": "Yemeni Rial",
+    "continent": "Asia",
+    "languages": ["Arabic"],
+    "about": "Yemen is known for ancient architecture and historical trade routes."
+  },
+  "Zambia": {
+    "flag": "twemoji:flag-zambia",
+    "capital": "Lusaka",
+    "currency": "Zambian Kwacha",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "Zambia is known for Victoria Falls and wildlife."
+  },
+  "Zimbabwe": {
+    "flag": "twemoji:flag-zimbabwe",
+    "capital": "Harare",
+    "currency": "Zimbabwe Dollar",
+    "continent": "Africa",
+    "languages": ["English"],
+    "about": "Zimbabwe is known for landscapes, wildlife, and Great Zimbabwe ruins."
+  }
+}

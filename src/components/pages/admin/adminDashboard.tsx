@@ -107,7 +107,9 @@ const AdminDashboard: React.FC = () => {
             <div className="p-3 bg-purple-100 rounded-lg">
               <span className="text-2xl">🔍</span>
             </div>
-            <h3 className="font-semibold text-gray-900">View & Edit Questions</h3>
+            <h3 className="font-semibold text-gray-900">
+              View & Edit Questions
+            </h3>
           </div>
           <p className="text-gray-600 text-sm mb-4">
             Browse, search, and edit existing questions with filters
