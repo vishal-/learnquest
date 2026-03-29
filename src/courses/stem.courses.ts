@@ -7,7 +7,7 @@ export const stemCourses: Course[] = [
         subjectId: SubjectId.STEM,
         label: "Units",
         description: "Learn about different measurement units",
-        icon: "noto:science",
+        icon: "twemoji:balance-scale",
         route: "/stem/units",
         component: "units",
         category: CourseCategory.LEARN,

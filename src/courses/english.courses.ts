@@ -8,7 +8,7 @@ export const englishCourses: Course[] = [
         description: "Listen to letters and identify them from multiple choices",
         icon: "noto:input-latin-uppercase",
         route: "/english/identify-letter",
-        component: "identify-letter",
+        component: "identifyLetter",
         subjectId: SubjectId.ENGLISH,
         category: CourseCategory.PRACTICE,
     },

@@ -9,7 +9,7 @@ export const triviaCourses: Course[] = [
         description: "Learn about different animals around the world",
         icon: "noto:lion",
         route: "/trivia/learn-animals",
-        component: "animals",
+        component: "learnAnimals",
         category: CourseCategory.LEARN,
     },
 ];

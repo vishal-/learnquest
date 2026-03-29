@@ -9,7 +9,7 @@ export const hindiCourses: Course[] = [
         description: "क्या आपको हिंदी में गिनती आती है?",
         icon: "noto:victory-hand",
         route: "/hindi/counting",
-        component: "counting",
+        component: "hindiCounting",
         category: CourseCategory.LEARN,
     },
     {
@@ -19,7 +19,7 @@ export const hindiCourses: Course[] = [
         description: "0 से 1000 के बीच की हिन्दी संख्या पहचानें।",
         icon: "twemoji:hand-with-fingers-splayed",
         route: "/hindi/numbers",
-        component: "numbers",
+        component: "hindiNumbers",
         category: CourseCategory.PRACTICE,
     },
 ];
