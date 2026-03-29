@@ -1,4 +1,4 @@
-import { getCombinedSubjectsData } from "../lib/subjectsData.constants";
+import { getCombinedSubjectsData } from "../lib/subjects";
 
 export const useSubjects = () => {
     return {
