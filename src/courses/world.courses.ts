@@ -3,6 +3,16 @@ import { CourseCategory, SubjectId } from "@/types/subject.types";
 
 export const worldCourses: Course[] = [
     {
+        id: "world_learn_countries",
+        subjectId: SubjectId.WORLD,
+        label: "Learn Countries",
+        description: "Explore countries from around the world and learn about their culture, capital, and languages",
+        icon: "noto:globe-with-meridians",
+        route: "/world/learn-countries",
+        component: "learnCountries",
+        category: CourseCategory.LEARN,
+    },
+    {
         id: "world_capitals_of_countries",
         subjectId: SubjectId.WORLD,
         label: "Capitals of Countries",

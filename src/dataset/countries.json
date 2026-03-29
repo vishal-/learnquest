@@ -396,7 +396,30 @@
     "capital": "New Delhi",
     "currency": "Indian Rupee",
     "continent": "Asia",
-    "languages": ["Hindi", "English"],
+    "languages": [
+      "Assamese",
+      "Bengali",
+      "Bodo",
+      "Dogri",
+      "Gujarati",
+      "Hindi",
+      "Kannada",
+      "Kashmiri",
+      "Konkani",
+      "Maithili",
+      "Malayalam",
+      "Manipuri",
+      "Marathi",
+      "Nepali",
+      "Odia",
+      "Punjabi",
+      "Sanskrit",
+      "Santali",
+      "Sindhi",
+      "Tamil",
+      "Telugu",
+      "Urdu"
+    ],
     "about": "India is a diverse country with rich culture, history, and rapid economic growth."
   },
   "Indonesia": {
@@ -720,7 +743,7 @@
     "about": "Mozambique is known for Indian Ocean coastline and marine biodiversity."
   },
   "Myanmar": {
-    "flag": "twemoji:flag-myanmar",
+    "flag": "twemoji:flag-myanmar-burma",
     "capital": "Naypyidaw",
     "currency": "Myanmar Kyat",
     "continent": "Asia",
@@ -928,7 +951,7 @@
     "about": "Rwanda is known for mountainous terrain and gorilla conservation."
   },
   "Saint Kitts and Nevis": {
-    "flag": "twemoji:flag-saint-kitts-and-nevis",
+    "flag": "twemoji:flag-st-kitts-and-nevis",
     "capital": "Basseterre",
     "currency": "East Caribbean Dollar",
     "continent": "North America",
@@ -936,7 +959,7 @@
     "about": "Saint Kitts and Nevis is a Caribbean nation known for beaches and sugar plantations."
   },
   "Saint Lucia": {
-    "flag": "twemoji:flag-saint-lucia",
+    "flag": "twemoji:flag-st-lucia",
     "capital": "Castries",
     "currency": "East Caribbean Dollar",
     "continent": "North America",
@@ -944,7 +967,7 @@
     "about": "Saint Lucia is known for volcanic beaches and the Pitons."
   },
   "Saint Vincent and the Grenadines": {
-    "flag": "twemoji:flag-saint-vincent-and-the-grenadines",
+    "flag": "twemoji:flag-st-vincent-and-grenadines",
     "capital": "Kingstown",
     "currency": "East Caribbean Dollar",
     "continent": "North America",
