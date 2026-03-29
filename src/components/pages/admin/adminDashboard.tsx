@@ -98,7 +98,25 @@ const AdminDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Users Management Card */}
+        {/* View & Edit Questions Card */}
+        <div
+          onClick={() => navigate("/admin/questions")}
+          className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:border-purple-500 transition-all cursor-pointer"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-purple-100 rounded-lg">
+              <span className="text-2xl">🔍</span>
+            </div>
+            <h3 className="font-semibold text-gray-900">View & Edit Questions</h3>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">
+            Browse, search, and edit existing questions with filters
+          </p>
+          <div className="inline-flex items-center gap-2 text-purple-600 font-medium text-sm hover:gap-3 transition-all">
+            Browse
+            <span>→</span>
+          </div>
+        </div>
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 opacity-50 cursor-not-allowed">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 bg-gray-100 rounded-lg">

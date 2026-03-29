@@ -18,4 +18,5 @@ export const componentMap: { [key: string]: React.LazyExoticComponent<React.Comp
 
 // Also export adminDashboard separately as it's not part of courses
 componentMap["admin"] = lazy(() => import("./pages/admin/adminDashboard"));
+componentMap["adminQuestions"] = lazy(() => import("./pages/admin/questions"));
 componentMap["subjectLayout"] = lazy(() => import("./layouts/subjectLayout"));

@@ -23,10 +23,10 @@ const Popup = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div
-        className={`bg-white rounded-2xl border-4 border-[#2D2016] ${maxWidth} w-full shadow-lg animate-slide-up`}
+        className={`bg-white rounded-2xl border-4 border-[#2D2016] ${maxWidth} w-full shadow-lg animate-slide-up max-h-[80vh] flex flex-col overflow-hidden`}
       >
         {/* Close Button */}
-        <div className="flex justify-end p-4">
+        <div className="flex justify-end p-4 flex-shrink-0">
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -37,7 +37,7 @@ const Popup = ({
         </div>
 
         {/* Content */}
-        <div className="px-6 pb-6">
+        <div className="px-6 pb-6 overflow-y-auto flex-1">
           {/* Icon */}
           {icon && <div className="flex justify-center mb-6">{icon}</div>}
 

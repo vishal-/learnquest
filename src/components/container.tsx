@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import SignIn from "./pages/signIn";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import AddQuestions from "./pages/admin/addQuestions";
+import QuestionsManagement from "./pages/admin/questions";
 import NotFound from "./pages/notFound";
 import { useSubjects } from "@/hooks/useSubjects";
 import { componentMap } from "./componentMap";
@@ -68,6 +69,7 @@ const ContainerContent: React.FC = () => {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/add-questions" element={<AddQuestions />} />
+            <Route path="/admin/questions" element={<QuestionsManagement />} />
 
             {/* Dynamic Routes */}
             {subjects.map((subject: Subject) => (
